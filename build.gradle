@@ -18,3 +18,14 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Implementation-Title': 'UnB-DALi - The UnB Dependability Analysis Library',  
+        	'Implementation-Version': '0.0.1'
+    }
+    baseName = 'unbdali' + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
