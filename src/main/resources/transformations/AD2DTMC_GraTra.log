@@ -1,0 +1,126 @@
+Sat Jan 02 11:27:09 BRST 2016
+Version:  AGG 2.1
+
+Layered graph transformation of : AD2DTMC
+on graph : BitComplexDecision
+[  Initial  Final  Activity2Final  Initial2Decision2Activity  Initial2Final  DeleteInitial2Decision  Activity2Activity  Initial2Activity  Activity2AppActivity  DeleteFinal  Initial2Decision2Decision  ]
+
+Layer: 0
+[  Final  Initial  ]
+Final 	 applied:  true
+[  Final  Initial  ]
+Final 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  Initial  ]
+Initial 	 applied:  true
+[  Final  Initial  ]
+Final 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  Initial  ]
+Initial 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  ]
+used time: 26ms
+
+Layer: 1
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2AppActivity 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Initial2Final  Initial2Decision2Activity  ]
+DeleteInitial2Decision 	 applied:  false
+
+[  Initial2Activity  Activity2Activity  Initial2Final  Initial2Decision2Activity  ]
+Initial2Final 	 applied:  false
+
+[  Initial2Activity  Activity2Activity  Initial2Decision2Activity  ]
+Initial2Decision2Activity 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Initial2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Activity 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2AppActivity 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+DeleteInitial2Decision 	 applied:  false
+
+[  Initial2Activity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Initial2Activity 	 applied:  false
+
+[  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Initial2Final  Initial2Decision2Activity  ]
+Initial2Final 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Initial2Decision2Activity  ]
+Initial2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2AppActivity  Activity2Activity  Initial2Decision2Activity  ]
+Activity2AppActivity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2Activity  Initial2Decision2Activity  ]
+Activity2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Decision2Activity  ]
+Initial2Decision2Activity 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2AppActivity 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Initial2Final 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Activity2Final  Initial2Decision2Activity  ]
+Initial2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2Activity  Activity2Final  Initial2Decision2Activity  ]
+Activity2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Initial2Final  Initial2Decision2Activity  ]
+DeleteInitial2Decision 	 applied:  true
+[  DeleteInitial2Decision  Initial2Activity  Activity2AppActivity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2AppActivity 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Activity2Final  Initial2Final  Initial2Decision2Activity  ]
+Activity2Final 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Initial2Final  Initial2Decision2Activity  ]
+Initial2Decision2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Initial2Activity  Activity2Activity  Initial2Final  ]
+Initial2Activity 	 applied:  false
+
+[  DeleteInitial2Decision  Activity2Activity  Initial2Final  ]
+DeleteInitial2Decision 	 applied:  false
+
+[  Activity2Activity  Initial2Final  ]
+Initial2Final 	 applied:  false
+
+[  Activity2Activity  ]
+Activity2Activity 	 applied:  false
+
+[  ]
+used time: 188ms
+
+Layer: 2
+[  DeleteFinal  ]
+DeleteFinal 	 applied:  true
+[  DeleteFinal  ]
+DeleteFinal 	 applied:  false
+
+[  ]
+used time: 12ms
+
+No more layers.
+Graph transformation finished

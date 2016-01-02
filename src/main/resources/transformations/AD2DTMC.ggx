@@ -15,7 +15,7 @@
         <TaggedValue Tag="layered" TagValue="true"/>
         <TaggedValue Tag="breakAllLayer" TagValue="true"/>
         <TaggedValue Tag="showGraphAfterStep" TagValue="true"/>
-        <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED"/>
+        <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>
         <Types>
             <NodeType ID="I2" abstract="false" name="Activity%:OVAL:java.awt.Color[r=255,g=0,b=0]:[NODE]:"/>
             <NodeType ID="I3" abstract="false" name="State%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:"/>
@@ -39,7 +39,7 @@
             <EdgeType ID="I19" abstract="false" name="%:DOT_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:"/>
             <Graph ID="I20" kind="TG" name="TypeGraph">
                 <Node ID="I21" type="I2">
-                    <NodeLayout X="543" Y="82"/>
+                    <NodeLayout X="543" Y="81"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
                 <Node ID="I22" type="I3">
@@ -78,9 +78,9 @@
                     <NodeLayout X="244" Y="251"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Edge ID="I31" source="I21" sourcemax="1" sourcemin="0"
-                    target="I21" targetmin="0" type="I13">
-                    <EdgeLayout bendX="461" bendY="38" loopH="35"
+                <Edge ID="I31" source="I21" sourcemin="0" target="I21"
+                    targetmax="1" targetmin="0" type="I13">
+                    <EdgeLayout bendX="461" bendY="37" loopH="35"
                         loopW="84" sourceMultiplicityOffsetX="12"
                         sourceMultiplicityOffsetY="5"
                         targetMultiplicityOffsetX="-19"
@@ -169,7 +169,7 @@
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
                 <Edge ID="I45" source="I24" sourcemax="1" sourcemin="0"
-                    target="I27" targetmin="0" type="I13">
+                    target="I27" targetmax="1" targetmin="0" type="I13">
                     <EdgeLayout bendX="109" bendY="375"
                         sourceMultiplicityOffsetX="2"
                         sourceMultiplicityOffsetY="11"
@@ -177,13 +177,13 @@
                         targetMultiplicityOffsetY="8" textOffsetX="18" textOffsetY="-42"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I47" source="I21" sourcemax="1" sourcemin="0"
-                    target="I27" targetmin="0" type="I13">
+                <Edge ID="I47" source="I21" sourcemin="0" target="I27"
+                    targetmax="1" targetmin="0" type="I13">
                     <EdgeLayout bendX="543" bendY="329"
                         sourceMultiplicityOffsetX="-6"
                         sourceMultiplicityOffsetY="15"
                         targetMultiplicityOffsetX="7"
-                        targetMultiplicityOffsetY="2" textOffsetX="22" textOffsetY="-101"/>
+                        targetMultiplicityOffsetY="2" textOffsetX="22" textOffsetY="-100"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
                 <Edge ID="I49" source="I22" sourcemin="0" target="I28"
@@ -221,13 +221,13 @@
                         targetMultiplicityOffsetY="10" textOffsetX="-49" textOffsetY="-32"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I57" source="I21" sourcemin="0" target="I30"
-                    targetmax="1" targetmin="0" type="I13">
+                <Edge ID="I57" source="I21" sourcemax="1" sourcemin="0"
+                    target="I30" targetmax="1" targetmin="0" type="I13">
                     <EdgeLayout bendX="424" bendY="215"
                         sourceMultiplicityOffsetX="-9"
                         sourceMultiplicityOffsetY="16"
                         targetMultiplicityOffsetX="8"
-                        targetMultiplicityOffsetY="11" textOffsetX="-32" textOffsetY="-4"/>
+                        targetMultiplicityOffsetY="11" textOffsetX="-32" textOffsetY="-3"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
             </Graph>
@@ -342,32 +342,32 @@
             </Edge>
         </Graph>
         <Graph ID="I93" kind="HOST" name="BitComplexDecision">
-            <Node ID="I94" type="I10">
-                <NodeLayout X="564" Y="394"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I94" type="I9">
+                <NodeLayout X="226" Y="403"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I95" type="I6">
-                <NodeLayout X="575" Y="26"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I95" type="I5">
+                <NodeLayout X="223" Y="50"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I96" type="I3">
-                <NodeLayout X="577" Y="102"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I96" type="I12">
+                <NodeLayout X="222" Y="143"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I97" type="I3">
-                <NodeLayout X="763" Y="158"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I97" type="I2">
+                <NodeLayout X="80" Y="225"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I98" type="I3">
-                <NodeLayout X="763" Y="240"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I98" type="I2">
+                <NodeLayout X="358" Y="339"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I99" type="I3">
-                <NodeLayout X="381" Y="159"/>
-                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            <Node ID="I99" type="I2">
+                <NodeLayout X="355" Y="225"/>
+                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Edge ID="I100" source="I95" target="I96" type="I16">
-                <Attribute constant="true" type="I18">
+            <Edge ID="I100" source="I95" target="I96" type="I13">
+                <Attribute constant="true" type="I15">
                     <Value>
                         <double>1.0</double>
                     </Value>
@@ -375,17 +375,8 @@
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I103" source="I96" target="I97" type="I16">
-                <Attribute constant="true" type="I18">
-                    <Value>
-                        <double/>
-                    </Value>
-                </Attribute>
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
-                <additionalLayout aktlength="200" force="10" preflength="200"/>
-            </Edge>
-            <Edge ID="I106" source="I97" target="I98" type="I16">
-                <Attribute constant="true" type="I18">
+            <Edge ID="I103" source="I97" target="I94" type="I13">
+                <Attribute constant="true" type="I15">
                     <Value>
                         <double>1.0</double>
                     </Value>
@@ -393,17 +384,8 @@
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I109" source="I96" target="I99" type="I16">
-                <Attribute constant="true" type="I18">
-                    <Value>
-                        <double/>
-                    </Value>
-                </Attribute>
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
-                <additionalLayout aktlength="200" force="10" preflength="200"/>
-            </Edge>
-            <Edge ID="I112" source="I99" target="I98" type="I16">
-                <Attribute constant="true" type="I18">
+            <Edge ID="I106" source="I96" target="I97" type="I13">
+                <Attribute constant="true" type="I15">
                     <Value>
                         <double>1.0</double>
                     </Value>
@@ -411,8 +393,26 @@
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I115" source="I98" target="I94" type="I16">
-                <Attribute constant="true" type="I18">
+            <Edge ID="I109" source="I98" target="I94" type="I13">
+                <Attribute constant="true" type="I15">
+                    <Value>
+                        <double>1.0</double>
+                    </Value>
+                </Attribute>
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I112" source="I99" target="I98" type="I13">
+                <Attribute constant="true" type="I15">
+                    <Value>
+                        <double>1.0</double>
+                    </Value>
+                </Attribute>
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I115" source="I96" target="I99" type="I13">
+                <Attribute constant="true" type="I15">
                     <Value>
                         <double>1.0</double>
                     </Value>
@@ -818,10 +818,10 @@
                 <Mapping image="I206" orig="I189"/>
                 <Mapping image="I207" orig="I190"/>
                 <Mapping image="I208" orig="I191"/>
-                <Mapping image="I214" orig="I195"/>
-                <Mapping image="I211" orig="I192"/>
                 <Mapping image="I216" orig="I197"/>
+                <Mapping image="I214" orig="I195"/>
                 <Mapping image="I215" orig="I196"/>
+                <Mapping image="I211" orig="I192"/>
             </Morphism>
             <ApplCondition>
                 <NAC>
@@ -914,10 +914,10 @@
                         <Mapping image="I227" orig="I191"/>
                         <Mapping image="I228" orig="I188"/>
                         <Mapping image="I229" orig="I190"/>
-                        <Mapping image="I235" orig="I195"/>
-                        <Mapping image="I232" orig="I192"/>
                         <Mapping image="I237" orig="I197"/>
+                        <Mapping image="I235" orig="I195"/>
                         <Mapping image="I236" orig="I196"/>
+                        <Mapping image="I232" orig="I192"/>
                     </Morphism>
                 </NAC>
             </ApplCondition>
