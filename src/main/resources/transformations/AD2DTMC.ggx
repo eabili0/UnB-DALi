@@ -221,7 +221,7 @@
                         targetMultiplicityOffsetY="10" textOffsetX="-49" textOffsetY="-32"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I57" source="I21" sourcemax="1" sourcemin="0"
+                <Edge ID="I57" source="I21" sourcemax="2" sourcemin="0"
                     target="I30" targetmax="1" targetmin="0" type="I13">
                     <EdgeLayout bendX="424" bendY="215"
                         sourceMultiplicityOffsetX="-9"

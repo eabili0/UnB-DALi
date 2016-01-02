@@ -9,10 +9,10 @@ import agg.xt_basis.Type;
 
 public abstract class ActivityNode implements IAggNode {
 	protected Type _type; // the agg type of this uml activity diagram node
-	public Node _aggNode; // the agg node of this uml activity diagram node
+	protected Node _aggNode; // the agg node of this uml activity diagram node
 	
-	protected LinkedHashSet<ActivityEdge> outgoingEdges; // a linked hash set of the outgoing edges of this node
-	protected LinkedHashSet<ActivityEdge> ingoingEdges; // a linked hash set of the outgoing edges of this node
+	protected LinkedHashSet<ActivityEdge> outgoing; // a linked hash set of the outgoing edges of this node
+	protected LinkedHashSet<ActivityEdge> incoming; // a linked hash set of the outgoing edges of this node
 	
 	/**
 	 * Initializes the uml activity diagram node, forcing the call to {@link #setType()}
@@ -40,7 +40,7 @@ public abstract class ActivityNode implements IAggNode {
 	 * @param edge
 	 */
 	public void addOutgoingEdge(ActivityEdge edge) {
-		outgoingEdges.add(edge);
+		outgoing.add(edge);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public abstract class ActivityNode implements IAggNode {
 	 * @param edge
 	 */
 	public void addIngoingEdge(ActivityEdge edge) {
-		ingoingEdges.add(edge);
+		incoming.add(edge);
 	}
 	
 	/**
