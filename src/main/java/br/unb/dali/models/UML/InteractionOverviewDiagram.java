@@ -1,12 +1,13 @@
-package br.unb.dali.models.UML.AD;
+package br.unb.dali.models.uml;
 
 import agg.xt_basis.Graph;
 import br.unb.dali.models.AModel;
 import br.unb.dali.models.exceptions.ModelSemanticsVerificationException;
 
-public class ActivityDiagram extends AModel{
+public class InteractionOverviewDiagram extends AModel {
 
-	public ActivityDiagram(Graph graph) throws ModelSemanticsVerificationException {
+	public InteractionOverviewDiagram(Graph graph)
+			throws ModelSemanticsVerificationException {
 		super(graph);
 		// TODO Auto-generated constructor stub
 	}
@@ -20,7 +21,7 @@ public class ActivityDiagram extends AModel{
 	@Override
 	protected void setUp(Graph graph) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

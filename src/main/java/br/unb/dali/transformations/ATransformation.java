@@ -50,7 +50,7 @@ public abstract class ATransformation {
 	 * Performs the actual transformation
 	 * Needs to be implemented.
 	 */
-	public abstract AModel transform(AModel source);
+	public abstract AModel transform(AModel source) throws ModelSemanticsVerificationException;
 	
 	/**
 	 * Sets up and performs the transformation
