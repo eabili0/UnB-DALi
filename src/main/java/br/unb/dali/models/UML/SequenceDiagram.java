@@ -19,9 +19,15 @@ public class SequenceDiagram extends AModel {
 	}
 
 	@Override
-	protected void setUp(Graph graph) {
+	protected void setUp() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	protected void defineTypeSet() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -19,9 +19,10 @@ public abstract class ATransformation {
 	/**
 	 * Loads a new graph grammar from a file
 	 * @param fileName
-	 * @return
+	 * @return the respective Graph Grammar
 	 */
-	private GraGra load(String fileName) {
+	private GraGra load(String resourceName) {
+		String fileName = getClass().getClassLoader().getResource(resourceName).getFile();
 		if (fileName.endsWith(".ggx")) {
 			XMLHelper h = null;
 			h = new XMLHelper();
@@ -35,20 +36,20 @@ public abstract class ATransformation {
 	}
 	
 	/**
-	 * Sets up the transformation with the Graph Grammar given by the grammar file provided;
-	 * Also sets up a new Layered Transformation.
+	 * Sets up the transformation with the Graph Grammar given by the resource file given;
 	 * @param graph
 	 * @throws ModelSemanticsVerificationException 
 	 */
 	public ATransformation(String fileName) {
 		_grammar = load(fileName);
+		_grammar.destroyAllGraphs();
 		_morphism = new LayeredGraTraImpl();
 		_morphism.setGraGra(_grammar);
 	}
 	
 	/**
-	 * Performs the actual transformation
-	 * Needs to be implemented.
+	 * Performs the actual transformation, calling the performTransformation method or not;
+	 * Needs to be implemented, so the target model can be instantiated
 	 */
 	public abstract AModel transform(AModel source) throws ModelSemanticsVerificationException;
 	

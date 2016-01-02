@@ -6,8 +6,7 @@ import br.unb.dali.models.exceptions.ModelSemanticsVerificationException;
 
 public class InteractionOverviewDiagram extends AModel {
 
-	public InteractionOverviewDiagram(Graph graph)
-			throws ModelSemanticsVerificationException {
+	public InteractionOverviewDiagram(Graph graph) throws ModelSemanticsVerificationException {
 		super(graph);
 		// TODO Auto-generated constructor stub
 	}
@@ -19,9 +18,15 @@ public class InteractionOverviewDiagram extends AModel {
 	}
 
 	@Override
-	protected void setUp(Graph graph) {
+	protected void setUp() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	protected void defineTypeSet() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

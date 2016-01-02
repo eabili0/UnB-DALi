@@ -11,7 +11,8 @@ repositories {
 
 dependencies {
 	compile fileTree(dir: 'libs', includes: ['*.jar'])
-       	compile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
+    compile 'org.reflections:reflections:0.9.10'
 }
 
 // gradle wrapper
