@@ -17,8 +17,18 @@ import br.unb.dali.models.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.uml.ad.nodes.control.MergeNode;
 import br.unb.dali.models.uml.ad.nodes.executable.ExecutableNode;
 
+/**
+ * This class defines a subset of an 2.5 standard Activity Diagram
+ * It extends AModel, so it can be used in transformations that extends ATransformation
+ * We tried to keep faithful to the UML 2.5 standard.
+ * 
+ * Property {@link #edges} defines the activity edges as a map of AGG Arcs to ActivityEdges
+ * Property {@link #nodes} defines the activity nodes as a map of AGG Nodes to ActivityNodes
+ * 
+ * @author abiliooliveira
+ */
 public class Activity extends AModel{
-	private Map<Node,ActivityNode> nodes;
+	private Map<Node, ActivityNode> nodes;
 	private Map<Arc, ActivityEdge> edges;
 	
 	/*********************** CONSTRUCTORS ***********************/
@@ -52,7 +62,7 @@ public class Activity extends AModel{
 	protected void setUp() {
 		// init our repositories of nodes and edges
 		this.nodes = new HashMap<Node, ActivityNode>();
-		this.edges = new HashMap<Arc,ActivityEdge>();
+		this.edges = new HashMap<Arc, ActivityEdge>();
 		
 		// TODO Auto-generated method stub
 		
@@ -113,6 +123,15 @@ public class Activity extends AModel{
 		addAnADNode(node);
 	}
 	
+	/**
+	 * Searches for an activity node based on an agg node
+	 * @param n
+	 * @return the agg node n correspondent activity node
+	 */
+	public ActivityNode searchNode(Node n) {
+		return this.nodes.getOrDefault(n, null);
+	}
+	
 	/*********************** PRIVATE ***********************/
 	
 	/**
@@ -132,7 +151,7 @@ public class Activity extends AModel{
 	 * @param edge
 	 */
 	private void addAnADEdge(ActivityEdge edge) {
-		Arc newAggArc = new Arc(null, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), null); 
+		Arc newAggArc = new Arc(null, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), null);
 		_graph.addArc(newAggArc);
 		edges.put(newAggArc, edge);
 	}

@@ -7,33 +7,29 @@ import br.unb.dali.util.agg.IAggNode;
 import agg.xt_basis.Node;
 import agg.xt_basis.Type;
 
+/**
+ * This class defines what is an ActivityNode in the context of the Activity Diagram defined in this library;
+ * We tried to keep faithful to the UML 2.5 standard
+ * 
+ * Property {@link #_aggNode} defines the underlying agg type of this uml activity diagram node
+ * Property {@link #_type} defines the underlying agg node of this uml activity diagram node
+ * Property {@link #incoming} defines the set of outgoing edges from this node  
+ * Property {@link #outgoing} defines the set of incoming edges to this node
+ * 
+ * @author abiliooliveira
+ */
 public abstract class ActivityNode implements IAggNode {
-	protected Type _type; // the agg type of this uml activity diagram node
-	protected Node _aggNode; // the agg node of this uml activity diagram node
-	
-	protected LinkedHashSet<ActivityEdge> outgoing; // a linked hash set of the outgoing edges of this node
-	protected LinkedHashSet<ActivityEdge> incoming; // a linked hash set of the outgoing edges of this node
-	
-	/**
-	 * Initializes the uml activity diagram node, forcing the call to {@link #setType()}
-	 */
-	public ActivityNode() {
-		setType();
-	}
-	
-	public ActivityNode(Node aggNode) {
-		setType();
-		if (aggNode.getType().getName().equals(_type.getName())) {
-			
-		}
-	}
+	protected Type _type; 
+	protected Node _aggNode;  
+	protected LinkedHashSet<ActivityEdge> outgoing;
+	protected LinkedHashSet<ActivityEdge> incoming;
 	
 	/**
-	 * sets up the agg type of this node
+	 * This model sets up the node structures based on the property _aggNode
+	 * 
+	 * Every ActivityNode subclass MUST implement this method, since it is always called by any constructor
 	 */
-	protected void setType() {
-		this._type = UMLTypeSetUtil.ADTypeSet.getTypeByName(getClass().getSimpleName());
-	}
+	protected abstract void setUp();
 	
 	/**
 	 * adds an outgoing edge from this node
@@ -63,5 +59,24 @@ public abstract class ActivityNode implements IAggNode {
 	 */
 	public Node getAggNode() {
 		return this._aggNode;
+	}
+	
+	/**
+	 * All nodes have to provide a way to initialize them by an agg node;
+	 * If a subclass wants to provide an empty constructor, one only have to pass a null aggNode to this constructor
+	 * 
+	 * @param aggNode
+	 */
+	public ActivityNode(Node aggNode) {
+		setType();
+		_aggNode = (aggNode!=null)?aggNode:new Node(null, _type, null);
+		setUp();
+	}
+	
+	/**
+	 * sets up the agg type of this node
+	 */
+	private void setType() {
+		this._type = UMLTypeSetUtil.ADTypeSet.getTypeByName(getClass().getSimpleName());
 	}
 }
