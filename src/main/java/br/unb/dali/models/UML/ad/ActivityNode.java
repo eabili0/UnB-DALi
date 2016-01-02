@@ -7,21 +7,21 @@ import br.unb.dali.util.agg.IAggNode;
 import agg.xt_basis.Node;
 import agg.xt_basis.Type;
 
-public abstract class AnADNode implements IAggNode {
+public abstract class ActivityNode implements IAggNode {
 	protected Type _type; // the agg type of this uml activity diagram node
 	public Node _aggNode; // the agg node of this uml activity diagram node
 	
-	protected LinkedHashSet<AnADEdge> outgoingEdges; // a linked hash set of the outgoing edges of this node
-	protected LinkedHashSet<AnADEdge> ingoingEdges; // a linked hash set of the outgoing edges of this node
+	protected LinkedHashSet<ActivityEdge> outgoingEdges; // a linked hash set of the outgoing edges of this node
+	protected LinkedHashSet<ActivityEdge> ingoingEdges; // a linked hash set of the outgoing edges of this node
 	
 	/**
 	 * Initializes the uml activity diagram node, forcing the call to {@link #setType()}
 	 */
-	public AnADNode() {
+	public ActivityNode() {
 		setType();
 	}
 	
-	public AnADNode(Node aggNode) {
+	public ActivityNode(Node aggNode) {
 		setType();
 		if (aggNode.getType().getName().equals(_type.getName())) {
 			
@@ -39,7 +39,7 @@ public abstract class AnADNode implements IAggNode {
 	 * adds an outgoing edge from this node
 	 * @param edge
 	 */
-	public void addOutgoingEdge(AnADEdge edge) {
+	public void addOutgoingEdge(ActivityEdge edge) {
 		outgoingEdges.add(edge);
 	}
 	
@@ -47,7 +47,7 @@ public abstract class AnADNode implements IAggNode {
 	 * adds an ingoing edge to this node
 	 * @param edge
 	 */
-	public void addIngoingEdge(AnADEdge edge) {
+	public void addIngoingEdge(ActivityEdge edge) {
 		ingoingEdges.add(edge);
 	}
 	

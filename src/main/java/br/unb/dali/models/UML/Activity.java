@@ -9,22 +9,22 @@ import agg.xt_basis.Graph;
 import agg.xt_basis.Node;
 import br.unb.dali.models.AModel;
 import br.unb.dali.models.exceptions.ModelSemanticsVerificationException;
-import br.unb.dali.models.uml.ad.AnADEdge;
-import br.unb.dali.models.uml.ad.AnADNode;
-import br.unb.dali.models.uml.ad.nodes.FinalActivity;
-import br.unb.dali.models.uml.ad.nodes.InitialActivity;
+import br.unb.dali.models.uml.ad.ActivityEdge;
+import br.unb.dali.models.uml.ad.ActivityNode;
+import br.unb.dali.models.uml.ad.nodes.control.FinalNode;
+import br.unb.dali.models.uml.ad.nodes.control.InitialNode;
 
-public class ActivityDiagram extends AModel{
-	private InitialActivity init;
-	private Map<Node,AnADNode> nodes;
-	private Map<Arc, AnADEdge> edges;
-	private HashSet<FinalActivity> finals;
+public class Activity extends AModel{
+	private InitialNode init;
+	private Map<Node,ActivityNode> nodes;
+	private Map<Arc, ActivityEdge> edges;
+	private HashSet<FinalNode> finals;
 	
 	/** 
 	 * Initializes a new UML Activity Diagram
 	 * @throws ModelSemanticsVerificationException
 	 */
-	public ActivityDiagram() throws ModelSemanticsVerificationException {
+	public Activity() throws ModelSemanticsVerificationException {
 		super(null);
 	}
 	
@@ -33,13 +33,13 @@ public class ActivityDiagram extends AModel{
 	 * @param init
 	 * @throws ModelSemanticsVerificationException
 	 */
-	public ActivityDiagram(InitialActivity init) throws ModelSemanticsVerificationException {
+	public Activity(InitialNode init) throws ModelSemanticsVerificationException {
 		this();
 		this.init = init;
 		addAnADNode(init);
 	}
 	
-	public ActivityDiagram(Graph graph) throws ModelSemanticsVerificationException {
+	public Activity(Graph graph) throws ModelSemanticsVerificationException {
 		super(graph);
 	}
 
@@ -53,8 +53,8 @@ public class ActivityDiagram extends AModel{
 	@Override
 	protected void setUp() {
 		// init our repositories of nodes and edges
-		this.nodes = new HashMap<Node, AnADNode>();
-		this.edges = new HashMap<Arc,AnADEdge>();
+		this.nodes = new HashMap<Node, ActivityNode>();
+		this.edges = new HashMap<Arc,ActivityEdge>();
 		
 		// TODO Auto-generated method stub
 		
@@ -65,12 +65,12 @@ public class ActivityDiagram extends AModel{
 	 * privately configures the underlying AGG graph to hold the information of such a node
 	 * @param node
 	 */
-	public void addAnADNode(AnADNode node) {
+	public void addAnADNode(ActivityNode node) {
 		Node newAggNode = new Node(null, node.getAggType(), null);
 		_graph.addNode(newAggNode);
 		nodes.put(newAggNode, node);
-		if (node instanceof FinalActivity) {
-			finals.add((FinalActivity)node);
+		if (node instanceof FinalNode) {
+			finals.add((FinalNode)node);
 		}
 		
 	}
@@ -80,7 +80,7 @@ public class ActivityDiagram extends AModel{
 	 * privately configures the underlying AGG graph to hold the information of such an edge
 	 * @param edge
 	 */
-	public void addAnADEdge(AnADEdge edge) {
+	public void addAnADEdge(ActivityEdge edge) {
 		Arc newAggArc = new Arc(null, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), null); 
 		_graph.addArc(newAggArc);
 		edges.put(newAggArc, edge);

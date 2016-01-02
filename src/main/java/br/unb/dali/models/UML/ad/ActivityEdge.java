@@ -6,10 +6,10 @@ import br.unb.dali.models.exceptions.NullabilityOfSourceAndTargetNodeException;
 import br.unb.dali.models.uml.UMLTypeSetUtil;
 import br.unb.dali.util.agg.IAggArc;
 
-public abstract class AnADEdge implements IAggArc {
+public abstract class ActivityEdge implements IAggArc {
 	protected Type _type;
-	public AnADNode source;
-	public AnADNode target;
+	public ActivityNode source;
+	public ActivityNode target;
 	
 	/**
 	 * constructs a new ADEdge, forcing the call to setType
@@ -19,7 +19,7 @@ public abstract class AnADEdge implements IAggArc {
 	 * @param target must not be null
 	 * @throws NullabilityOfSourceAndTargetNodeException 
 	 */
-	public AnADEdge(AnADNode source, AnADNode target) throws NullabilityOfSourceAndTargetNodeException {
+	public ActivityEdge(ActivityNode source, ActivityNode target) throws NullabilityOfSourceAndTargetNodeException {
 		setType();
 		if (source != null && target != null) {
 			this.source = source;
