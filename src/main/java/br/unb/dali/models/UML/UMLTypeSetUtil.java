@@ -1,9 +1,9 @@
 package br.unb.dali.models.uml;
 
 import agg.xt_basis.TypeSet;
-import br.unb.dali.util.agg.TypeSetUtil;
+import br.unb.dali.util.agg.ATypeSetUtil;
 
-public class UMLTypeSetUtil extends TypeSetUtil {
+public class UMLTypeSetUtil extends ATypeSetUtil {
 	public static final TypeSet ADTypeSet = getADTypeSet();
 	public static final TypeSet SDTYpeSet = getSDTypeSet();
 	public static final TypeSet IODTypeSet = getIODTypeSet();

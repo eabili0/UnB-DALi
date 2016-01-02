@@ -4,6 +4,7 @@ import java.lang.reflect.Modifier;
 
 import org.reflections.Reflections;
 
+import agg.xt_basis.Type;
 import agg.xt_basis.TypeSet;
 
 public class TypeSetFactory {
@@ -42,8 +43,11 @@ public class TypeSetFactory {
 		switch (qT) {
 			case ARC:
 				for (Class<?> c : r.getSubTypesOf(IAggArc.class))
-					if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers()))
-						toReturn.createArcType(true).setStringRepr(c.getSimpleName());
+					if (!c.isInterface() && !Modifier.isAbstract(c.getModifiers())) {
+						Type t = toReturn.createArcType(true);
+						t.setStringRepr(c.getSimpleName());
+						
+					}
 				break;
 			case NODE:
 				for (Class<?> c : r.getSubTypesOf(IAggNode.class))

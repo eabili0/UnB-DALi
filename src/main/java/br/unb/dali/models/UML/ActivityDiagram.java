@@ -1,6 +1,8 @@
 package br.unb.dali.models.uml;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import agg.xt_basis.Arc;
 import agg.xt_basis.Graph;
@@ -14,8 +16,8 @@ import br.unb.dali.models.uml.ad.nodes.InitialActivity;
 
 public class ActivityDiagram extends AModel{
 	private InitialActivity init;
-	private HashSet<AnADNode> nodes;
-	private HashSet<AnADEdge> edges;
+	private Map<Node,AnADNode> nodes;
+	private Map<Arc, AnADEdge> edges;
 	private HashSet<FinalActivity> finals;
 	
 	/** 
@@ -51,8 +53,8 @@ public class ActivityDiagram extends AModel{
 	@Override
 	protected void setUp() {
 		// init our repositories of nodes and edges
-		this.nodes = new HashSet<AnADNode>();
-		this.edges = new HashSet<AnADEdge>();
+		this.nodes = new HashMap<Node, AnADNode>();
+		this.edges = new HashMap<Arc,AnADEdge>();
 		
 		// TODO Auto-generated method stub
 		
@@ -64,11 +66,13 @@ public class ActivityDiagram extends AModel{
 	 * @param node
 	 */
 	public void addAnADNode(AnADNode node) {
-		nodes.add(node);
+		Node newAggNode = new Node(null, node.getAggType(), null);
+		_graph.addNode(newAggNode);
+		nodes.put(newAggNode, node);
 		if (node instanceof FinalActivity) {
 			finals.add((FinalActivity)node);
 		}
-		_graph.addNode(new Node(null, node.getAggType(), null));
+		
 	}
 	
 	/**
@@ -77,8 +81,9 @@ public class ActivityDiagram extends AModel{
 	 * @param edge
 	 */
 	public void addAnADEdge(AnADEdge edge) {
-		edges.add(edge);
-		_graph.addArc(new Arc(null, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), null));
+		Arc newAggArc = new Arc(null, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), null); 
+		_graph.addArc(newAggArc);
+		edges.put(newAggArc, edge);
 	}
 
 	@Override

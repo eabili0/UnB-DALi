@@ -2,7 +2,7 @@ package br.unb.dali.util.agg;
 
 import agg.xt_basis.TypeSet;
 
-public abstract class TypeSetUtil {
+public abstract class ATypeSetUtil {
 	
 	/**
 	 * builds an agg type set from the classes of a specific packageName 

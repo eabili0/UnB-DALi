@@ -21,6 +21,13 @@ public abstract class AnADNode implements IAggNode {
 		setType();
 	}
 	
+	public AnADNode(Node aggNode) {
+		setType();
+		if (aggNode.getType().getName().equals(_type.getName())) {
+			
+		}
+	}
+	
 	/**
 	 * sets up the agg type of this node
 	 */
