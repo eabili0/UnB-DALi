@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document version="1.0">
+    <GraphTransformationSystem ID="I1" directed="true" name="DTMC" parallel="true">
+        <TaggedValue Tag="AttrHandler" TagValue="Java Expr">
+            <TaggedValue Tag="Package" TagValue="java.lang"/>
+            <TaggedValue Tag="Package" TagValue="java.util"/>
+        </TaggedValue>
+        <TaggedValue Tag="CSP" TagValue="true"/>
+        <TaggedValue Tag="injective" TagValue="true"/>
+        <TaggedValue Tag="dangling" TagValue="true"/>
+        <TaggedValue Tag="identification" TagValue="true"/>
+        <TaggedValue Tag="NACs" TagValue="true"/>
+        <TaggedValue Tag="PACs" TagValue="true"/>
+        <TaggedValue Tag="GACs" TagValue="true"/>
+        <TaggedValue Tag="breakAllLayer" TagValue="true"/>
+        <TaggedValue Tag="showGraphAfterStep" TagValue="true"/>
+        <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>
+        <Types>
+            <NodeType ID="I2" abstract="false" name="AbstractState%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
+            <NodeType ID="I3" abstract="false" name="State%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:">
+                <Parent pID="I2"/>
+            </NodeType>
+            <NodeType ID="I4" abstract="false" name="InitialState%:CIRCLE:java.awt.Color[r=0,g=0,b=255]:FILLED:[NODE]:">
+                <Parent pID="I2"/>
+            </NodeType>
+            <NodeType ID="I5" abstract="false" name="FinalState%:CIRCLE:java.awt.Color[r=0,g=0,b=255]:FILLED:[NODE]:">
+                <Parent pID="I2"/>
+            </NodeType>
+            <EdgeType ID="I6" abstract="false" name="Transition%:SOLID_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:">
+                <AttrType ID="I8" attrname="probability"
+                    typename="double" visible="true"/>
+            </EdgeType>
+            <Graph ID="I9" kind="TG" name="TypeGraph">
+                <Node ID="I10" type="I3">
+                    <NodeLayout X="220" Y="194"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                </Node>
+                <Node ID="I11" sourcemax="1" sourcemin="1" type="I4">
+                    <NodeLayout X="156" Y="52"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                </Node>
+                <Node ID="I12" type="I5">
+                    <NodeLayout X="154" Y="329"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                </Node>
+                <Node ID="I13" type="I2">
+                    <NodeLayout X="65" Y="194"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                </Node>
+                <Edge ID="I14" source="I10" sourcemin="0" target="I10"
+                    targetmin="0" type="I6">
+                    <EdgeLayout bendX="160" bendY="154" loopH="35"
+                        loopW="61" sourceMultiplicityOffsetX="7"
+                        sourceMultiplicityOffsetY="10"
+                        targetMultiplicityOffsetX="-20"
+                        targetMultiplicityOffsetY="3" textOffsetX="-22" textOffsetY="-14"/>
+                    <additionalLayout aktlength="200" force="10" preflength="200"/>
+                </Edge>
+                <Edge ID="I16" source="I11" sourcemax="1" sourcemin="0"
+                    target="I10" targetmin="0" type="I6">
+                    <EdgeLayout bendX="0" bendY="0"
+                        sourceMultiplicityOffsetX="-29"
+                        sourceMultiplicityOffsetY="1"
+                        targetMultiplicityOffsetX="-6"
+                        targetMultiplicityOffsetY="21" textOffsetX="-22" textOffsetY="-29"/>
+                    <additionalLayout aktlength="200" force="10" preflength="200"/>
+                </Edge>
+                <Edge ID="I18" source="I10" sourcemin="0" target="I12"
+                    targetmin="0" type="I6">
+                    <EdgeLayout bendX="0" bendY="0"
+                        sourceMultiplicityOffsetX="-32"
+                        sourceMultiplicityOffsetY="1"
+                        targetMultiplicityOffsetX="-30"
+                        targetMultiplicityOffsetY="2" textOffsetX="7" textOffsetY="-19"/>
+                    <additionalLayout aktlength="200" force="10" preflength="200"/>
+                </Edge>
+                <Edge ID="I20" source="I11" sourcemax="1" sourcemin="0"
+                    target="I12" targetmin="0" type="I6">
+                    <EdgeLayout bendX="302" bendY="194"
+                        sourceMultiplicityOffsetX="-2"
+                        sourceMultiplicityOffsetY="3"
+                        targetMultiplicityOffsetX="4"
+                        targetMultiplicityOffsetY="8" textOffsetX="-42" textOffsetY="-17"/>
+                    <additionalLayout aktlength="200" force="10" preflength="200"/>
+                </Edge>
+                <Edge ID="I22" source="I13" target="I13" type="I6">
+                    <EdgeLayout bendX="4" bendY="169" loopH="20"
+                        loopW="20" sourceMultiplicityOffsetX="5"
+                        sourceMultiplicityOffsetY="15"
+                        targetMultiplicityOffsetX="-6"
+                        targetMultiplicityOffsetY="7" textOffsetX="0" textOffsetY="-22"/>
+                    <additionalLayout aktlength="200" force="10" preflength="200"/>
+                </Edge>
+            </Graph>
+        </Types>
+        <Graph ID="I24" kind="HOST" name="Graph"/>
+    </GraphTransformationSystem>
+</Document>
