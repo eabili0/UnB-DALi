@@ -1,7 +1,11 @@
 package br.unb.dali.models.agg;
 
+import java.util.Map;
+
+import agg.xt_basis.Arc;
 import agg.xt_basis.GraGra;
 import agg.xt_basis.Graph;
+import agg.xt_basis.Node;
 import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.util.agg.Misc;
@@ -11,11 +15,21 @@ import br.unb.dali.util.agg.Misc;
  * 
  * Note that every subclass of $AModel should also have a corresponding agg GraGra (a resource file)
  * that defines the underlying Agg infrastructure of the model
+ * 
+ * Property {@link #_graph} defines the Agg graph that is being invisibly created by actions performed in the instance class
+ * Property {@link #_gragra} defines the underlying Agg infrastructure of this model
+ * Property {@link #_edges} defines the activity edges as a map of AGG Arcs to ActivityEdges
+ * Property {@link #_nodes} defines the activity nodes as a map of AGG Nodes to ActivityNodes
+ * 
  * @author abiliooliveira
  */
-public abstract class AnAggModel implements IModel {
+public abstract class AbstractAggModel implements IModel {
 	protected Graph _graph;
 	protected GraGra _gragra;
+	protected Map<Node, AbstractAggNode> _nodes;
+	protected Map<Arc, AbstractAggEdge> _edges;
+	
+	/********************** PUBLIC BEHAVIOR **************************/
 	
 	/**
 	 * Return the underlying infrastructure of this model
@@ -42,6 +56,42 @@ public abstract class AnAggModel implements IModel {
 	public abstract boolean checkModel() throws ModelSemanticsVerificationException;
 	
 	/**
+	 * Searches for an activity node based on an agg node
+	 * @param n
+	 * @return the agg node n correspondent activity node
+	 */
+	public AbstractAggNode searchNode(Node n) {
+		return _nodes.getOrDefault(n, null);
+	}
+
+	/********************** PROTECTED BEHAVIOR **************************/
+	
+	/**
+	 * adds a new AbstractAggNode node to the model;
+	 * privately configures the underlying AGG graph to hold the information of such a node
+	 * @param node
+	 */
+	protected void addAnAggNode(AbstractAggNode node) {
+		_graph.addNode(node.getAggNode()); // adds it to the graph
+		_nodes.put(node.getAggNode(), node); // puts a new entry on our HashMap of nodes
+	}
+	
+	/**
+	 * adds a new AbstractAggEdge edge to the model;
+	 * privately configures the underlying AGG graph to hold the information of such an edge
+	 * @param edge
+	 */
+	protected void addAnAggEdge(AbstractAggEdge edge) {
+//		Type t = _gragra.getTypeSet().getTypeByName(edge.getClass().getSimpleName());
+//		AttrInstance tt = AttrTupleManager.getDefaultManager().newInstance(
+//				t.getAttrType(), null);
+//		
+//		Arc newAggArc = new Arc(tt, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), _graph);
+		_graph.addArc(edge.getAggArc());
+		_edges.put(edge.getAggArc(), edge);
+	}
+	
+	/**
 	 * This method sets up the model structures, based on the underlying AGG graph _graph;
 	 * This will always be called by the AbstractModel Constructor
 	 * 
@@ -59,6 +109,8 @@ public abstract class AnAggModel implements IModel {
 	 */
 	protected abstract String getGraGraResourceFileName();
 	
+	/********************** CONSTRUCTORS **************************/
+	
 	/**
 	 * All models have to provide a way to initialize them by an AGG Graph;
 	 * If the subclasses want to provide empty constructors, one only have to pass a null graph;
@@ -68,7 +120,7 @@ public abstract class AnAggModel implements IModel {
 	 * @param graph The graph that truthfully represents the model
 	 * @throws ModelSemanticsVerificationException 
 	 */
-	public AnAggModel(Graph graph) throws ModelSemanticsVerificationException {
+	public AbstractAggModel(Graph graph) throws ModelSemanticsVerificationException {
 		_gragra = Misc.loadGraGra(getGraGraResourceFileName());
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());

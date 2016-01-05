@@ -1,10 +1,10 @@
 package br.unb.dali.models.agg.uml;
 
 import agg.xt_basis.Graph;
-import br.unb.dali.models.agg.AnAggModel;
+import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
-public class SequenceDiagram extends AnAggModel {
+public class SequenceDiagram extends AbstractAggModel {
 
 	public SequenceDiagram(Graph graph)
 			throws ModelSemanticsVerificationException {

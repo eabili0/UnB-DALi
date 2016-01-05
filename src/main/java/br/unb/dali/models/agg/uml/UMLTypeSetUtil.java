@@ -3,6 +3,12 @@ package br.unb.dali.models.agg.uml;
 import agg.xt_basis.TypeSet;
 import br.unb.dali.util.agg.ATypeSetUtil;
 
+/**
+ * Sets up static fields to provide which type set correspond to each UML Model
+ * 
+ * @deprecated
+ * @author abiliooliveira
+ */
 public class UMLTypeSetUtil extends ATypeSetUtil {
 	public static final TypeSet ADTypeSet = getADTypeSet();
 	public static final TypeSet SDTYpeSet = getSDTypeSet();

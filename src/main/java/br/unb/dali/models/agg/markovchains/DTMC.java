@@ -1,10 +1,10 @@
 package br.unb.dali.models.agg.markovchains;
 
 import agg.xt_basis.Graph;
-import br.unb.dali.models.agg.AnAggModel;
+import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
-public class DTMC extends AnAggModel {
+public class DTMC extends AbstractAggModel {
 	private static final String gragra = "models/DTMC.ggx";
 	
 	public DTMC() throws ModelSemanticsVerificationException {

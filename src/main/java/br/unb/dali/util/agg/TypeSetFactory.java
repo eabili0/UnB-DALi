@@ -7,6 +7,12 @@ import org.reflections.Reflections;
 import agg.xt_basis.Type;
 import agg.xt_basis.TypeSet;
 
+/**
+ * A factory to build an Agg TypeSet from java classes from a specific package;
+ * 
+ * @deprecated
+ * @author abiliooliveira
+ */
 public class TypeSetFactory {
 	enum QueryType {
 		NODE, ARC;

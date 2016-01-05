@@ -13,9 +13,12 @@ import br.unb.dali.models.agg.exceptions.NullAggContextException;
  * 
  * Property {@link #_aggNode} defines the underlying agg type of this uml activity diagram node
  * Property {@link #_type} defines the underlying agg node of this uml activity diagram node
+ * Property {@link #_context} defines the hidden context at which the instance of this class is at
+ * 
  * @author abiliooliveira
  */
-public abstract class AnAggNode {
+public abstract class AbstractAggNode {
+	protected AbstractAggModel _context;
 	protected Type _type;
 	protected Node _aggNode;
 	
@@ -51,7 +54,7 @@ public abstract class AnAggNode {
 	 * @param context where the underlying agg information will be found; can NEVER be null
 	 * @throws InconsistentNodeTypeException 
 	 */
-	public AnAggNode(Node aggNode, AnAggModel context) throws NullAggContextException, InconsistentNodeTypeException {
+	public AbstractAggNode(Node aggNode, AbstractAggModel context) throws NullAggContextException, InconsistentNodeTypeException {
 		if (context == null) throw new NullAggContextException();
 		setUnderlyingInfo(aggNode, context);
 		setUp();
@@ -65,7 +68,8 @@ public abstract class AnAggNode {
 	 * @param context where the underlying agg info will be found; CANNOT be NULL
 	 * @throws InconsistentNodeTypeException 
 	 */
-	private void setUnderlyingInfo(Node aggNode, AnAggModel context) throws InconsistentNodeTypeException {
+	private void setUnderlyingInfo(Node aggNode, AbstractAggModel context) throws InconsistentNodeTypeException {
+		_context = context;
 		_type = context.getGraGra().getTypeSet().getTypeByName(this.getClass().getSimpleName());
 		
 		if (aggNode == null) { // info not from an agg node

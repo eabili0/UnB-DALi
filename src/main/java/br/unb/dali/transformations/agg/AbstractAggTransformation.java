@@ -4,7 +4,7 @@ import agg.xt_basis.GraGra;
 import agg.xt_basis.GraTra;
 import agg.xt_basis.LayeredGraTraImpl;
 import br.unb.dali.models.IModel;
-import br.unb.dali.models.agg.AnAggModel;
+import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.util.agg.Misc;
 
@@ -12,7 +12,7 @@ import br.unb.dali.util.agg.Misc;
  * Defines the characteristics every transformation should present
  * @author abiliooliveira
  */
-public abstract class AnAggTransformation implements IModel {
+public abstract class AbstractAggTransformation implements IModel {
 	protected GraTra _morphism;
 	protected GraGra _grammar;
 	
@@ -21,7 +21,7 @@ public abstract class AnAggTransformation implements IModel {
 	 * @param graph
 	 * @throws ModelSemanticsVerificationException 
 	 */
-	public AnAggTransformation(String fileName) {
+	public AbstractAggTransformation(String fileName) {
 		_grammar = Misc.loadGraGra(fileName);
 		_grammar.destroyAllGraphs();
 		_morphism = new LayeredGraTraImpl();
@@ -32,13 +32,13 @@ public abstract class AnAggTransformation implements IModel {
 	 * Performs the actual transformation, calling the performTransformation method or not;
 	 * Needs to be implemented, so the target model can be instantiated
 	 */
-	public abstract AnAggModel transform(AnAggModel source) throws ModelSemanticsVerificationException;
+	public abstract AbstractAggModel transform(AbstractAggModel source) throws ModelSemanticsVerificationException;
 	
 	/**
 	 * Sets up and performs the transformation
 	 * @param source
 	 */
-	protected void performTransformation(AnAggModel source) {
+	protected void performTransformation(AbstractAggModel source) {
 		_morphism.setHostGraph(source.getGraph());
 		_morphism.transform();
 	}

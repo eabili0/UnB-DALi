@@ -2,6 +2,12 @@ package br.unb.dali.util.agg;
 
 import agg.xt_basis.TypeSet;
 
+/**
+ * Utility to retrieve the agg type set of a specific package
+ * 
+ *  @deprecated
+ * @author abiliooliveira
+ */
 public abstract class ATypeSetUtil {
 	
 	/**

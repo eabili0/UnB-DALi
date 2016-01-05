@@ -1,18 +1,8 @@
 package br.unb.dali.models.agg.uml;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import agg.attribute.AttrInstance;
-import agg.attribute.impl.AttrTupleManager;
-import agg.xt_basis.Arc;
 import agg.xt_basis.Graph;
-import agg.xt_basis.Node;
-import agg.xt_basis.Type;
-import br.unb.dali.models.agg.AnAggModel;
+import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
-import br.unb.dali.models.agg.uml.ad.ActivityEdge;
-import br.unb.dali.models.agg.uml.ad.ActivityNode;
 import br.unb.dali.models.agg.uml.ad.edges.ControlFlow;
 import br.unb.dali.models.agg.uml.ad.nodes.control.DecisionNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.FinalNode;
@@ -30,10 +20,8 @@ import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
  * 
  * @author abiliooliveira
  */
-public class Activity extends AnAggModel{
+public class Activity extends AbstractAggModel{
 	private static final String gragra = "models/AD.ggx";
-	private Map<Node, ActivityNode> nodes;
-	private Map<Arc, ActivityEdge> edges;
 	
 	/*********************** CONSTRUCTORS ***********************/
 	
@@ -69,10 +57,6 @@ public class Activity extends AnAggModel{
 
 	@Override
 	protected void setUp() {
-		// init our repositories of nodes and edges
-		this.nodes = new HashMap<Node, ActivityNode>();
-		this.edges = new HashMap<Arc, ActivityEdge>();
-		
 		// TODO Auto-generated method stub
 		
 	}
@@ -84,7 +68,7 @@ public class Activity extends AnAggModel{
 	 * @param edge
 	 */
 	public void addControlFlow(ControlFlow edge) {
-		addAnADEdge(edge);
+		addAnAggEdge(edge);
 	}
 	
 	/**
@@ -92,7 +76,7 @@ public class Activity extends AnAggModel{
 	 * @param node
 	 */
 	public void addDecisionNode(DecisionNode node) {
-		addAnADNode(node);
+		addAnAggNode(node);
 	}
 	
 	/**
@@ -100,7 +84,7 @@ public class Activity extends AnAggModel{
 	 * @param node
 	 */
 	public void addFinalNode(FinalNode node) {
-		addAnADNode(node);
+		addAnAggNode(node);
 	}
 	
 	/**
@@ -108,7 +92,7 @@ public class Activity extends AnAggModel{
 	 * @param node
 	 */
 	public void addInitialNode(InitialNode node) {
-		addAnADNode(node);
+		addAnAggNode(node);
 	}
 	
 	/**
@@ -116,7 +100,7 @@ public class Activity extends AnAggModel{
 	 * @param node
 	 */
 	public void addMergeNode(MergeNode node) {
-		addAnADNode(node);
+		addAnAggNode(node);
 	}
 	
 	/**
@@ -124,43 +108,8 @@ public class Activity extends AnAggModel{
 	 * @param node
 	 */
 	public void addExecutableNode(ExecutableNode node) {
-		addAnADNode(node);
-	}
-	
-	/**
-	 * Searches for an activity node based on an agg node
-	 * @param n
-	 * @return the agg node n correspondent activity node
-	 */
-	public ActivityNode searchNode(Node n) {
-		return this.nodes.getOrDefault(n, null);
+		addAnAggNode(node);
 	}
 	
 	/*********************** PRIVATE ***********************/
-	
-	/**
-	 * adds a new activity diagram node to the model;
-	 * privately configures the underlying AGG graph to hold the information of such a node
-	 * @param node
-	 */
-	private void addAnADNode(ActivityNode node) {
-		_graph.addNode(node.getAggNode()); // adds it to the graph
-		nodes.put(node.getAggNode(), node); // puts a new entry on our HashMap of nodes
-	}
-	
-	/**
-	 * adds a new activity diagram edge to the model;
-	 * privately configures the underlying AGG graph to hold the information of such an edge
-	 * @param edge
-	 */
-	private void addAnADEdge(ActivityEdge edge) {
-		Type t = _gragra.getTypeSet().getTypeByName(edge.getClass().getSimpleName());
-		AttrInstance tt = AttrTupleManager.getDefaultManager().newInstance(
-				t.getAttrType(), null);
-		
-		Arc newAggArc = new Arc(tt, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), _graph);
-		_graph.addArc(newAggArc);
-		edges.put(newAggArc, edge);
-	}
-
 }
