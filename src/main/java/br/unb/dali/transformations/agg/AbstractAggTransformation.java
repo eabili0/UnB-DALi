@@ -2,6 +2,7 @@ package br.unb.dali.transformations.agg;
 
 import agg.xt_basis.GraGra;
 import agg.xt_basis.GraTra;
+import agg.xt_basis.Graph;
 import agg.xt_basis.LayeredGraTraImpl;
 import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.AbstractAggModel;
@@ -17,9 +18,8 @@ public abstract class AbstractAggTransformation implements IModel {
 	protected GraGra _grammar;
 	
 	/**
-	 * Sets up the transformation with the Graph Grammar given by the resource file given;
-	 * @param graph
-	 * @throws ModelSemanticsVerificationException 
+	 * Sets up the transformation with the Graph Grammar given by the resource file identified by $fileName;
+	 * @param fileName the resource fileName
 	 */
 	public AbstractAggTransformation(String fileName) {
 		_grammar = Misc.loadGraGra(fileName);
@@ -38,9 +38,11 @@ public abstract class AbstractAggTransformation implements IModel {
 	 * Sets up and performs the transformation
 	 * @param source
 	 */
-	protected void performTransformation(AbstractAggModel source) {
+	protected Graph performTransformation(AbstractAggModel source) {
+		
 		_morphism.setHostGraph(source.getGraph());
 		_morphism.transform();
+		return _morphism.getHostGraph();
 	}
 	
 	/**

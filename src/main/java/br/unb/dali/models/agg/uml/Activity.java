@@ -2,6 +2,7 @@ package br.unb.dali.models.agg.uml;
 
 import agg.xt_basis.Graph;
 import br.unb.dali.models.agg.AbstractAggModel;
+import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.models.agg.uml.ad.edges.ControlFlow;
 import br.unb.dali.models.agg.uml.ad.nodes.control.DecisionNode;
@@ -27,18 +28,18 @@ public class Activity extends AbstractAggModel{
 	
 	/** 
 	 * Initializes a new UML Activity Diagram
-	 * @throws ModelSemanticsVerificationException
+	 * @throws AggModelConstructionException
 	 */
-	public Activity() throws ModelSemanticsVerificationException {
+	public Activity() throws AggModelConstructionException {
 		super(null);
 	}
 	
 	/**
 	 * Constructs a new UML Activity Diagram based on an AGG graph
 	 * @param graph
-	 * @throws ModelSemanticsVerificationException
+	 * @throws AggModelConstructionException
 	 */
-	public Activity(Graph graph) throws ModelSemanticsVerificationException {
+	public Activity(Graph graph) throws AggModelConstructionException {
 		super(graph);
 	}
 	

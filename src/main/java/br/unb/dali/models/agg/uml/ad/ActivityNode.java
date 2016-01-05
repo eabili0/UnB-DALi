@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 
 import agg.xt_basis.Node;
 import br.unb.dali.models.agg.AbstractAggNode;
+import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
 import br.unb.dali.models.agg.exceptions.InconsistentNodeTypeException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.uml.Activity;
@@ -44,9 +45,9 @@ public abstract class ActivityNode extends AbstractAggNode {
 	 * 
 	 * @param aggNode
 	 * @throws InconsistentNodeTypeException 
-	 * @throws NullAggContextException 
+	 * @throws AggNodeConstructionException 
 	 */
-	public ActivityNode(Node aggNode, Activity context) throws NullAggContextException, InconsistentNodeTypeException {
+	public ActivityNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
 		super(aggNode, context);
 		outgoing = new LinkedHashSet<ActivityEdge>();
 		incoming = new LinkedHashSet<ActivityEdge>();

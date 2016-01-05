@@ -2,11 +2,8 @@ package br.unb.dali.models.agg.uml.ad;
 
 import agg.xt_basis.Arc;
 import br.unb.dali.models.agg.AbstractAggEdge;
-import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
+import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.exceptions.NullArcException;
-import br.unb.dali.models.agg.exceptions.NullSourceOfAggEdgeException;
-import br.unb.dali.models.agg.exceptions.NullTargetOfAggEdgeException;
 import br.unb.dali.models.agg.uml.Activity;
 
 /**
@@ -27,13 +24,10 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * 
 	 * @param arc MUST NOT be NULL
 	 * @param context MUST NOT be NULL
-	 * @throws NullArcException 
-	 * @throws NullTargetOfAggEdgeException 
-	 * @throws NullSourceOfAggEdgeException 
-	 * @throws InconsistentEdgeTypeException 
+	 * @throws AggEdgeConstructionException 
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(Arc arc, Activity context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException, NullAggContextException {
+	public ActivityEdge(Arc arc, Activity context) throws AggEdgeConstructionException, NullAggContextException {
 		super(arc, context);
 	}
 	
@@ -42,12 +36,10 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * 
 	 * @param source MUST NOT be NULL
 	 * @param target MUST NOT be NULL
-	 * @throws NullTargetOfAggEdgeException 
-	 * @throws NullSourceOfAggEdgeException 
+	 * @throws AggEdgeConstructionException
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(ActivityNode source, ActivityNode target, Activity context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException  {
-		super(source, target, context);
-		
+	public ActivityEdge(ActivityNode source, ActivityNode target, Activity context) throws AggEdgeConstructionException, NullAggContextException  {
+		super(source, target, context);		
 	}
 }
