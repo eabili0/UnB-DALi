@@ -6,6 +6,7 @@ import agg.xt_basis.Arc;
 import agg.xt_basis.Node;
 import agg.xt_basis.Type;
 import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
+import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.exceptions.NullArcException;
 import br.unb.dali.models.agg.exceptions.NullSourceOfAggEdgeException;
 import br.unb.dali.models.agg.exceptions.NullTargetOfAggEdgeException;
@@ -72,10 +73,13 @@ public abstract class AbstractAggEdge {
 	 * 
 	 * @param source must not be null
 	 * @param target must not be null
+	 * @param context must not be null
 	 * @throws NullSourceOfAggEdgeException 
 	 * @throws NullTargetOfAggEdgeException 
+	 * @throws NullAggContextException 
 	 */
-	public AbstractAggEdge(AbstractAggNode source, AbstractAggNode target, AbstractAggModel context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException {
+	public AbstractAggEdge(AbstractAggNode source, AbstractAggNode target, AbstractAggModel context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException {
+		if (context == null) throw new NullAggContextException();
 		if (source == null) throw new NullSourceOfAggEdgeException();
 		if (target == null) throw new NullTargetOfAggEdgeException();
 		setUnderlyingInfo(source, target, context);
@@ -85,13 +89,16 @@ public abstract class AbstractAggEdge {
 	/**
 	 * Constructs a new agg edge based on an agg arc;
 	 * 
-	 * @param arc the agg arc from where the information will be gathered;  MUST NOT be null 
+	 * @param arc the agg arc from where the information will be gathered;  MUST NOT be null
+	 * @param context MUST NOT be NULL 
 	 * @throws NullArcException  
 	 * @throws NullTargetOfAggEdgeException 
 	 * @throws NullSourceOfAggEdgeException 
 	 * @throws InconsistentEdgeTypeException 
+	 * @throws NullAggContextException 
 	 */
-	public AbstractAggEdge(Arc arc, AbstractAggModel context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException {
+	public AbstractAggEdge(Arc arc, AbstractAggModel context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException, NullAggContextException {
+		if (context == null) throw new NullAggContextException();
 		if (arc == null) throw new NullArcException();
 		setUnderlyingInfo(arc, context);
 		setUp();
@@ -113,8 +120,9 @@ public abstract class AbstractAggEdge {
 
 	/**
 	 * Sets the hidden info from an agg arc;
+	 * Also verifies if everything is correct
 	 * 
-	 * @param arc
+	 * @param arc MUST NOT be NULL
 	 * @param context
 	 * @throws NullSourceOfAggEdgeException 
 	 * @throws NullTargetOfAggEdgeException 

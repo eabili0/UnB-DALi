@@ -13,7 +13,6 @@ public class DTMC extends AbstractAggModel {
 	
 	public DTMC(Graph graph) throws ModelSemanticsVerificationException {
 		super(graph);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

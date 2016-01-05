@@ -3,6 +3,7 @@ package br.unb.dali.models.agg.uml.ad;
 import agg.xt_basis.Arc;
 import br.unb.dali.models.agg.AbstractAggEdge;
 import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
+import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.exceptions.NullArcException;
 import br.unb.dali.models.agg.exceptions.NullSourceOfAggEdgeException;
 import br.unb.dali.models.agg.exceptions.NullTargetOfAggEdgeException;
@@ -25,25 +26,27 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * Constructs a new ActivityEdge based on an agg arc
 	 * 
 	 * @param arc MUST NOT be NULL
+	 * @param context MUST NOT be NULL
 	 * @throws NullArcException 
 	 * @throws NullTargetOfAggEdgeException 
 	 * @throws NullSourceOfAggEdgeException 
 	 * @throws InconsistentEdgeTypeException 
+	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(Arc arc, Activity context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException {
+	public ActivityEdge(Arc arc, Activity context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException, NullAggContextException {
 		super(arc, context);
 	}
 	
 	/**
 	 * Constructs a new ActivityEdge, forcing the call to setType
-	 * $source and $target MUST NOT be null
 	 * 
-	 * @param source must not be null
-	 * @param target must not be null
+	 * @param source MUST NOT be NULL
+	 * @param target MUST NOT be NULL
 	 * @throws NullTargetOfAggEdgeException 
 	 * @throws NullSourceOfAggEdgeException 
+	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(ActivityNode source, ActivityNode target, Activity context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException  {
+	public ActivityEdge(ActivityNode source, ActivityNode target, Activity context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException  {
 		super(source, target, context);
 		
 	}
