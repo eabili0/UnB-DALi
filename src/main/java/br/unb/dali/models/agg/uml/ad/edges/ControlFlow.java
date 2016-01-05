@@ -42,7 +42,9 @@ public class ControlFlow extends ActivityEdge {
 	protected void setUp() {
 		// here goes all the logic to get the attributes of this control flow from an agg arc 
 		AttrInstance attrs = _aggArc.getAttribute();
-		_probability = (double)attrs.getValueAt("probability");
+		Object value = attrs.getValueAt("probability");
+		if (value != null)
+			_probability = (double)value;
 	}
 	
 	/**
@@ -50,9 +52,10 @@ public class ControlFlow extends ActivityEdge {
 	 * 
 	 * @param probability 
 	 */
-	public void setProbability(double probability) {
+	public ControlFlow setProbability(double probability) {
 		_probability = probability;
 		_aggArc.getAttribute().setValueAt(probability, "probability");
+		return this;
 	}
 	
 	/**

@@ -22,7 +22,7 @@ import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
  * @author abiliooliveira
  */
 public class Activity extends AbstractAggModel{
-	private static final String gragra = "models/AD.ggx";
+	private static final String gragra = "/models/AD.ggx";
 	
 	/*********************** CONSTRUCTORS ***********************/
 	

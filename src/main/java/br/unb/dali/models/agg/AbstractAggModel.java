@@ -1,5 +1,6 @@
 package br.unb.dali.models.agg;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import agg.xt_basis.Arc;
@@ -124,6 +125,8 @@ public abstract class AbstractAggModel implements IModel {
 		_gragra = Misc.loadGraGra(getGraGraResourceFileName());
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());
+		_nodes = new HashMap<Node, AbstractAggNode>();
+		_edges = new HashMap<Arc, AbstractAggEdge>();
 		setUp();
 		checkModel();
 	}

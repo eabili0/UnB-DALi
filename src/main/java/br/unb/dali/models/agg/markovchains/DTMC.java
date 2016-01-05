@@ -5,7 +5,7 @@ import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
 public class DTMC extends AbstractAggModel {
-	private static final String gragra = "models/DTMC.ggx";
+	private static final String gragra = "/models/DTMC.ggx";
 	
 	public DTMC() throws ModelSemanticsVerificationException {
 		super(null);
