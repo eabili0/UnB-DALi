@@ -10,4 +10,8 @@ public class AggModelConstructionException extends Exception {
 	public AggModelConstructionException(String desc) {
 		super(desc);
 	}
+	
+	public AggModelConstructionException(Exception e) {
+		super(e);
+	}
 }

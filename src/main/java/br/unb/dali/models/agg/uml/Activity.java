@@ -59,7 +59,7 @@ public class Activity extends AbstractAggModel{
 	}
 
 	@Override
-	protected void setUp() {
+	protected void setUp() throws AggModelConstructionException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -117,9 +117,9 @@ public class Activity extends AbstractAggModel{
 	/**
 	 * Transforms this UML Activity Diagram to a DTMC model
 	 * @return a DTMC model
-	 * @throws ModelSemanticsVerificationException 
+	 * @throws AggModelConstructionException 
 	 */
-	public DTMC toDTMC() throws ModelSemanticsVerificationException {
+	public DTMC toDTMC() throws AggModelConstructionException {
 		return new DTMC(new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this));
 	}
 	

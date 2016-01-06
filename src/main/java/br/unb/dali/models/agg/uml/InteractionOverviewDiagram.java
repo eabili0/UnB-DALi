@@ -2,11 +2,12 @@ package br.unb.dali.models.agg.uml;
 
 import agg.xt_basis.Graph;
 import br.unb.dali.models.agg.AbstractAggModel;
+import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
 public class InteractionOverviewDiagram extends AbstractAggModel {
 
-	public InteractionOverviewDiagram(Graph graph) throws ModelSemanticsVerificationException {
+	public InteractionOverviewDiagram(Graph graph) throws AggModelConstructionException {
 		super(graph);
 		// TODO Auto-generated constructor stub
 	}

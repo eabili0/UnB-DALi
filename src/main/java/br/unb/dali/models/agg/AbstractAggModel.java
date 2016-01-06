@@ -8,6 +8,7 @@ import agg.xt_basis.GraGra;
 import agg.xt_basis.Graph;
 import agg.xt_basis.Node;
 import br.unb.dali.models.IModel;
+import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.util.agg.Misc;
 
@@ -83,11 +84,6 @@ public abstract class AbstractAggModel implements IModel {
 	 * @param edge
 	 */
 	protected void addAnAggEdge(AbstractAggEdge edge) {
-//		Type t = _gragra.getTypeSet().getTypeByName(edge.getClass().getSimpleName());
-//		AttrInstance tt = AttrTupleManager.getDefaultManager().newInstance(
-//				t.getAttrType(), null);
-//		
-//		Arc newAggArc = new Arc(tt, edge.getAggType(), edge.getAggSourceNode(), edge.getAggTargetNode(), _graph);
 		_graph.addArc(edge.getAggArc());
 		_edges.put(edge.getAggArc(), edge);
 	}
@@ -99,7 +95,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * This method is implementation specific
 	 * @param graph The graph that truthfully represents the model
 	 */
-	protected abstract void setUp();
+	protected abstract void setUp() throws AggModelConstructionException;
 	
 	/**
 	 * Indicates which is the resource file name of the agg GraGra this model is being built upon;
@@ -119,9 +115,9 @@ public abstract class AbstractAggModel implements IModel {
 	 *  
 	 * This functionality will be useful for instantiating the target model in the end of a transformation.
 	 * @param graph The graph that truthfully represents the model
-	 * @throws ModelSemanticsVerificationException 
+	 * @throws AggModelConstructionException 
 	 */
-	public AbstractAggModel(Graph graph) throws ModelSemanticsVerificationException {
+	public AbstractAggModel(Graph graph) throws AggModelConstructionException {
 		_gragra = Misc.loadGraGra(getGraGraResourceFileName());
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());
