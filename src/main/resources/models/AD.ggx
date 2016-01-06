@@ -16,21 +16,21 @@
         <TaggedValue Tag="showGraphAfterStep" TagValue="true"/>
         <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>
         <Types>
-            <NodeType ID="I3" abstract="false" name="Node%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
-            <NodeType ID="I2" abstract="false" name="ActivityNode%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:">
-                <Parent pID="I3"/>
+            <NodeType ID="I2" abstract="false" name="Node%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
+            <NodeType ID="I3" abstract="false" name="ActivityNode%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:">
+                <Parent pID="I2"/>
             </NodeType>
             <NodeType ID="I4" abstract="false" name="ExecutableNode%:OVAL:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <Parent pID="I2"/>
+                <Parent pID="I3"/>
             </NodeType>
             <NodeType ID="I5" abstract="false" name="InitialNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
-                <Parent pID="I2"/>
+                <Parent pID="I3"/>
             </NodeType>
             <NodeType ID="I6" abstract="false" name="FinalNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
-                <Parent pID="I2"/>
+                <Parent pID="I3"/>
             </NodeType>
             <NodeType ID="I7" abstract="false" name="ControlNode%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:">
-                <Parent pID="I3"/>
+                <Parent pID="I2"/>
             </NodeType>
             <NodeType ID="I8" abstract="false" name="DecisionNode%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
                 <Parent pID="I7"/>
@@ -63,7 +63,7 @@
                     <NodeLayout X="114" Y="128"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I19" type="I2">
+                <Node ID="I19" type="I3">
                     <NodeLayout X="338" Y="195"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
@@ -71,9 +71,9 @@
                     <NodeLayout X="338" Y="339"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I21" type="I3">
+                <Node ID="I21" type="I2">
                     <NodeLayout X="339" Y="272"/>
-                    <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
                 <Edge ID="I22" source="I14" sourcemax="1" sourcemin="0"
                     target="I14" targetmax="1" targetmin="0" type="I10">
@@ -554,6 +554,38 @@
                 <Attribute constant="true" type="I12">
                     <Value>
                         <double>0.5</double>
+                    </Value>
+                </Attribute>
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+        </Graph>
+        <Graph ID="I162" kind="HOST" name="VerySimpleAD">
+            <Node ID="I163" type="I5">
+                <NodeLayout X="353" Y="47"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I164" type="I4">
+                <NodeLayout X="355" Y="166"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I165" type="I6">
+                <NodeLayout X="362" Y="298"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Edge ID="I166" source="I163" target="I164" type="I10">
+                <Attribute constant="true" type="I12">
+                    <Value>
+                        <double>1.0</double>
+                    </Value>
+                </Attribute>
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I169" source="I164" target="I165" type="I10">
+                <Attribute constant="true" type="I12">
+                    <Value>
+                        <double>1.0</double>
                     </Value>
                 </Attribute>
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>

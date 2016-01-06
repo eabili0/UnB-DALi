@@ -6,7 +6,7 @@ import br.unb.dali.models.agg.markovchains.DTMC;
 import br.unb.dali.transformations.agg.AbstractAggTransformation;
 
 public class AD2DTMC extends AbstractAggTransformation {
-	private static final String resourceName = "transformations/AD2DTMC.ggx";
+	private static final String resourceName = "/transformations/AD2DTMC.ggx";
 	
 	public AD2DTMC() {
 		super(resourceName);
@@ -14,8 +14,7 @@ public class AD2DTMC extends AbstractAggTransformation {
 
 	@Override
 	public AbstractAggModel transform(AbstractAggModel source) throws ModelSemanticsVerificationException {
-		this.performTransformation(source);
-		return new DTMC(_morphism.getHostGraph());
+		return new DTMC(this.performTransformation(source));
 	}
 
 }

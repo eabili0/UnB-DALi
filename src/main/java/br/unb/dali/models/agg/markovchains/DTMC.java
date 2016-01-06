@@ -23,8 +23,7 @@ public class DTMC extends AbstractAggModel {
 
 	@Override
 	protected void setUp() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override

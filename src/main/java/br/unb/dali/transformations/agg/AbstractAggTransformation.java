@@ -39,9 +39,14 @@ public abstract class AbstractAggTransformation implements IModel {
 	 * @param source
 	 */
 	protected Graph performTransformation(AbstractAggModel source) {
-		
-		_morphism.setHostGraph(source.getGraph());
-		_morphism.transform();
+		Graph graph = source.getGraph().copy(_grammar.getTypeSet());
+		if (_grammar.resetGraph(graph)) {
+			_morphism.setHostGraph(graph);
+			_morphism.transform();
+		} else {
+			System.out.println("Source graph could not be imported to the Trasformation grammar.");
+			return null;
+		}
 		return _morphism.getHostGraph();
 	}
 	
