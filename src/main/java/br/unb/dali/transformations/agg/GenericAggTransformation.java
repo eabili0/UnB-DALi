@@ -6,14 +6,13 @@ import agg.xt_basis.Graph;
 import agg.xt_basis.LayeredGraTraImpl;
 import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.AbstractAggModel;
-import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.util.agg.Misc;
 
 /**
  * Defines the characteristics every transformation should present
  * @author abiliooliveira
  */
-public abstract class AbstractAggTransformation implements IModel {
+public class GenericAggTransformation implements IModel {
 	protected GraTra _morphism;
 	protected GraGra _grammar;
 	
@@ -21,24 +20,24 @@ public abstract class AbstractAggTransformation implements IModel {
 	 * Sets up the transformation with the Graph Grammar given by the resource file identified by $fileName;
 	 * @param fileName the resource fileName
 	 */
-	public AbstractAggTransformation(String fileName) {
+	public GenericAggTransformation(String fileName) {
 		_grammar = Misc.loadGraGra(fileName);
 		_grammar.destroyAllGraphs();
 		_morphism = new LayeredGraTraImpl();
 		_morphism.setGraGra(_grammar);
 	}
 	
+//	/**
+//	 * Performs the actual transformation, calling the performTransformation method or not;
+//	 * Needs to be implemented, so the target model can be instantiated
+//	 */
+//	public abstract AbstractAggModel transform(AbstractAggModel source) throws ModelSemanticsVerificationException;
+//	
 	/**
-	 * Performs the actual transformation, calling the performTransformation method or not;
-	 * Needs to be implemented, so the target model can be instantiated
-	 */
-	public abstract AbstractAggModel transform(AbstractAggModel source) throws ModelSemanticsVerificationException;
-	
-	/**
-	 * Sets up and performs the transformation
+	 * Sets up the source graph and performs the transformation
 	 * @param source
 	 */
-	protected Graph performTransformation(AbstractAggModel source) {
+	public Graph transform(AbstractAggModel source) {
 		Graph graph = source.getGraph().copy(_grammar.getTypeSet());
 		if (_grammar.resetGraph(graph)) {
 			_morphism.setHostGraph(graph);

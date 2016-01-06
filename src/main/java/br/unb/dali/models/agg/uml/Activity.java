@@ -4,12 +4,14 @@ import agg.xt_basis.Graph;
 import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
+import br.unb.dali.models.agg.markovchains.DTMC;
 import br.unb.dali.models.agg.uml.ad.edges.ControlFlow;
 import br.unb.dali.models.agg.uml.ad.nodes.control.DecisionNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.FinalNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.MergeNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
+import br.unb.dali.transformations.agg.GenericAggTransformation;
 
 /**
  * This class defines a subset of an 2.5 standard Activity Diagram
@@ -110,6 +112,15 @@ public class Activity extends AbstractAggModel{
 	 */
 	public void addExecutableNode(ExecutableNode node) {
 		addAnAggNode(node);
+	}
+	
+	/**
+	 * Transforms this UML Activity Diagram to a DTMC model
+	 * @return a DTMC model
+	 * @throws ModelSemanticsVerificationException 
+	 */
+	public DTMC toDTMC() throws ModelSemanticsVerificationException {
+		return new DTMC(new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this));
 	}
 	
 	/*********************** PRIVATE ***********************/

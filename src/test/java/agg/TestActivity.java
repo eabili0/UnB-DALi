@@ -10,7 +10,6 @@ import br.unb.dali.models.agg.uml.ad.edges.ControlFlow;
 import br.unb.dali.models.agg.uml.ad.nodes.control.FinalNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
-import br.unb.dali.transformations.agg.fromuml.AD2DTMC;
 
 
 public class TestActivity {
@@ -30,7 +29,7 @@ public class TestActivity {
 				ad.addControlFlow(new ControlFlow(i, e, ad).setProbability(1.0));
 				ad.addControlFlow(new ControlFlow(e, f, ad).setProbability(1.0));
 				
-				DTMC dtmc = (DTMC)new AD2DTMC().transform(ad);
+				DTMC dtmc = ad.toDTMC();
 				System.out.println(dtmc.getGraph());
 				
 			} catch (NullAggContextException | AggNodeConstructionException | AggEdgeConstructionException e) {
