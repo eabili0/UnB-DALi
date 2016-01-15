@@ -7,8 +7,8 @@ import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
 public class InteractionOverviewDiagram extends AbstractAggModel {
 
-	public InteractionOverviewDiagram(Graph graph) throws AggModelConstructionException {
-		super(graph);
+	public InteractionOverviewDiagram(String id, Graph graph) throws AggModelConstructionException {
+		super(id, graph);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,6 +4,7 @@ import agg.attribute.AttrInstance;
 import agg.attribute.impl.AttrTupleManager;
 import agg.xt_basis.Node;
 import agg.xt_basis.Type;
+import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
 import br.unb.dali.models.agg.exceptions.InconsistentNodeTypeException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 
@@ -21,6 +22,7 @@ public abstract class AbstractAggNode {
 	protected AbstractAggModel _context;
 	protected Type _type;
 	protected Node _aggNode;
+	protected String _id;
 	
 	/**
 	 * @return the underlying agg type of this node
@@ -37,6 +39,13 @@ public abstract class AbstractAggNode {
 	}
 	
 	/**
+	 * @return the identifier of this node
+	 */
+	public String getId() {
+		return _id;
+	}
+	
+	/**
 	 * This model sets up the node structures based on the properties of _aggNode;
 	 * 
 	 * Every AnAggNode subclass MUST implement this method, since it is always called by the constructor below
@@ -50,12 +59,17 @@ public abstract class AbstractAggNode {
 	 * Also, to obtain information regarding the underlying agg infrastructure, 
 	 * we need a proper context represented here by $context; 
 	 * 
+	 * @param id this node identifier
 	 * @param aggNode the underlying agg node; can be NULL
 	 * @param context where the underlying agg information will be found; can NEVER be null
-	 * @throws InconsistentNodeTypeException 
+	 * @throws NullAggContextException if the context is null
+	 * @throws AggNodeConstructionException when something wrong happens while constructing the node
 	 */
-	public AbstractAggNode(Node aggNode, AbstractAggModel context) throws NullAggContextException, InconsistentNodeTypeException {
+	public AbstractAggNode(String id, Node aggNode, AbstractAggModel context) throws NullAggContextException, AggNodeConstructionException {
 		if (context == null) throw new NullAggContextException();
+		if (id == null || id.isEmpty()) throw new AggNodeConstructionException("A null or empty id is not acceptable.");
+		
+		_id = id;
 		setUnderlyingInfo(aggNode, context);
 		setUp();
 	}

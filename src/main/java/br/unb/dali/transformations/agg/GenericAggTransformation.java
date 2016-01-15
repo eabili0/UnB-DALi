@@ -50,7 +50,7 @@ public class GenericAggTransformation implements IModel {
 	}
 	
 	/**
-	 * @return the graph morphis object
+	 * @return the graph morphism object
 	 */
 	public GraTra getMorphism() {
 		return _morphism;

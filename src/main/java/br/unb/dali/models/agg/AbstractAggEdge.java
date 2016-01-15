@@ -5,6 +5,7 @@ import agg.attribute.impl.AttrTupleManager;
 import agg.xt_basis.Arc;
 import agg.xt_basis.Node;
 import agg.xt_basis.Type;
+import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.exceptions.NullArcException;
@@ -29,6 +30,7 @@ public abstract class AbstractAggEdge {
 	protected Arc _aggArc;
 	protected AbstractAggNode _source;
 	protected AbstractAggNode _target;
+	protected String _id;
 	
 	/**
 	 * @return the underlying agg arc
@@ -61,6 +63,13 @@ public abstract class AbstractAggEdge {
 	}
 	
 	/**
+	 * @return this edge identifier
+	 */
+	public String getId() {
+		return _id;
+	}
+	
+	/**
 	 * This model sets up the edge structures based on the properties of _aggArc;
 	 * 
 	 * Every AnAggEdge subclass MUST implement this method, since it is always called by the constructors
@@ -71,17 +80,21 @@ public abstract class AbstractAggEdge {
 	 * Constructs a new agg edge, forcing the call to setType
 	 * $source and $target MUST NOT be null
 	 * 
+	 * @param id this edge identifier
 	 * @param source must not be null
 	 * @param target must not be null
 	 * @param context must not be null
-	 * @throws NullSourceOfAggEdgeException 
-	 * @throws NullTargetOfAggEdgeException 
+	 * 
 	 * @throws NullAggContextException 
+	 * @throws AggEdgeConstructionException 
 	 */
-	public AbstractAggEdge(AbstractAggNode source, AbstractAggNode target, AbstractAggModel context) throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException {
+	public AbstractAggEdge(String id, AbstractAggNode source, AbstractAggNode target, AbstractAggModel context) throws NullAggContextException, AggEdgeConstructionException {
 		if (context == null) throw new NullAggContextException();
 		if (source == null) throw new NullSourceOfAggEdgeException();
 		if (target == null) throw new NullTargetOfAggEdgeException();
+		if (id == null || id.isEmpty()) throw new AggEdgeConstructionException("A null or empty id is not acceptable.");
+		
+		_id = id;
 		setUnderlyingInfo(source, target, context);
 		setUp();
 	}
@@ -89,17 +102,17 @@ public abstract class AbstractAggEdge {
 	/**
 	 * Constructs a new agg edge based on an agg arc;
 	 * 
+	 * @param id this edge identifier
 	 * @param arc the agg arc from where the information will be gathered;  MUST NOT be null
 	 * @param context MUST NOT be NULL 
-	 * @throws NullArcException  
-	 * @throws NullTargetOfAggEdgeException 
-	 * @throws NullSourceOfAggEdgeException 
-	 * @throws InconsistentEdgeTypeException 
+	 * 
 	 * @throws NullAggContextException 
+	 * @throws AggEdgeConstructionException when something wrong happens while constructing this edge
 	 */
-	public AbstractAggEdge(Arc arc, AbstractAggModel context) throws NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, InconsistentEdgeTypeException, NullAggContextException {
+	public AbstractAggEdge(String id, Arc arc, AbstractAggModel context) throws NullAggContextException, AggEdgeConstructionException {
 		if (context == null) throw new NullAggContextException();
 		if (arc == null) throw new NullArcException();
+		if (id == null || id.isEmpty()) throw new AggEdgeConstructionException("A null or empty id is not acceptable.");
 		setUnderlyingInfo(arc, context);
 		setUp();
 	}

@@ -17,94 +17,101 @@
         <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>
         <Types>
             <NodeType ID="I2" abstract="false" name="ActivityNode%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
-            <NodeType ID="I3" abstract="false" name="InitialNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+            <NodeType ID="I3" abstract="false" name="ControlNode%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:">
                 <Parent pID="I2"/>
             </NodeType>
-            <NodeType ID="I4" abstract="false" name="FinalNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+            <NodeType ID="I4" abstract="false" name="InitialNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+                <Parent pID="I3"/>
+            </NodeType>
+            <NodeType ID="I5" abstract="false" name="FinalNode%:CIRCLE:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+                <Parent pID="I3"/>
+            </NodeType>
+            <NodeType ID="I6" abstract="false" name="ExecutableNode%:OVAL:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
                 <Parent pID="I2"/>
             </NodeType>
-            <NodeType ID="I5" abstract="false" name="ExecutableNode%:OVAL:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <Parent pID="I2"/>
+            <NodeType ID="I7" abstract="false" name="MergeNode%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
+                <Parent pID="I3"/>
             </NodeType>
-            <NodeType ID="I6" abstract="false" name="MergeNode%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <Parent pID="I2"/>
+            <NodeType ID="I8" abstract="false" name="DecisionNode%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
+                <Parent pID="I3"/>
             </NodeType>
-            <NodeType ID="I7" abstract="false" name="DecisionNode%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <Parent pID="I2"/>
-            </NodeType>
-            <EdgeType ID="I8" abstract="false" name="ControlFlow%:DASH_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:">
-                <AttrType ID="I10" attrname="probability"
+            <EdgeType ID="I9" abstract="false" name="ControlFlow%:DASH_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:">
+                <AttrType ID="I11" attrname="probability"
                     typename="double" visible="true"/>
             </EdgeType>
-            <Graph ID="I11" kind="TG" name="TypeGraph">
-                <Node ID="I12" type="I2">
-                    <NodeLayout X="244" Y="132"/>
+            <Graph ID="I12" kind="TG" name="TypeGraph">
+                <Node ID="I13" type="I2">
+                    <NodeLayout X="251" Y="76"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I13" sourcemax="1" sourcemin="1" type="I3">
-                    <NodeLayout X="80" Y="222"/>
+                <Node ID="I14" sourcemax="1" sourcemin="1" type="I4">
+                    <NodeLayout X="107" Y="230"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I14" sourcemin="1" type="I4">
-                    <NodeLayout X="404" Y="212"/>
+                <Node ID="I15" sourcemin="1" type="I5">
+                    <NodeLayout X="401" Y="224"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I15" type="I7">
-                    <NodeLayout X="140" Y="283"/>
+                <Node ID="I16" type="I8">
+                    <NodeLayout X="201" Y="257"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I16" type="I6">
-                    <NodeLayout X="349" Y="276"/>
+                <Node ID="I17" type="I7">
+                    <NodeLayout X="306" Y="256"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I17" type="I5">
-                    <NodeLayout X="241" Y="341"/>
+                <Node ID="I18" type="I6">
+                    <NodeLayout X="80" Y="141"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Edge ID="I18" source="I12" target="I12" type="I8">
-                    <EdgeLayout bendX="186" bendY="107" loopH="20"
+                <Node ID="I19" type="I3">
+                    <NodeLayout X="251" Y="136"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                </Node>
+                <Edge ID="I20" source="I13" target="I13" type="I9">
+                    <EdgeLayout bendX="193" bendY="51" loopH="20"
                         loopW="20" sourceMultiplicityOffsetX="13"
                         sourceMultiplicityOffsetY="13"
                         targetMultiplicityOffsetX="-23"
-                        targetMultiplicityOffsetY="7" textOffsetX="-20" textOffsetY="-20"/>
+                        targetMultiplicityOffsetY="7" textOffsetX="-54" textOffsetY="-40"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
             </Graph>
         </Types>
-        <Graph ID="I20" kind="HOST" name="Graph"/>
+        <Graph ID="I22" kind="HOST" name="Graph"/>
         <Constraints>
-            <Graphconstraint_Atomic ID="I21" name="WeirdCF">
+            <Graphconstraint_Atomic ID="I23" name="WeirdCF">
                 <Premise>
-                    <Graph ID="I22" kind="PREMISE" name="Premise of WeirdCF"/>
+                    <Graph ID="I24" kind="PREMISE" name="Premise of WeirdCF"/>
                 </Premise>
                 <Conclusion>
-                    <Graph ID="I23" kind="CONCLUSION" name="Conclusion of WeirdCF">
-                        <Node ID="I24" type="I2">
-                            <NodeLayout X="105" Y="62"/>
+                    <Graph ID="I25" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I26" type="I2">
+                            <NodeLayout X="154" Y="103"/>
                             <additionalLayout age="0" force="10"
                                 frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I25" source="I24" target="I24" type="I8">
-                            <EdgeLayout bendX="52" bendY="37" loopH="20"
-                                loopW="20" textOffsetX="0" textOffsetY="-22"/>
+                        <Edge ID="I27" source="I26" target="I26" type="I9">
+                            <EdgeLayout bendX="101" bendY="78"
+                                loopH="20" loopW="20" textOffsetX="-20" textOffsetY="-22"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
                     </Graph>
                     <Morphism name="SelfLoop"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I27" kind="CONCLUSION" name="Conclusion of WeirdCF">
-                        <Node ID="I28" type="I2">
-                            <NodeLayout X="125" Y="50"/>
+                    <Graph ID="I29" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I30" type="I2">
+                            <NodeLayout X="98" Y="93"/>
                             <additionalLayout age="0" force="10"
                                 frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I29" type="I3">
-                            <NodeLayout X="293" Y="50"/>
+                        <Node ID="I31" type="I4">
+                            <NodeLayout X="266" Y="93"/>
                             <additionalLayout age="0" force="10"
                                 frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I30" source="I28" target="I29" type="I8">
+                        <Edge ID="I32" source="I30" target="I31" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-30" textOffsetY="-27"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -113,18 +120,18 @@
                     <Morphism name="Incoming2Initial"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I32" kind="CONCLUSION" name="Conclusion of WeirdCF">
-                        <Node ID="I33" type="I4">
-                            <NodeLayout X="199" Y="65"/>
+                    <Graph ID="I34" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I35" type="I5">
+                            <NodeLayout X="146" Y="102"/>
                             <additionalLayout age="0" force="10"
                                 frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I34" type="I2">
-                            <NodeLayout X="351" Y="65"/>
+                        <Node ID="I36" type="I2">
+                            <NodeLayout X="298" Y="102"/>
                             <additionalLayout age="0" force="10"
                                 frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I35" source="I33" target="I34" type="I8">
+                        <Edge ID="I37" source="I35" target="I36" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-31" textOffsetY="-25"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -133,88 +140,58 @@
                     <Morphism name="OutcomingFromFinal"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I37" kind="CONCLUSION" name="Graph">
-                        <Node ID="I38" type="I2">
-                            <NodeLayout X="119" Y="29"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Node ID="I39" type="I5">
-                            <NodeLayout X="257" Y="64"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
+                    <Graph ID="I39" kind="CONCLUSION" name="Conclusion of WeirdCF">
                         <Node ID="I40" type="I2">
-                            <NodeLayout X="113" Y="86"/>
+                            <NodeLayout X="114" Y="53"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I41" source="I38" target="I39" type="I8">
+                        <Node ID="I41" type="I6">
+                            <NodeLayout X="308" Y="76"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="true" zone="50"/>
+                        </Node>
+                        <Node ID="I42" type="I2">
+                            <NodeLayout X="115" Y="110"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="true" zone="50"/>
+                        </Node>
+                        <Edge ID="I43" source="I40" target="I41" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="0" textOffsetY="-22"/>
+                                textOffsetX="-22" textOffsetY="-26"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I43" source="I40" target="I39" type="I8">
+                        <Edge ID="I45" source="I42" target="I41" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="0" textOffsetY="-22"/>
+                                textOffsetX="-19" textOffsetY="9"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
                     </Graph>
                     <Morphism name="MultipleCF2Exec"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I45" kind="CONCLUSION" name="Graph">
-                        <Node ID="I46" type="I3">
-                            <NodeLayout X="83" Y="74"/>
+                    <Graph ID="I47" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I48" type="I6">
+                            <NodeLayout X="99" Y="94"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I47" type="I2">
-                            <NodeLayout X="229" Y="43"/>
+                        <Node ID="I49" type="I2">
+                            <NodeLayout X="297" Y="64"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I48" type="I2">
-                            <NodeLayout X="241" Y="97"/>
+                        <Node ID="I50" type="I2">
+                            <NodeLayout X="300" Y="134"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I49" source="I46" target="I47" type="I8">
-                            <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="-39" textOffsetY="-27"/>
-                            <additionalLayout aktlength="200" force="10" preflength="200"/>
-                        </Edge>
-                        <Edge ID="I51" source="I46" target="I48" type="I8">
-                            <EdgeLayout bendX="202" bendY="103"
-                                textOffsetX="-83" textOffsetY="-7"/>
-                            <additionalLayout aktlength="200" force="10" preflength="200"/>
-                        </Edge>
-                    </Graph>
-                    <Morphism name="MultipleCFFromInitial"/>
-                </Conclusion>
-                <Conclusion>
-                    <Graph ID="I53" kind="CONCLUSION" name="Graph">
-                        <Node ID="I54" type="I5">
-                            <NodeLayout X="87" Y="63"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Node ID="I55" type="I2">
-                            <NodeLayout X="298" Y="37"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Node ID="I56" type="I2">
-                            <NodeLayout X="289" Y="111"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Edge ID="I57" source="I54" target="I55" type="I8">
+                        <Edge ID="I51" source="I48" target="I49" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-41" textOffsetY="-28"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I59" source="I54" target="I56" type="I8">
+                        <Edge ID="I53" source="I48" target="I50" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-41" textOffsetY="9"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -223,88 +200,83 @@
                     <Morphism name="MultipleCFFromExec"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I61" kind="CONCLUSION" name="Graph">
-                        <Node ID="I62" type="I4">
-                            <NodeLayout X="256" Y="54"/>
+                    <Graph ID="I55" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I56" type="I8">
+                            <NodeLayout X="285" Y="98"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I63" type="I2">
-                            <NodeLayout X="82" Y="37"/>
+                        <Node ID="I57" type="I2">
+                            <NodeLayout X="111" Y="72"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I64" type="I2">
-                            <NodeLayout X="92" Y="90"/>
+                        <Node ID="I58" type="I2">
+                            <NodeLayout X="111" Y="132"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I65" source="I63" target="I62" type="I8">
-                            <EdgeLayout bendX="145" bendY="45"
-                                textOffsetX="0" textOffsetY="-22"/>
+                        <Edge ID="I59" source="I57" target="I56" type="I9">
+                            <EdgeLayout bendX="0" bendY="0"
+                                textOffsetX="-22" textOffsetY="-19"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I67" source="I64" target="I62" type="I8">
+                        <Edge ID="I61" source="I58" target="I56" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="-44" textOffsetY="-18"/>
-                            <additionalLayout aktlength="200" force="10" preflength="200"/>
-                        </Edge>
-                    </Graph>
-                    <Morphism name="MultipleCF2Final"/>
-                </Conclusion>
-                <Conclusion>
-                    <Graph ID="I69" kind="CONCLUSION" name="Graph">
-                        <Node ID="I70" type="I7">
-                            <NodeLayout X="227" Y="60"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Node ID="I71" type="I2">
-                            <NodeLayout X="83" Y="31"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Node ID="I72" type="I2">
-                            <NodeLayout X="87" Y="90"/>
-                            <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
-                        </Node>
-                        <Edge ID="I73" source="I71" target="I70" type="I8">
-                            <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="-14" textOffsetY="-24"/>
-                            <additionalLayout aktlength="200" force="10" preflength="200"/>
-                        </Edge>
-                        <Edge ID="I75" source="I72" target="I70" type="I8">
-                            <EdgeLayout bendX="0" bendY="0"
-                                textOffsetX="-45" textOffsetY="-20"/>
+                                textOffsetX="-20" textOffsetY="7"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
                     </Graph>
                     <Morphism name="MultipleCF2Decision"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I77" kind="CONCLUSION" name="Graph">
-                        <Node ID="I78" type="I6">
-                            <NodeLayout X="63" Y="60"/>
+                    <Graph ID="I63" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I64" type="I2">
+                            <NodeLayout X="94" Y="73"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I79" type="I2">
-                            <NodeLayout X="240" Y="30"/>
+                        <Node ID="I65" type="I2">
+                            <NodeLayout X="257" Y="71"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I80" type="I2">
-                            <NodeLayout X="242" Y="87"/>
+                        <Edge ID="I66" source="I64" target="I65" type="I9">
+                            <EdgeLayout bendX="178" bendY="108"
+                                textOffsetX="-25" textOffsetY="4"/>
+                            <additionalLayout aktlength="200" force="10" preflength="200"/>
+                        </Edge>
+                        <Edge ID="I68" source="I65" target="I64" type="I9">
+                            <EdgeLayout bendX="171" bendY="46"
+                                textOffsetX="-21" textOffsetY="-21"/>
+                            <additionalLayout aktlength="200" force="10" preflength="200"/>
+                        </Edge>
+                    </Graph>
+                    <Morphism name="NormalLoop"/>
+                </Conclusion>
+                <Conclusion>
+                    <Graph ID="I70" kind="CONCLUSION" name="Conclusion of WeirdCF">
+                        <Node ID="I71" type="I7">
+                            <NodeLayout X="106" Y="91"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I81" source="I78" target="I79" type="I8">
+                        <Node ID="I72" type="I2">
+                            <NodeLayout X="283" Y="61"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="true" zone="50"/>
+                        </Node>
+                        <Node ID="I73" type="I2">
+                            <NodeLayout X="285" Y="118"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="true" zone="50"/>
+                        </Node>
+                        <Edge ID="I74" source="I71" target="I72" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-45" textOffsetY="-27"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I83" source="I78" target="I80" type="I8">
+                        <Edge ID="I76" source="I71" target="I73" type="I9">
                             <EdgeLayout bendX="0" bendY="0"
                                 textOffsetX="-38" textOffsetY="12"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -313,32 +285,67 @@
                     <Morphism name="MultipleCFFromMerge"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I85" kind="CONCLUSION" name="Graph">
-                        <Node ID="I86" type="I2">
-                            <NodeLayout X="94" Y="73"/>
+                    <Graph ID="I78" kind="CONCLUSION" name="Graph">
+                        <Node ID="I79" type="I4">
+                            <NodeLayout X="119" Y="84"/>
                             <additionalLayout age="0" force="10"
                                 frozen="false" zone="50"/>
                         </Node>
-                        <Node ID="I87" type="I2">
-                            <NodeLayout X="257" Y="71"/>
+                        <Node ID="I80" type="I2">
+                            <NodeLayout X="266" Y="34"/>
                             <additionalLayout age="0" force="10"
                                 frozen="false" zone="50"/>
                         </Node>
-                        <Edge ID="I88" source="I86" target="I87" type="I8">
-                            <EdgeLayout bendX="178" bendY="108"
-                                textOffsetX="-25" textOffsetY="4"/>
+                        <Node ID="I81" type="I2">
+                            <NodeLayout X="274" Y="121"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="false" zone="50"/>
+                        </Node>
+                        <Edge ID="I82" source="I79" target="I80" type="I9">
+                            <EdgeLayout bendX="196" bendY="59"
+                                textOffsetX="-50" textOffsetY="-25"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I90" source="I87" target="I86" type="I8">
-                            <EdgeLayout bendX="171" bendY="46"
-                                textOffsetX="-21" textOffsetY="-21"/>
+                        <Edge ID="I84" source="I79" target="I81" type="I9">
+                            <EdgeLayout bendX="0" bendY="0"
+                                textOffsetX="-47" textOffsetY="17"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
                     </Graph>
-                    <Morphism name="NormalLoop"/>
+                    <Morphism name="MultipleCFFromInitial"/>
+                </Conclusion>
+                <Conclusion>
+                    <Graph ID="I86" kind="CONCLUSION" name="Graph">
+                        <Node ID="I87" type="I5">
+                            <NodeLayout X="237" Y="97"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="false" zone="50"/>
+                        </Node>
+                        <Node ID="I88" type="I2">
+                            <NodeLayout X="71" Y="60"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="false" zone="50"/>
+                        </Node>
+                        <Node ID="I89" type="I2">
+                            <NodeLayout X="71" Y="139"/>
+                            <additionalLayout age="0" force="10"
+                                frozen="false" zone="50"/>
+                        </Node>
+                        <Edge ID="I90" source="I88" target="I87" type="I9">
+                            <EdgeLayout bendX="0" bendY="0"
+                                textOffsetX="-25" textOffsetY="-26"/>
+                            <additionalLayout aktlength="200" force="10" preflength="200"/>
+                        </Edge>
+                        <Edge ID="I92" source="I89" target="I87" type="I9">
+                            <EdgeLayout bendX="0" bendY="0"
+                                textOffsetX="-24" textOffsetY="10"/>
+                            <additionalLayout aktlength="200" force="10" preflength="200"/>
+                        </Edge>
+                    </Graph>
+                    <Morphism name="MultipleCF2Final"/>
                 </Conclusion>
             </Graphconstraint_Atomic>
-            <Formula ID="I92" comment="" enabled="true" f="(!1)" name="Constraint">
+            <Formula ID="I94" comment="" enabled="true" f="(!1)" name="NoWeirdCFAllowed">
                 <Layer Layer="" Size="0"/>
                 <Priority Priority="" Size="0"/>
             </Formula>

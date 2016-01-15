@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ad.nodes.ControlNode;
 
 public class InitialNode extends ControlNode {
 
-	public InitialNode(Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(null, context);
+	public InitialNode(String id, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, null, context);
 	}
 	
-	public InitialNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public InitialNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 	}
 
 	@Override

@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ad.nodes.ControlNode;
 
 public class FinalNode extends ControlNode {
 
-	public FinalNode(Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(null, context);
+	public FinalNode(String id, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, null, context);
 	}
 	
-	public FinalNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public FinalNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 		// TODO Auto-generated constructor stub
 	}
 

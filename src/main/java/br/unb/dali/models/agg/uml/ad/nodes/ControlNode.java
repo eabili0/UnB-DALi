@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ad.ActivityNode;
 
 public abstract class ControlNode extends ActivityNode {
 
-	public ControlNode(Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(null, context);
+	public ControlNode(String id, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, null, context);
 	}
 	
-	public ControlNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public ControlNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 	}
 	
 }

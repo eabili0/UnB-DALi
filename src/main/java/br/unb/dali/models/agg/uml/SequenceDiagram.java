@@ -7,8 +7,8 @@ import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 
 public class SequenceDiagram extends AbstractAggModel {
 
-	public SequenceDiagram(Graph graph) throws AggModelConstructionException {
-		super(graph);
+	public SequenceDiagram(String id, Graph graph) throws AggModelConstructionException {
+		super(id, graph);
 		// TODO Auto-generated constructor stub
 	}
 

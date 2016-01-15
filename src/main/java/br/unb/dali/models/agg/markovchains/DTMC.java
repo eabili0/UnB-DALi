@@ -13,13 +13,11 @@ import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
 import br.unb.dali.models.agg.exceptions.InconsistentNodeTypeException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.exceptions.NullArcException;
-import br.unb.dali.models.agg.exceptions.NullSourceOfAggEdgeException;
-import br.unb.dali.models.agg.exceptions.NullTargetOfAggEdgeException;
-import br.unb.dali.models.agg.markovchains.dtmc.states.FinalState;
+import br.unb.dali.models.agg.markovchains.dtmc.states.ErrorState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.InitialState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.State;
 import br.unb.dali.models.agg.markovchains.dtmc.transitions.Transition;
+import br.unb.dali.util.io.Misc;
 
 public class DTMC extends AbstractAggModel {
 	private static final String gragra = "/models/DTMC.ggx";
@@ -28,10 +26,13 @@ public class DTMC extends AbstractAggModel {
 	
 	/**
 	 * Constructs a new clean DTMC model
+	 * 
+	 * @param id this model identifier
+	 * 
 	 * @throws AggModelConstructionException should never happen at this point
 	 */
-	public DTMC() throws AggModelConstructionException {
-		super(null);
+	public DTMC(String id) throws AggModelConstructionException {
+		super(id, null);
 	}
 	
 	/**
@@ -40,8 +41,8 @@ public class DTMC extends AbstractAggModel {
 	 * @throws AggModelConstructionException 
 	 * 	whenever inconsistencies are found when constructing this DTMC from the agg graph
 	 */
-	public DTMC(Graph graph) throws AggModelConstructionException {
-		super(graph);
+	public DTMC(String id, Graph graph) throws AggModelConstructionException {
+		super(id, graph);
 	}
 	
 	/************************* PUBLIC ****************************/
@@ -82,20 +83,20 @@ public class DTMC extends AbstractAggModel {
 	 * @param nodes the underlying agg graph nodes
 	 * @return true if there were states to be set up and everything ran ok; false otherwise 
 	 * @throws NullAggContextException It will never happen in this case
-	 * @throws InconsistentNodeTypeException If a node present in the graph has a type that is not expected
+	 * @throws AggNodeConstructionException when something wrong happens while setting up nodes from a graphs
 	 */
-	private boolean setNodesUp(HashSet<Node> nodes) throws InconsistentNodeTypeException, NullAggContextException {
+	private boolean setNodesUp(HashSet<Node> nodes) throws NullAggContextException, AggNodeConstructionException {
 		if (nodes != null && !nodes.isEmpty()) {
 			for (Node node : nodes) {
 				switch (node.getType().getName()) {	
 					case "State":
-						addAnAggNode(new State(node, this));
+						addAnAggNode(new State(Misc.getRandomString(), node, this));
 						break;
 					case "InitialState":
-						addAnAggNode(new InitialState(node, this));
+						addAnAggNode(new InitialState(Misc.getRandomString(), node, this));
 						break;
-					case "FinalState":
-						addAnAggNode(new FinalState(node, this));
+					case "ErrorState":
+						addAnAggNode(new ErrorState(Misc.getRandomString(), node, this));
 						break;
 					default:
 						throw new InconsistentNodeTypeException();
@@ -112,18 +113,15 @@ public class DTMC extends AbstractAggModel {
 	 *  
 	 * @param arcs the underlying agg graph arcs
 	 * @return true if everything ran fine and when there were arcs to setup; false otherwise
-	 * @throws InconsistentEdgeTypeException when an edge of unexpected type exists in the hash set $arcs
 	 * @throws NullAggContextException should never happen
-	 * @throws NullTargetOfAggEdgeException when the target of an agg edge is null
-	 * @throws NullSourceOfAggEdgeException when the source of an agg edge is null
-	 * @throws NullArcException when the arc is null; should never happen
+	 * @throws AggEdgeConstructionException when something wrong happens while setting up an transition from an arc
 	 */
-	private boolean setArcsUp(HashSet<Arc> arcs) throws InconsistentEdgeTypeException, NullArcException, NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException {
+	private boolean setArcsUp(HashSet<Arc> arcs) throws NullAggContextException, AggEdgeConstructionException {
 		if (arcs != null && !arcs.isEmpty()) {
 			for (Arc arc : arcs) {
 				switch (arc.getType().getName()) {
 					case "Transition": 
-						addAnAggEdge(new Transition(arc, this));
+						addAnAggEdge(new Transition(Misc.getRandomString(), arc, this));
 						break;
 					default:
 						throw new InconsistentEdgeTypeException();

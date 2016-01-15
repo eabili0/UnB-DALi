@@ -22,24 +22,28 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	/**
 	 * Constructs a new ActivityEdge based on an agg arc
 	 * 
+	 * @param id this activity edge identifier (MUST NOT be NULL or EMPTY)
 	 * @param arc MUST NOT be NULL
 	 * @param context MUST NOT be NULL
+	 * 
 	 * @throws AggEdgeConstructionException 
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(Arc arc, Activity context) throws AggEdgeConstructionException, NullAggContextException {
-		super(arc, context);
+	public ActivityEdge(String id, Arc arc, Activity context) throws AggEdgeConstructionException, NullAggContextException {
+		super(id, arc, context);
 	}
 	
 	/**
 	 * Constructs a new ActivityEdge, forcing the call to setType
 	 * 
+	 * @param id this activity edge identifier (MUST NOT be NULL or EMPTY)
 	 * @param source MUST NOT be NULL
 	 * @param target MUST NOT be NULL
+	 * 
 	 * @throws AggEdgeConstructionException
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(ActivityNode source, ActivityNode target, Activity context) throws AggEdgeConstructionException, NullAggContextException  {
-		super(source, target, context);		
+	public ActivityEdge(String id, ActivityNode source, ActivityNode target, Activity context) throws AggEdgeConstructionException, NullAggContextException  {
+		super(id, source, target, context);		
 	}
 }

@@ -14,28 +14,32 @@ public class ControlFlow extends ActivityEdge {
 	/**
 	 * Constructs a control flow edge based on an agg arc 
 	 * 
+	 * @param id this control flow identifier
 	 * @param arc the agg arc where the information to construct this ControlFlow will get from
 	 * @param context the uml acitivy diagram where this ControlFlow will be inserted in
+	 * 
 	 * @throws NullAggContextException if the context is null
 	 * @throws AggEdgeConstructionException if an error occurs while constructing this ControlFlow
 	 * 	with the information from arc
 	 */
-	public ControlFlow(Arc arc, Activity context) throws NullAggContextException, AggEdgeConstructionException {
-		super(arc, context);
+	public ControlFlow(String id, Arc arc, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+		super(id, arc, context);
 	}
 	
 	/**
 	 * Constructs a new control flow edge
 	 * 
+	 * @param id this control flow identifier
 	 * @param source the source activity node
 	 * @param target the target activity node
 	 * @param activity the UML activity diagram where this ControlFlow will be inserted in
+	 * 
 	 * @throws NullAggContextException if the context is null
 	 * @throws AggEdgeConstructionException if an error occurs while constructing the ControlFlow
 	 *  with the information from source and target
 	 */
-	public ControlFlow(ActivityNode source, ActivityNode target, Activity context) throws NullAggContextException, AggEdgeConstructionException {
-		super(source, target, context);
+	public ControlFlow(String id, ActivityNode source, ActivityNode target, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+		super(id, source, target, context);
 	}
 
 	@Override

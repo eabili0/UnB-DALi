@@ -32,17 +32,20 @@ public class Activity extends AbstractAggModel{
 	 * Initializes a new UML Activity Diagram
 	 * @throws AggModelConstructionException
 	 */
-	public Activity() throws AggModelConstructionException {
-		super(null);
+	public Activity(String id) throws AggModelConstructionException {
+		super(id, null);
 	}
 	
 	/**
 	 * Constructs a new UML Activity Diagram based on an AGG graph
+	 * 
+	 * @param id this activity identifier
 	 * @param graph
+	 * 
 	 * @throws AggModelConstructionException
 	 */
-	public Activity(Graph graph) throws AggModelConstructionException {
-		super(graph);
+	public Activity(String id, Graph graph) throws AggModelConstructionException {
+		super(id, graph);
 	}
 	
 	/*********************** INHERITANCE ***********************/
@@ -116,11 +119,13 @@ public class Activity extends AbstractAggModel{
 	
 	/**
 	 * Transforms this UML Activity Diagram to a DTMC model
+	 * 
+	 * @param name the DTMC name to be generated
 	 * @return a DTMC model
 	 * @throws AggModelConstructionException 
 	 */
-	public DTMC toDTMC() throws AggModelConstructionException {
-		return new DTMC(new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this));
+	public DTMC toDTMC(String name) throws AggModelConstructionException {
+		return new DTMC(name, new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this));
 	}
 	
 	/*********************** PRIVATE ***********************/

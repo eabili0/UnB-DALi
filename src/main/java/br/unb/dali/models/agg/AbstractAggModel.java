@@ -30,6 +30,7 @@ public abstract class AbstractAggModel implements IModel {
 	protected GraGra _gragra;
 	protected Map<Node, AbstractAggNode> _nodes;
 	protected Map<Arc, AbstractAggEdge> _edges;
+	protected String _id;
 	
 	/********************** PUBLIC BEHAVIOR **************************/
 	
@@ -64,6 +65,13 @@ public abstract class AbstractAggModel implements IModel {
 	 */
 	public AbstractAggNode searchNode(Node n) {
 		return _nodes.getOrDefault(n, null);
+	}
+	
+	/**
+	 * @return the underlying model id
+	 */
+	public String getId() {
+		return _id;
 	}
 
 	/********************** PROTECTED BEHAVIOR **************************/
@@ -114,13 +122,23 @@ public abstract class AbstractAggModel implements IModel {
 	 * After the model is setup, a semantic verification will be run by this constructor
 	 *  
 	 * This functionality will be useful for instantiating the target model in the end of a transformation.
+	 * 
+	 * @param id this model identifier 
 	 * @param graph The graph that truthfully represents the model
 	 * @throws AggModelConstructionException 
 	 */
-	public AbstractAggModel(Graph graph) throws AggModelConstructionException {
+	public AbstractAggModel(String id, Graph graph) throws AggModelConstructionException {
 		_gragra = Misc.loadGraGra(getGraGraResourceFileName());
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());
+		_gragra.resetGraph(_graph.copy(_gragra.getTypeSet()));
+		
+		if (!_gragra.checkGraphConsistency(_graph))
+			throw new AggModelConstructionException("Underlying Graph model does not respect the consistency conditions imposed.");
+		if (id == null || id.isEmpty())
+			throw new AggModelConstructionException("A null or empty id is not acceptable.");
+		
+		_id = id;
 		_nodes = new HashMap<Node, AbstractAggNode>();
 		_edges = new HashMap<Arc, AbstractAggEdge>();
 		setUp();

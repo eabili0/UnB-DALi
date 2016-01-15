@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ad.nodes.ControlNode;
 
 public class MergeNode extends ControlNode {
 
-	public MergeNode(Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(null, context);
+	public MergeNode(String id, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, null, context);
 	}
 	
-	public MergeNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public MergeNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 	}
 
 	@Override

@@ -4,35 +4,42 @@ import agg.attribute.AttrInstance;
 import agg.xt_basis.Arc;
 import br.unb.dali.models.agg.AbstractAggEdge;
 import br.unb.dali.models.agg.AbstractAggNode;
-import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
+import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.exceptions.NullArcException;
-import br.unb.dali.models.agg.exceptions.NullSourceOfAggEdgeException;
-import br.unb.dali.models.agg.exceptions.NullTargetOfAggEdgeException;
 import br.unb.dali.models.agg.markovchains.DTMC;
 
 public class Transition extends AbstractAggEdge {
 	private double _probability;
 	
 	/**
-	 * Constructs a Transtion 
-	 * @param arc
-	 * @param context
-	 * @throws NullArcException
-	 * @throws NullSourceOfAggEdgeException
-	 * @throws NullTargetOfAggEdgeException
-	 * @throws InconsistentEdgeTypeException
-	 * @throws NullAggContextException
+	 * Constructs a DTMC Transtion from an agg graph arc
+	 * 
+	 * @param id this transition identifier
+	 * @param arc an proper agg arc
+	 * @param context the context in which this transition will belong to
+	 * 
+	 * @throws NullAggContextException if the context is null
+	 * @throws AggEdgeConstructionException if something wrong happens while constructing this transition
 	 */
-	public Transition(Arc arc, DTMC context) throws NullArcException, NullSourceOfAggEdgeException,
-			NullTargetOfAggEdgeException, InconsistentEdgeTypeException, NullAggContextException {
-		super(arc, context);
+	public Transition(String id, Arc arc, DTMC context) throws NullAggContextException, AggEdgeConstructionException {
+		super(id, arc, context);
 		// TODO Auto-generated constructor stub
 	}
 
-	public Transition(AbstractAggNode source, AbstractAggNode target, DTMC context) 
-			throws NullSourceOfAggEdgeException, NullTargetOfAggEdgeException, NullAggContextException {
-		super(source, target, context);
+	/**
+	 * Constructs a new DTMC Transtion
+	 * 
+	 * @param id this transition identifier
+	 * @param source the DTMC source node
+	 * @param target the DTMC target node
+	 * @param context the DTMC context
+	 * 
+	 * @throws NullAggContextException if the context is null
+	 * @throws AggEdgeConstructionException if something wrong happens while constructing this transition
+	 */
+	public Transition(String id, AbstractAggNode source, AbstractAggNode target, DTMC context) 
+			throws NullAggContextException, AggEdgeConstructionException {
+		super(id, source, target, context);
 		// TODO Auto-generated constructor stub
 	}
 

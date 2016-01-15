@@ -43,12 +43,13 @@ public abstract class ActivityNode extends AbstractAggNode {
 	 * If a subclass wants to provide an empty constructor, one only have to pass a null aggNode to this constructor
 	 * For more information, check {@link #super()}
 	 * 
+	 * @param id this activity node id
 	 * @param aggNode
 	 * @throws InconsistentNodeTypeException 
 	 * @throws AggNodeConstructionException 
 	 */
-	public ActivityNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public ActivityNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 		outgoing = new LinkedHashSet<ActivityEdge>();
 		incoming = new LinkedHashSet<ActivityEdge>();
 	}

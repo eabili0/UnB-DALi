@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ad.ActivityNode;
 
 public class ExecutableNode extends ActivityNode {
 
-	public ExecutableNode(Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(null, context);
+	public ExecutableNode(String id, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, null, context);
 	}
 	
-	public ExecutableNode(Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
-		super(aggNode, context);
+	public ExecutableNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+		super(id, aggNode, context);
 		// TODO Auto-generated constructor stub
 	}
 
