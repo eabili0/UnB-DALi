@@ -20,7 +20,8 @@ import br.unb.dali.models.agg.markovchains.dtmc.transitions.Transition;
 import br.unb.dali.util.io.Misc;
 
 public class DTMC extends AbstractAggModel {
-	private static final String gragra = "/models/DTMC.ggx";
+	private String _name = "";
+	private static final String _gragra = "/models/DTMC.ggx";
 	
 	/************************* CONSTRUCTORS ****************************/
 	
@@ -36,8 +37,10 @@ public class DTMC extends AbstractAggModel {
 	}
 	
 	/**
-	 * Constructs a DTMC model from the indo of an Agg Graph object
+	 * Constructs a DTMC model from the info of an Agg Graph object
+	 * 
 	 * @param graph the agg graph that hold the information of this DTMC model
+	 * 
 	 * @throws AggModelConstructionException 
 	 * 	whenever inconsistencies are found when constructing this DTMC from the agg graph
 	 */
@@ -46,6 +49,30 @@ public class DTMC extends AbstractAggModel {
 	}
 	
 	/************************* PUBLIC ****************************/
+	
+	/**
+	 * @return this DTMC model name
+	 */
+	public String getName() {
+		return _name;
+	}
+	
+	/**
+	 * Sets the name of this DTMC model
+	 * 
+	 * @param name
+	 * @return this
+	 */
+	public DTMC setName(String name) {
+		this._name = name;
+		return this;
+	}
+	
+	/**
+	 * Converts this DTMC to a proper PRISM module
+	 * 
+	 * @return the PRISM representation of this DTMC
+	 */
 	public String toPRISM() {
 		return "";
 	}
@@ -73,7 +100,7 @@ public class DTMC extends AbstractAggModel {
 
 	@Override
 	protected String getGraGraResourceFileName() {
-		return gragra;
+		return _gragra;
 	}
 
 	/************************* PRIVATE ****************************/

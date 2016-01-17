@@ -77,7 +77,7 @@ public abstract class AbstractAggEdge {
 	protected abstract void setUp();
 	
 	/**
-	 * Constructs a new agg edge, forcing the call to setType
+	 * Constructs a new agg edge from valid source and target nodes
 	 * $source and $target MUST NOT be null
 	 * 
 	 * @param id this edge identifier
@@ -113,8 +113,25 @@ public abstract class AbstractAggEdge {
 		if (context == null) throw new NullAggContextException();
 		if (arc == null) throw new NullArcException();
 		if (id == null || id.isEmpty()) throw new AggEdgeConstructionException("A null or empty id is not acceptable.");
+		
+		_id = id;
 		setUnderlyingInfo(arc, context);
 		setUp();
+	}
+	
+	/**
+	 * Constructs a new agg edge based on the identifiers of the source and target nodes
+	 * 
+	 * @param id this edge identifier (MUST NOT BE NULL)
+	 * @param sourceId the identifier of the source node
+	 * @param targetId the identifier of the target node
+	 * @param context MUST NOT BE NULL
+	 * 
+	 * @throws NullAggContextException in case the underlying model is null
+	 * @throws AggEdgeConstructionException in case something wrong happens while constructing this object
+	 */
+	public AbstractAggEdge(String id, String sourceId, String targetId, AbstractAggModel context) throws NullAggContextException, AggEdgeConstructionException {
+		this(id, context.searchNode(sourceId), context.searchNode(targetId), context);
 	}
 	
 	/**

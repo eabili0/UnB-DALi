@@ -22,6 +22,9 @@ import br.unb.dali.util.agg.Misc;
  * Property {@link #_gragra} defines the underlying Agg infrastructure of this model
  * Property {@link #_edges} defines the activity edges as a map of AGG Arcs to ActivityEdges
  * Property {@link #_nodes} defines the activity nodes as a map of AGG Nodes to ActivityNodes
+ * Property {@link #_edgesByString} identifies the edges of this activity, allowing a search from its identifiers
+ * Property {@link #_nodesByString} identifies the nodes of this activity, allowing a search from its identifiers
+ * Property {@link #_id} identifies this activity
  * 
  * @author abiliooliveira
  */
@@ -30,6 +33,8 @@ public abstract class AbstractAggModel implements IModel {
 	protected GraGra _gragra;
 	protected Map<Node, AbstractAggNode> _nodes;
 	protected Map<Arc, AbstractAggEdge> _edges;
+	protected Map<String, AbstractAggNode> _nodesByString;
+	protected Map<String, AbstractAggEdge> _edgesByString;
 	protected String _id;
 	
 	/********************** PUBLIC BEHAVIOR **************************/
@@ -60,11 +65,20 @@ public abstract class AbstractAggModel implements IModel {
 	
 	/**
 	 * Searches for an activity node based on an agg node
-	 * @param n
-	 * @return the agg node n correspondent activity node
+	 * @param n the underlying agg node
+	 * @return an AbstractAggNode object
 	 */
 	public AbstractAggNode searchNode(Node n) {
 		return _nodes.getOrDefault(n, null);
+	}
+	
+	/**
+	 * Searches for an activity node based on its string identifier
+	 * @param nodeid the node identifier
+	 * @return an AbstractAggNode object
+	 */
+	public AbstractAggNode searchNode(String nodeid) {
+		return _nodesByString.getOrDefault(nodeid, null);
 	}
 	
 	/**
@@ -84,6 +98,7 @@ public abstract class AbstractAggModel implements IModel {
 	protected void addAnAggNode(AbstractAggNode node) {
 		_graph.addNode(node.getAggNode()); // adds it to the graph
 		_nodes.put(node.getAggNode(), node); // puts a new entry on our HashMap of nodes
+		_nodesByString.put(node.getId(), node); // puts a new entry on our String based HashMap of nodes
 	}
 	
 	/**
@@ -94,6 +109,7 @@ public abstract class AbstractAggModel implements IModel {
 	protected void addAnAggEdge(AbstractAggEdge edge) {
 		_graph.addArc(edge.getAggArc());
 		_edges.put(edge.getAggArc(), edge);
+		_edgesByString.put(edge.getId(), edge);
 	}
 	
 	/**
@@ -141,6 +157,8 @@ public abstract class AbstractAggModel implements IModel {
 		_id = id;
 		_nodes = new HashMap<Node, AbstractAggNode>();
 		_edges = new HashMap<Arc, AbstractAggEdge>();
+		_nodesByString = new HashMap<String, AbstractAggNode>();
+		_edgesByString = new HashMap<String, AbstractAggEdge>();
 		setUp();
 		checkModel();
 	}

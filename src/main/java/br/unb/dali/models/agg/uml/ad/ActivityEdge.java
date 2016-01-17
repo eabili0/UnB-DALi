@@ -34,7 +34,7 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	}
 	
 	/**
-	 * Constructs a new ActivityEdge, forcing the call to setType
+	 * Constructs a new ActivityEdge from a source and target nodes
 	 * 
 	 * @param id this activity edge identifier (MUST NOT be NULL or EMPTY)
 	 * @param source MUST NOT be NULL
@@ -45,5 +45,21 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 */
 	public ActivityEdge(String id, ActivityNode source, ActivityNode target, Activity context) throws AggEdgeConstructionException, NullAggContextException  {
 		super(id, source, target, context);		
+	}
+	
+	
+	/**
+	 * Constructs a new ActivityEdge from a source and target identifiers
+	 *  
+	 * @param id this activity edge id
+	 * @param sourceId the source node string identifier 
+	 * @param targetId the target node string identifier 
+	 * @param context the underlying activity diagram 
+	 * 
+	 * @throws NullAggContextException
+	 * @throws AggEdgeConstructionException 
+	 */
+	public ActivityEdge(String id, String sourceId, String targetId, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+		super(id, sourceId, targetId, context);
 	}
 }

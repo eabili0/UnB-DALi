@@ -41,6 +41,21 @@ public class ControlFlow extends ActivityEdge {
 	public ControlFlow(String id, ActivityNode source, ActivityNode target, Activity context) throws NullAggContextException, AggEdgeConstructionException {
 		super(id, source, target, context);
 	}
+	
+	/**
+	 * Constructs a new control flow from the source and target ids
+	 * 
+	 * @param id this control flow string identifier
+	 * @param sourceId the string identifier of the source node
+	 * @param targetId the string identifier of the target node
+	 * @param context the activity diagram where we'll be able to find the source and target nodes
+	 * 
+	 * @throws NullAggContextException if the context is null
+	 * @throws AggEdgeConstructionException if something unnexpected happens while constructing this object
+	 */
+	public ControlFlow(String id, String sourceId, String targetId, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+		super(id, sourceId, targetId, context);
+	}
 
 	@Override
 	protected void setUp() {
