@@ -6,6 +6,7 @@ import agg.xt_basis.Graph;
 import agg.xt_basis.LayeredGraTraImpl;
 import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.AbstractAggModel;
+import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.util.agg.Misc;
 
 /**
@@ -36,8 +37,11 @@ public class GenericAggTransformation implements IModel {
 	/**
 	 * Sets up the source graph and performs the transformation
 	 * @param source
+	 * @throws ModelSemanticsVerificationException 
+	 * @throws Exception 
 	 */
-	public Graph transform(AbstractAggModel source) {
+	public Graph transform(AbstractAggModel source) throws ModelSemanticsVerificationException {
+		source.checkModel();
 		Graph graph = source.getGraph().copy(_grammar.getTypeSet());
 		if (_grammar.resetGraph(graph)) {
 			_morphism.setHostGraph(graph);

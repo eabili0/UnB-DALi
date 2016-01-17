@@ -13,9 +13,10 @@ public class SequenceDiagram extends AbstractAggModel {
 	}
 
 	@Override
-	public boolean checkModel() throws ModelSemanticsVerificationException {
-		// TODO Auto-generated method stub
-		return false;
+	public void checkModel() throws ModelSemanticsVerificationException {
+		if (!_gragra.checkGraphConsistency(_graph)) {
+			throw new ModelSemanticsVerificationException("");
+		}
 	}
 
 	@Override

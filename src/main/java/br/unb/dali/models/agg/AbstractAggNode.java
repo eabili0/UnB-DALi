@@ -1,5 +1,8 @@
 package br.unb.dali.models.agg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import agg.attribute.AttrInstance;
 import agg.attribute.impl.AttrTupleManager;
 import agg.xt_basis.Node;
@@ -23,6 +26,10 @@ public abstract class AbstractAggNode {
 	protected Type _type;
 	protected Node _aggNode;
 	protected String _id;
+	protected List<AbstractAggEdge> _outgoingEdges;
+	protected List<AbstractAggEdge> _incommingEdges;
+
+	/********************************* PUBLIC BEHAVIOR *******************************/
 	
 	/**
 	 * @return the underlying agg type of this node
@@ -45,12 +52,34 @@ public abstract class AbstractAggNode {
 		return _id;
 	}
 	
+	public List<AbstractAggEdge> getOutgoingEdges() {
+		return _outgoingEdges;
+	}
+	
+	public List<AbstractAggEdge> getIncommingEdges() {
+		return _incommingEdges;
+	}
+	
+	public AbstractAggNode addOutgoingEdge(AbstractAggEdge e) {
+		_outgoingEdges.add(e);
+		return this;
+	}
+	
+	public AbstractAggNode addIncomingEdge(AbstractAggEdge e) {
+		_incommingEdges.add(e);
+		return this;
+	}
+	
+	/********************************* INHERITANCE BEHAVIOR *******************************/
+	
 	/**
 	 * This model sets up the node structures based on the properties of _aggNode;
 	 * 
 	 * Every AnAggNode subclass MUST implement this method, since it is always called by the constructor below
 	 */
 	protected abstract void setUp();
+	
+	/********************************* CONSTRUCTORS *******************************/
 	
 	/**
 	 * It is expected from every subclass to provide ways of constructing them by an 
@@ -74,6 +103,8 @@ public abstract class AbstractAggNode {
 		setUp();
 	}
 	
+	/********************************* PRIVATE BEHAVIOR *******************************/
+	
 	/**
 	 * This method sets up the attributes $_type and $_aggNode,
 	 * always verifying if the information is properly set
@@ -83,6 +114,8 @@ public abstract class AbstractAggNode {
 	 * @throws InconsistentNodeTypeException 
 	 */
 	private void setUnderlyingInfo(Node aggNode, AbstractAggModel context) throws InconsistentNodeTypeException {
+		_outgoingEdges = new ArrayList<AbstractAggEdge>();
+		_incommingEdges = new ArrayList<AbstractAggEdge>();
 		_context = context;
 		_type = context.getGraGra().getTypeSet().getTypeByName(this.getClass().getSimpleName());
 		

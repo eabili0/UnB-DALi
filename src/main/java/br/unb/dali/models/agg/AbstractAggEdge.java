@@ -32,6 +32,8 @@ public abstract class AbstractAggEdge {
 	protected AbstractAggNode _target;
 	protected String _id;
 	
+	/********************************* PUBLIC BEHAVIOR *******************************/
+	
 	/**
 	 * @return the underlying agg arc
 	 */
@@ -70,11 +72,29 @@ public abstract class AbstractAggEdge {
 	}
 	
 	/**
+	 * @return the source node of this edge
+	 */
+	public AbstractAggNode getSourceNode() {
+		return _source;
+	}
+	
+	/**
+	 * @return the target node of this edge
+	 */
+	public AbstractAggNode getTargetNode() {
+		return _target;
+	}
+	
+	/********************************* INHERITANCE BEHAVIOR *******************************/
+	
+	/**
 	 * This model sets up the edge structures based on the properties of _aggArc;
 	 * 
 	 * Every AnAggEdge subclass MUST implement this method, since it is always called by the constructors
 	 */
 	protected abstract void setUp();
+	
+	/********************************* CONSTRUCTORS *******************************/
 	
 	/**
 	 * Constructs a new agg edge from valid source and target nodes
@@ -133,6 +153,8 @@ public abstract class AbstractAggEdge {
 	public AbstractAggEdge(String id, String sourceId, String targetId, AbstractAggModel context) throws NullAggContextException, AggEdgeConstructionException {
 		this(id, context.searchNode(sourceId), context.searchNode(targetId), context);
 	}
+	
+	/********************************* PRIVATE BEHAVIOR *******************************/
 	
 	/**
 	 * Sets the hidden info from an AbstractAggNode source and an AbstractAggNode target;

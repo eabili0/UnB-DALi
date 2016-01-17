@@ -56,14 +56,6 @@ public abstract class AbstractAggModel implements IModel {
 	}
 	
 	/**
-	 * Customly verifies if the model is sematically correct;
-	 * This method is implementation specific
-	 * 
-	 * @throws ModelSemanticsVerificationException if the model was not correctly setup
-	 */
-	public abstract boolean checkModel() throws ModelSemanticsVerificationException;
-	
-	/**
 	 * Searches for an activity node based on an agg node
 	 * @param n the underlying agg node
 	 * @return an AbstractAggNode object
@@ -87,8 +79,24 @@ public abstract class AbstractAggModel implements IModel {
 	public String getId() {
 		return _id;
 	}
+	
+	/**
+	 * @return the number of nodes
+	 */
+	public int getNumberOfNodes() {
+		return _nodes.size();
+	}
 
-	/********************** PROTECTED BEHAVIOR **************************/
+	/********************** INHERITANCE **************************/
+	
+	/**
+	 * Customly verifies if the model is sematically correct;
+	 * This method is implementation specific
+	 * 
+	 * @throws ModelSemanticsVerificationException if the model was not correctly setup
+	 */
+	public abstract void checkModel() throws ModelSemanticsVerificationException;
+	
 	
 	/**
 	 * adds a new AbstractAggNode node to the model;
@@ -110,6 +118,8 @@ public abstract class AbstractAggModel implements IModel {
 		_graph.addArc(edge.getAggArc());
 		_edges.put(edge.getAggArc(), edge);
 		_edgesByString.put(edge.getId(), edge);
+		edge.getSourceNode().addOutgoingEdge(edge);
+		edge.getTargetNode().addIncomingEdge(edge);
 	}
 	
 	/**

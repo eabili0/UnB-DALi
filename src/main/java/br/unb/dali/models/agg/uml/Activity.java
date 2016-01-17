@@ -25,7 +25,7 @@ import br.unb.dali.util.io.Misc;
  * @author abiliooliveira
  */
 public class Activity extends AbstractAggModel{
-	private static final String gragra = "/models/AD.ggx";
+	private static final String grammar = "/models/AD.ggx";
 	
 	/*********************** CONSTRUCTORS ***********************/
 	
@@ -53,13 +53,14 @@ public class Activity extends AbstractAggModel{
 
 	@Override
 	protected String getGraGraResourceFileName() {
-		return gragra;
+		return grammar;
 	}
 	
 	@Override
-	public boolean checkModel() throws ModelSemanticsVerificationException {
-		// TODO Auto-generated method stub
-		return false;
+	public void checkModel() throws ModelSemanticsVerificationException {
+		if (!_gragra.checkGraphConsistency(_graph)) {
+			throw new ModelSemanticsVerificationException("");
+		}
 	}
 
 	@Override
@@ -123,9 +124,9 @@ public class Activity extends AbstractAggModel{
 	 * 
 	 * @param name the DTMC name to be generated
 	 * @return a DTMC model
-	 * @throws AggModelConstructionException 
+	 * @throws Exception 
 	 */
-	public DTMC toDTMC(String name) throws AggModelConstructionException {
+	public DTMC toDTMC(String name) throws Exception {
 		return new DTMC(Misc.getRandomString(), new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this)).setName(name);
 	}
 	

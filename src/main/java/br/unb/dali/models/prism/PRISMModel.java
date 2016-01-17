@@ -28,9 +28,10 @@ public class PRISMModel implements IModel {
 	 * Constructs a new PRISM Model
 	 * @param name the name given to the this Model
 	 */
-	public PRISMModel(String name) {
+	public PRISMModel(String name, PRISMModelTypes type) {
 		_modules = new HashMap<String, PRISMModule>();
 		_name = name;
+		_type = type.toString();
 	}
 	
 	/************************************* PUBLIC BEHAVIOR *********************************/
@@ -40,16 +41,6 @@ public class PRISMModel implements IModel {
 	 */
 	public String getType() {
 		return _type; 
-	}
-	
-	/**
-	 * Sets the type of this PRISM Model given an proper enum
-	 * @param type 
-	 * @return this
-	 */
-	public PRISMModel setType(PRISMModelTypes type) {
-		_type = type.toString();
-		return this;
 	}
 	
 	/**
@@ -83,7 +74,7 @@ public class PRISMModel implements IModel {
 		Iterator<Entry<String, PRISMModule>> moduleIterator = _modules.entrySet().iterator();
 		while (moduleIterator.hasNext()) {
 			buffer.append("\n");
-			buffer.append(moduleIterator.next());
+			buffer.append(moduleIterator.next().getValue());
 		}
 		
 		return buffer.toString();

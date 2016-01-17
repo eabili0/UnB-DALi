@@ -1,12 +1,12 @@
 package br.unb.dali.models.agg.markovchains.dtmc.states;
 
 import agg.xt_basis.Node;
-import br.unb.dali.models.agg.AbstractAggNode;
 import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.markovchains.DTMC;
+import br.unb.dali.models.agg.markovchains.dtmc.DTMCState;
 
-public class State extends AbstractAggNode {
+public class State extends DTMCState {
 
 	/**
 	 * Constructs a new clean DTMC State

@@ -1,11 +1,14 @@
 package br.unb.dali.models.agg.markovchains;
 
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import agg.xt_basis.Arc;
 import agg.xt_basis.Graph;
 import agg.xt_basis.Node;
 import br.unb.dali.models.agg.AbstractAggModel;
+import br.unb.dali.models.agg.AbstractAggNode;
 import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
@@ -13,15 +16,20 @@ import br.unb.dali.models.agg.exceptions.InconsistentEdgeTypeException;
 import br.unb.dali.models.agg.exceptions.InconsistentNodeTypeException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
+import br.unb.dali.models.agg.markovchains.dtmc.DTMCState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.ErrorState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.InitialState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.State;
 import br.unb.dali.models.agg.markovchains.dtmc.transitions.Transition;
+import br.unb.dali.models.prism.PRISMModel;
+import br.unb.dali.models.prism.PRISMModelTypes;
+import br.unb.dali.models.prism.PRISMModule;
 import br.unb.dali.util.io.Misc;
 
 public class DTMC extends AbstractAggModel {
 	private String _name = "";
-	private static final String _gragra = "/models/DTMC.ggx";
+	private static final String _grammar = "/models/DTMC.ggx";
+	private DTMCState _initialState;
 	
 	/************************* CONSTRUCTORS ****************************/
 	
@@ -69,20 +77,42 @@ public class DTMC extends AbstractAggModel {
 	}
 	
 	/**
+	 * @return the initial state of this dtmc
+	 */
+	public DTMCState getInitialState() {
+		return _initialState;
+	}
+	
+	/**
 	 * Converts this DTMC to a proper PRISM module
 	 * 
 	 * @return the PRISM representation of this DTMC
 	 */
 	public String toPRISM() {
-		return "";
+		PRISMModule module = new PRISMModule(_name);
+		PRISMModel model = new PRISMModel(_name, PRISMModelTypes.DTMC);
+		
+		// add the state variable
+		String states = "s[0.." + this._nodes.size() + "] init " + _initialState.getIndex() + ";";
+		module.addVariable(states);
+		
+		// for each node, add a proper prism command to all its outgoing edges
+		Iterator<Entry<Node, AbstractAggNode>> it = _nodes.entrySet().iterator();
+		while (it.hasNext()) {
+			module.addCommand(getCommand((DTMCState)it.next().getValue()));
+			model.addModule(module);
+		}
+		
+		return model.toString();
 	}
 	
 	/************************* INHERITANCE ****************************/
 	
 	@Override
-	public boolean checkModel() throws ModelSemanticsVerificationException {
-		// TODO Auto-generated method stub
-		return false;
+	public void checkModel() throws ModelSemanticsVerificationException {
+		if (!_gragra.checkGraphConsistency(_graph)) {
+			throw new ModelSemanticsVerificationException("");
+		}
 	}
 	
 	@Override
@@ -100,7 +130,7 @@ public class DTMC extends AbstractAggModel {
 
 	@Override
 	protected String getGraGraResourceFileName() {
-		return _gragra;
+		return _grammar;
 	}
 
 	/************************* PRIVATE ****************************/
@@ -120,7 +150,8 @@ public class DTMC extends AbstractAggModel {
 						addAnAggNode(new State(Misc.getRandomString(), node, this));
 						break;
 					case "InitialState":
-						addAnAggNode(new InitialState(Misc.getRandomString(), node, this));
+						_initialState = new InitialState(Misc.getRandomString(), node, this);
+						addAnAggNode(_initialState);
 						break;
 					case "ErrorState":
 						addAnAggNode(new ErrorState(Misc.getRandomString(), node, this));
@@ -157,5 +188,37 @@ public class DTMC extends AbstractAggModel {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * formats a proper DTMC command
+	 * @param current
+	 * @return
+	 */
+	private String getCommand(DTMCState current) {
+		String toReturn = "";
+		int size = current.getOutgoingEdges().size();
+		
+		// only create commands if the current node has at least one outgoing edge
+		if (size > 0) { 
+			toReturn = "[] s=" + current.getIndex() + " -> "; // guard
+			
+			for (int i = 0; i < size - 1; i++) {
+				toReturn += getTransition((Transition)current.getOutgoingEdges().get(i), "+");
+			}
+			toReturn += getTransition((Transition)current.getOutgoingEdges().get(size-1), "");
+		}
+		return toReturn;
+	}
+	
+	/**
+	 * formats a DTMC prism transition from a Transition object
+	 * @param transition
+	 * @return
+	 */
+	private String getTransition(Transition transition, String append) {
+		DTMCState target = (DTMCState)transition.getTargetNode();
+		
+		return  transition.getProbability() + ":" + "(s'=" +  target.getIndex() + ") " + append;
 	}
 }
