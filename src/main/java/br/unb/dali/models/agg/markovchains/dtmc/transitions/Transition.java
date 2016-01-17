@@ -49,7 +49,7 @@ public class Transition extends AbstractAggEdge {
 		AttrInstance attrs = _aggArc.getAttribute();
 		Object value = attrs.getValueAt("probability");
 		if (value != null)
-			setProbability((double)value);
+			setProbability((Number)value);
 	}
 
 	/**
@@ -67,6 +67,15 @@ public class Transition extends AbstractAggEdge {
 		this._probability = probability;
 		_aggArc.getAttribute().setValueAt(probability, "probability");
 		return this;
+	}
+	
+	/**
+	 * sets the probability of this transition from a number object
+	 * @param probability 
+	 * @return this
+	 */
+	public Transition setProbability(Number probability) {
+		return setProbability(probability.doubleValue());
 	}
 
 }

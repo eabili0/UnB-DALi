@@ -9,7 +9,7 @@ import br.unb.dali.models.agg.uml.ad.ActivityEdge;
 import br.unb.dali.models.agg.uml.ad.ActivityNode;
 
 public class ControlFlow extends ActivityEdge {
-	private double _probability;
+	private double _PTS;
 	
 	/**
 	 * Constructs a control flow edge based on an agg arc 
@@ -61,28 +61,36 @@ public class ControlFlow extends ActivityEdge {
 	protected void setUp() {
 		// here goes all the logic to get the attributes of this control flow from an agg arc 
 		AttrInstance attrs = _aggArc.getAttribute();
-		Object value = attrs.getValueAt("probability");
+		Object value = attrs.getValueAt("PTS");
 		if (value != null)
-			_probability = (double)value;
+			_PTS = (double)value;
 	}
 	
 	/**
-	 * Sets the probability of this control flow
+	 * Sets the PTS property of this control flow
 	 * 
-	 * @param probability 
+	 * @param PTS 
 	 */
-	public ControlFlow setProbability(double probability) {
-		_probability = probability;
-		_aggArc.getAttribute().setValueAt(probability, "probability");
+	public ControlFlow setPTS(double PTS) {
+		_PTS = PTS;
+		_aggArc.getAttribute().setValueAt(PTS, "PTS");
 		return this;
 	}
 	
 	/**
-	 * Gets the probability set to this control flow
-	 * @return
+	 * Sets the PTS property from a Number object
+	 * @param PTS the probability associated with this control flow object
+	 * @return this
 	 */
-	public double getProbability() {
-		return _probability;
+	public ControlFlow setPTS(Number PTS) {
+		return setPTS(PTS.doubleValue());
+	}
+	
+	/**
+	 * @return the PTS (the probability of transition) of this control flow
+	 */
+	public double getPTS() {
+		return _PTS;
 	}
 
 }

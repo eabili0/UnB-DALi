@@ -12,6 +12,7 @@ import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.MergeNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
 import br.unb.dali.transformations.agg.GenericAggTransformation;
+import br.unb.dali.util.io.Misc;
 
 /**
  * This class defines a subset of an 2.5 standard Activity Diagram
@@ -125,7 +126,7 @@ public class Activity extends AbstractAggModel{
 	 * @throws AggModelConstructionException 
 	 */
 	public DTMC toDTMC(String name) throws AggModelConstructionException {
-		return new DTMC(name, new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this));
+		return new DTMC(Misc.getRandomString(), new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this)).setName(name);
 	}
 	
 	/*********************** PRIVATE ***********************/

@@ -27,10 +27,14 @@ public class TestActivity {
 			ad.addExecutableNode(new ExecutableNode(nodeIDs[1], ad));
 			ad.addFinalNode(new FinalNode(nodeIDs[2], ad));
 			
-			ad.addControlFlow(new ControlFlow(cfs[0][0], cfs[0][1], cfs[0][2], ad));
-			ad.addControlFlow(new ControlFlow(cfs[1][0], cfs[1][1], cfs[1][2], ad));
+			ad.addControlFlow(new ControlFlow(cfs[0][0], cfs[0][1], cfs[0][2], ad)
+				.setPTS(Double.parseDouble(cfs[0][3])));
+			ad.addControlFlow(new ControlFlow(cfs[1][0], cfs[1][1], cfs[1][2], ad)
+				.setPTS(Double.parseDouble(cfs[1][3])));
 			
-			DTMC dtmc = ad.toDTMC();
+			DTMC dtmc = ad.toDTMC("Teste");
+			
+			System.out.println("PRISM:\n" + dtmc.toPRISM());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
