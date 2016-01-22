@@ -1,34 +1,11 @@
 package br.unb.dali.models.agg.uml;
 
-import agg.xt_basis.Graph;
-import br.unb.dali.models.agg.AbstractAggModel;
-import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
-import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
+import br.unb.dali.models.IModel;
 
-public class InteractionOverviewDiagram extends AbstractAggModel {
-
-	public InteractionOverviewDiagram(String id, Graph graph) throws AggModelConstructionException {
-		super(id, graph);
-		// TODO Auto-generated constructor stub
-	}
+public class InteractionOverviewDiagram implements IModel {
 
 	@Override
-	public void checkModel() throws ModelSemanticsVerificationException {
-		 if (!_gragra.checkGraphConsistency(_graph)) {
-			 throw new ModelSemanticsVerificationException("");
-		 }
+	public void checkModel() {
+		// TODO
 	}
-
-	@Override
-	protected void setUp() {
-		// TODO Auto-generated method stub
-
-	}
-	
-	@Override
-	protected String getGraGraResourceFileName() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

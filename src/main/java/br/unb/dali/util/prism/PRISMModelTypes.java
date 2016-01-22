@@ -1,4 +1,4 @@
-package br.unb.dali.models.prism;
+package br.unb.dali.util.prism;
 
 public enum PRISMModelTypes {
 	DTMC("dtmc");

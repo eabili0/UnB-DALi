@@ -7,6 +7,7 @@ package br.unb.dali.transformations;
  * May be useful in the future;
  * @author abiliooliveira
  */
-public interface ITransformation {
-
+public interface ITransformation<S,T> {
+	
+	public T transform(S source) throws Exception;
 }

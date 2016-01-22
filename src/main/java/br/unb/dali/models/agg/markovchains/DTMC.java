@@ -21,10 +21,10 @@ import br.unb.dali.models.agg.markovchains.dtmc.states.ErrorState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.InitialState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.State;
 import br.unb.dali.models.agg.markovchains.dtmc.transitions.Transition;
-import br.unb.dali.models.prism.PRISMModel;
-import br.unb.dali.models.prism.PRISMModelTypes;
-import br.unb.dali.models.prism.PRISMModule;
 import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.prism.PRISMModel;
+import br.unb.dali.util.prism.PRISMModelTypes;
+import br.unb.dali.util.prism.PRISMModule;
 
 public class DTMC extends AbstractAggModel {
 	private String _name = "";
@@ -41,7 +41,7 @@ public class DTMC extends AbstractAggModel {
 	 * @throws AggModelConstructionException should never happen at this point
 	 */
 	public DTMC(String id) throws AggModelConstructionException {
-		super(id, null);
+		super(id, null, _grammar);
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public class DTMC extends AbstractAggModel {
 	 * 	whenever inconsistencies are found when constructing this DTMC from the agg graph
 	 */
 	public DTMC(String id, Graph graph) throws AggModelConstructionException {
-		super(id, graph);
+		super(id, graph, _grammar);
 	}
 	
 	/************************* PUBLIC ****************************/
@@ -138,11 +138,6 @@ public class DTMC extends AbstractAggModel {
 			throw new AggModelConstructionException(e);
 		}
  	}
-
-	@Override
-	protected String getGraGraResourceFileName() {
-		return _grammar;
-	}
 
 	/************************* PRIVATE ****************************/
 	

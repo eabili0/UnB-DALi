@@ -1,11 +1,9 @@
-package br.unb.dali.models.prism;
+package br.unb.dali.util.prism;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import br.unb.dali.models.IModel;
 
 /**
  * The high-level structure of a PRISM Model
@@ -16,7 +14,7 @@ import br.unb.dali.models.IModel;
  * 
  * @author abiliooliveira
  */
-public class PRISMModel implements IModel {
+public class PRISMModel {
 	private String _type;
 	private String _name;
 	private Map<String, PRISMModule> _modules;

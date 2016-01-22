@@ -4,16 +4,16 @@ import agg.xt_basis.GraGra;
 import agg.xt_basis.GraTra;
 import agg.xt_basis.Graph;
 import agg.xt_basis.LayeredGraTraImpl;
-import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
+import br.unb.dali.transformations.ITransformation;
 import br.unb.dali.util.agg.Misc;
 
 /**
  * Defines the characteristics every transformation should present
  * @author abiliooliveira
  */
-public class GenericAggTransformation implements IModel {
+public class GenericAggTransformation implements ITransformation<AbstractAggModel, Graph> {
 	protected GraTra _morphism;
 	protected GraGra _grammar;
 	
@@ -40,6 +40,7 @@ public class GenericAggTransformation implements IModel {
 	 * @throws ModelSemanticsVerificationException 
 	 * @throws Exception 
 	 */
+	@Override
 	public Graph transform(AbstractAggModel source) throws ModelSemanticsVerificationException {
 		source.checkModel();
 		Graph graph = source.getGraph().copy(_grammar.getTypeSet());

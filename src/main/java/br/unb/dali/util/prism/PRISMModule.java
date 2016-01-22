@@ -1,4 +1,4 @@
-package br.unb.dali.models.prism;
+package br.unb.dali.util.prism;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -131,15 +131,6 @@ public abstract class AbstractAggModel implements IModel {
 	 */
 	protected abstract void setUp() throws AggModelConstructionException;
 	
-	/**
-	 * Indicates which is the resource file name of the agg GraGra this model is being built upon;
-	 * Important for the constructor below;
-	 * 
-	 * Method completely implementation specific;
-	 * @return the resource file name correspondent to the underlying agg GraGra of this model
-	 */
-	protected abstract String getGraGraResourceFileName();
-	
 	/********************** CONSTRUCTORS **************************/
 	
 	/**
@@ -150,11 +141,12 @@ public abstract class AbstractAggModel implements IModel {
 	 * This functionality will be useful for instantiating the target model in the end of a transformation.
 	 * 
 	 * @param id this model identifier 
-	 * @param graph The graph that truthfully represents the model
+	 * @param graph the graph that truthfully represents the model
+	 * @param GGXResource the resource file name of this models' Agg Graph Grammar file
 	 * @throws AggModelConstructionException 
 	 */
-	public AbstractAggModel(String id, Graph graph) throws AggModelConstructionException {
-		_gragra = Misc.loadGraGra(getGraGraResourceFileName());
+	public AbstractAggModel(String id, Graph graph, String GGXResource) throws AggModelConstructionException {
+		_gragra = Misc.loadGraGra(GGXResource);
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());
 		_gragra.resetGraph(_graph.copy(_gragra.getTypeSet()));

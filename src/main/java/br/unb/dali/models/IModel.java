@@ -8,5 +8,5 @@ package br.unb.dali.models;
  * @author abiliooliveira
  */
 public interface IModel {
-
+	public void checkModel() throws Exception;
 }

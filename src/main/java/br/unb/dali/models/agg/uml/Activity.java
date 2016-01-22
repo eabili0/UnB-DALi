@@ -25,36 +25,36 @@ import br.unb.dali.util.io.Misc;
  * @author abiliooliveira
  */
 public class Activity extends AbstractAggModel{
-	private static final String grammar = "/models/AD.ggx";
+	private static final String _grammar = "/models/AD.ggx";
 	
 	/*********************** CONSTRUCTORS ***********************/
 	
 	/** 
-	 * Initializes a new UML Activity Diagram
-	 * @throws AggModelConstructionException
+	 * Initializes a new empty UML Activity Diagram
+	 * 
+	 * @param id this activity diagram string identifier
+	 * @throws AggModelConstructionException (should not happen with this constructor)
 	 */
 	public Activity(String id) throws AggModelConstructionException {
-		super(id, null);
+		super(id, null, _grammar);
 	}
 	
 	/**
-	 * Constructs a new UML Activity Diagram based on an AGG graph
+	 * Constructs a new UML Activity Diagram based on an AGG Graph object
 	 * 
 	 * @param id this activity identifier
-	 * @param graph
+	 * @param graph the underlying AGG Graph object
 	 * 
-	 * @throws AggModelConstructionException
+	 * @throws AggModelConstructionException when:
+	 * 	1 - any of the Graph objects are not compliant to the underlying Type Graph;
+	 * 	2 - if any syntactical inconsistency is found;
+	 * 	3 - when any mandatory attribute of the Graph object is not set; 
 	 */
-	public Activity(String id, Graph graph) throws AggModelConstructionException {
-		super(id, graph);
+	public Activity(Graph graph) throws AggModelConstructionException {
+		super(Misc.getRandomString(), graph, _grammar);
 	}
 	
 	/*********************** INHERITANCE ***********************/
-
-	@Override
-	protected String getGraGraResourceFileName() {
-		return grammar;
-	}
 	
 	@Override
 	public void checkModel() throws ModelSemanticsVerificationException {
