@@ -36,9 +36,4 @@ public class ErrorState extends DTMCState {
 		super(id, aggNode, context);
 	}
 
-	@Override
-	protected void setUp() {
-		// TODO Auto-generated method stub
-	}
-
 }

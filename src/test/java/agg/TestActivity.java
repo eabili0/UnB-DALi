@@ -13,12 +13,13 @@ import br.unb.dali.util.io.Misc;
 public class TestActivity {
 	
 	public static void main(String[] args) {
+		
 		try {
 			// ids representing: an initial node, an executable node and a final node
 			String[] nodeIDs = new String[] {Misc.getRandomString(), Misc.getRandomString(),Misc.getRandomString()};
 			String[][] cfs = new String[][] {
-					{Misc.getRandomString(), nodeIDs[0], nodeIDs[1], "1.0" },
-					{Misc.getRandomString(), nodeIDs[1], nodeIDs[2], "1.0"}
+					{Misc.getRandomString(), nodeIDs[0], nodeIDs[1] },
+					{Misc.getRandomString(), nodeIDs[1], nodeIDs[2]}
 			};
 			
 			Activity ad = new Activity(Misc.getRandomString());
@@ -28,9 +29,9 @@ public class TestActivity {
 			ad.addFinalNode(new FinalNode(nodeIDs[2], ad));
 			
 			ad.addControlFlow(new ControlFlow(cfs[0][0], cfs[0][1], cfs[0][2], ad)
-				.setPTS(Double.parseDouble(cfs[0][3])));
+				.setPTS(0.7));
 			ad.addControlFlow(new ControlFlow(cfs[1][0], cfs[1][1], cfs[1][2], ad)
-				.setPTS(Double.parseDouble(cfs[1][3])));
+				.setPTS(0.3));
 			
 			DTMC dtmc = ad.toDTMC("Teste");
 			

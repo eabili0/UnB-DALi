@@ -14,78 +14,61 @@
         <TaggedValue Tag="GACs" TagValue="true"/>
         <TaggedValue Tag="breakAllLayer" TagValue="true"/>
         <TaggedValue Tag="showGraphAfterStep" TagValue="true"/>
-        <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX"/>
+        <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>
         <Types>
-            <NodeType ID="I2" abstract="false" name="Interaction%:RECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <AttrType ID="I4" attrname="name" typename="String" visible="true"/>
+            <NodeType ID="I2" abstract="false" name="Lifeline%:ROUNDRECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
+                <AttrType ID="I4" attrname="BCompRel" typename="double" visible="true"/>
+                <AttrType ID="I5" attrname="name" typename="String" visible="true"/>
             </NodeType>
-            <NodeType ID="I5" abstract="false" name="Lifeline%:ROUNDRECT:java.awt.Color[r=255,g=0,b=0]:[NODE]:">
-                <AttrType ID="I7" attrname="reliability"
-                    typename="double" visible="true"/>
-                <AttrType ID="I8" attrname="name" typename="String" visible="true"/>
+            <NodeType ID="I6" abstract="false" name="Occurrence%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
+            <NodeType ID="I7" abstract="false" name="Event%:ROUNDRECT:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+                <Parent pID="I6"/>
             </NodeType>
-            <NodeType ID="I9" abstract="false" name="Occurrence%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:"/>
-            <NodeType ID="I10" abstract="false" name="MessageOccurrence%:ROUNDRECT:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
-                <Parent pID="I9"/>
+            <NodeType ID="I8" abstract="false" name="Message%:OVAL:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
+                <AttrType ID="I10" attrname="signal" typename="String" visible="true"/>
             </NodeType>
-            <NodeType ID="I11" abstract="false" name="Message%:OVAL:java.awt.Color[r=255,g=0,b=0]:FILLED:[NODE]:">
-                <AttrType ID="I13" attrname="signal" typename="String" visible="true"/>
-            </NodeType>
-            <EdgeType ID="I14" abstract="false" name="has%:DOT_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
-            <EdgeType ID="I15" abstract="false" name="first%:DOT_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
-            <EdgeType ID="I16" abstract="false" name="next%:DOT_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:"/>
-            <EdgeType ID="I17" abstract="false" name="send%:DASH_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
-            <EdgeType ID="I18" abstract="false" name="receive%:DASH_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
-            <Graph ID="I19" kind="TG" name="TypeGraph">
-                <Node ID="I20" sourcemax="1" sourcemin="1" type="I2">
-                    <NodeLayout X="183" Y="55"/>
-                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
-                </Node>
-                <Node ID="I22" type="I5">
+            <EdgeType ID="I11" abstract="false" name="has%:DOT_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
+            <EdgeType ID="I12" abstract="false" name="first%:DOT_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
+            <EdgeType ID="I13" abstract="false" name="next%:DASH_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:"/>
+            <EdgeType ID="I14" abstract="false" name="send%:DASH_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
+            <EdgeType ID="I15" abstract="false" name="receive%:DASH_LINE:java.awt.Color[r=255,g=0,b=0]:[EDGE]:"/>
+            <Graph ID="I16" kind="TG" name="TypeGraph">
+                <Node ID="I17" type="I2">
                     <NodeLayout X="351" Y="54"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I24" type="I9">
+                <Node ID="I19" type="I6">
                     <NodeLayout X="351" Y="172"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I25" type="I10">
+                <Node ID="I20" type="I7">
                     <NodeLayout X="351" Y="242"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I26" type="I11">
+                <Node ID="I21" type="I8">
                     <NodeLayout X="351" Y="346"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Edge ID="I28" source="I20" sourcemax="1" sourcemin="1"
-                    target="I22" type="I14">
-                    <EdgeLayout bendX="278" bendY="55"
-                        sourceMultiplicityOffsetX="-5"
-                        sourceMultiplicityOffsetY="13"
-                        targetMultiplicityOffsetX="-9"
-                        targetMultiplicityOffsetY="8" textOffsetX="-28" textOffsetY="-17"/>
-                    <additionalLayout aktlength="200" force="10" preflength="200"/>
-                </Edge>
-                <Edge ID="I29" source="I24" sourcemax="1" sourcemin="0"
-                    target="I24" targetmax="1" targetmin="0" type="I16">
+                <Edge ID="I23" source="I19" sourcemax="1" sourcemin="0"
+                    target="I19" targetmax="1" targetmin="0" type="I13">
                     <EdgeLayout bendX="296" bendY="147" loopH="20"
-                        loopW="20" sourceMultiplicityOffsetX="8"
-                        sourceMultiplicityOffsetY="17"
+                        loopW="20" sourceMultiplicityOffsetX="-1"
+                        sourceMultiplicityOffsetY="0"
                         targetMultiplicityOffsetX="-27"
                         targetMultiplicityOffsetY="17" textOffsetX="-34" textOffsetY="0"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I30" source="I22" sourcemax="1" sourcemin="0"
-                    target="I24" targetmax="1" targetmin="0" type="I15">
+                <Edge ID="I24" source="I17" sourcemax="1" sourcemin="0"
+                    target="I19" targetmax="1" targetmin="0" type="I12">
                     <EdgeLayout bendX="0" bendY="0"
-                        sourceMultiplicityOffsetX="0"
-                        sourceMultiplicityOffsetY="70"
-                        targetMultiplicityOffsetX="1"
-                        targetMultiplicityOffsetY="-64" textOffsetX="6" textOffsetY="-9"/>
+                        sourceMultiplicityOffsetX="3"
+                        sourceMultiplicityOffsetY="66"
+                        targetMultiplicityOffsetX="2"
+                        targetMultiplicityOffsetY="-55" textOffsetX="6" textOffsetY="-9"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I31" source="I26" sourcemax="1" sourcemin="0"
-                    target="I25" targetmax="1" targetmin="1" type="I17">
+                <Edge ID="I25" source="I21" sourcemax="1" sourcemin="0"
+                    target="I20" targetmax="1" targetmin="1" type="I14">
                     <EdgeLayout bendX="256" bendY="300"
                         sourceMultiplicityOffsetX="-30"
                         sourceMultiplicityOffsetY="25"
@@ -93,8 +76,8 @@
                         targetMultiplicityOffsetY="2" textOffsetX="20" textOffsetY="-10"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
-                <Edge ID="I32" source="I26" sourcemax="1" sourcemin="0"
-                    target="I25" targetmax="1" targetmin="1" type="I18">
+                <Edge ID="I26" source="I21" sourcemax="1" sourcemin="0"
+                    target="I20" targetmax="1" targetmin="1" type="I15">
                     <EdgeLayout bendX="445" bendY="303"
                         sourceMultiplicityOffsetX="8"
                         sourceMultiplicityOffsetY="14"
@@ -104,134 +87,242 @@
                 </Edge>
             </Graph>
         </Types>
-        <Graph ID="I33" kind="HOST" name="Graph">
-            <Node ID="I34" type="I2">
+        <Graph ID="I27" kind="HOST" name="SimpleSendReceive">
+            <Node ID="I28" type="I2">
                 <Attribute constant="true" type="I4">
                     <Value>
-                        <string>GasPump</string>
+                        <double>0.8</double>
                     </Value>
                 </Attribute>
-                <NodeLayout X="431" Y="18"/>
-                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
-            </Node>
-            <Node ID="I37" type="I5">
-                <Attribute constant="true" type="I7">
-                    <Value>
-                        <double>1.0</double>
-                    </Value>
-                </Attribute>
-                <Attribute constant="true" type="I8">
+                <Attribute constant="true" type="I5">
                     <Value>
                         <string>User</string>
                     </Value>
                 </Attribute>
-                <NodeLayout X="133" Y="126"/>
+                <NodeLayout X="219" Y="56"/>
                 <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I41" type="I10">
-                <NodeLayout X="130" Y="221"/>
+            <Node ID="I32" type="I7">
+                <NodeLayout X="216" Y="151"/>
                 <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I42" type="I5">
-                <Attribute constant="true" type="I7">
+            <Node ID="I33" type="I2">
+                <Attribute constant="true" type="I4">
                     <Value>
-                        <double>1.0</double>
+                        <double>0.8</double>
                     </Value>
                 </Attribute>
-                <Attribute constant="true" type="I8">
+                <Attribute constant="true" type="I5">
                     <Value>
                         <string>GasPump</string>
                     </Value>
                 </Attribute>
-                <NodeLayout X="430" Y="123"/>
+                <NodeLayout X="518" Y="52"/>
                 <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I46" type="I5">
-                <Attribute constant="true" type="I7">
-                    <Value>
-                        <double>1.0</double>
-                    </Value>
-                </Attribute>
-                <Attribute constant="true" type="I8">
-                    <Value>
-                        <string>Bank</string>
-                    </Value>
-                </Attribute>
-                <NodeLayout X="718" Y="118"/>
+            <Node ID="I37" type="I7">
+                <NodeLayout X="518" Y="152"/>
                 <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I50" type="I10">
-                <NodeLayout X="430" Y="223"/>
-                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
-            </Node>
-            <Node ID="I51" type="I10">
-                <NodeLayout X="718" Y="279"/>
-                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
-            </Node>
-            <Node ID="I52" type="I11">
-                <Attribute constant="true" type="I13">
+            <Node ID="I38" type="I8">
+                <Attribute constant="true" type="I10">
                     <Value>
                         <string>insertCard</string>
                     </Value>
                 </Attribute>
-                <NodeLayout X="270" Y="290"/>
+                <NodeLayout X="367" Y="151"/>
                 <additionalLayout age="0" force="10" frozen="true" zone="50"/>
             </Node>
-            <Node ID="I55" type="I11">
-                <Attribute constant="true" type="I13">
+            <Node ID="I41" type="I7">
+                <NodeLayout X="517" Y="255"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I42" type="I7">
+                <NodeLayout X="216" Y="254"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I43" type="I8">
+                <Attribute constant="true" type="I10">
                     <Value>
-                        <string>validate</string>
+                        <string>response</string>
                     </Value>
                 </Attribute>
-                <NodeLayout X="575" Y="349"/>
-                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+                <NodeLayout X="371" Y="255"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
             </Node>
-            <Node ID="I58" type="I10">
-                <NodeLayout X="431" Y="279"/>
-                <additionalLayout age="0" force="10" frozen="true" zone="50"/>
+            <Edge ID="I46" source="I28" target="I32" type="I12">
+                <EdgeLayout bendX="219" bendY="122" textOffsetX="18" textOffsetY="-20"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I47" source="I33" target="I37" type="I12">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I48" source="I38" target="I37" type="I15">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-26" textOffsetY="-20"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I49" source="I38" target="I32" type="I14">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-5" textOffsetY="-20"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I50" source="I37" target="I41" type="I13">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I51" source="I43" target="I42" type="I15">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-17" textOffsetY="-23"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I52" source="I32" target="I42" type="I13">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="10" textOffsetY="-19"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I53" source="I43" target="I41" type="I14">
+                <EdgeLayout bendX="447" bendY="255" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+        </Graph>
+        <Graph ID="I54" kind="HOST" name="SimpleWithSelfMessage">
+            <Node ID="I55" type="I2">
+                <Attribute constant="true" type="I4">
+                    <Value>
+                        <double>0.8</double>
+                    </Value>
+                </Attribute>
+                <Attribute constant="true" type="I5">
+                    <Value>
+                        <string>User</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="203" Y="49"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
             </Node>
-            <Edge ID="I59" source="I34" target="I37" type="I14">
+            <Node ID="I59" type="I7">
+                <NodeLayout X="200" Y="144"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I60" type="I2">
+                <Attribute constant="true" type="I4">
+                    <Value>
+                        <double>0.8</double>
+                    </Value>
+                </Attribute>
+                <Attribute constant="true" type="I5">
+                    <Value>
+                        <string>GasPump</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="502" Y="45"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I64" type="I7">
+                <NodeLayout X="502" Y="145"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I65" type="I8">
+                <Attribute constant="true" type="I10">
+                    <Value>
+                        <string>insertCard</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="351" Y="144"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I68" type="I7">
+                <NodeLayout X="501" Y="248"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I69" type="I8">
+                <Attribute constant="true" type="I10">
+                    <Value>
+                        <string>response</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="355" Y="248"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I72" type="I7">
+                <NodeLayout X="200" Y="247"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I73" type="I2">
+                <Attribute constant="true" type="I4">
+                    <Value>
+                        <double>0.9</double>
+                    </Value>
+                </Attribute>
+                <Attribute constant="true" type="I5">
+                    <Value>
+                        <string>Bank</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="727" Y="45"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I77" type="I7">
+                <NodeLayout X="728" Y="133"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I78" type="I8">
+                <Attribute constant="true" type="I10">
+                    <Value>
+                        <string>test</string>
+                    </Value>
+                </Attribute>
+                <NodeLayout X="623" Y="187"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Node ID="I81" type="I7">
+                <NodeLayout X="729" Y="225"/>
+                <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+            </Node>
+            <Edge ID="I82" source="I55" target="I59" type="I12">
+                <EdgeLayout bendX="203" bendY="115" textOffsetX="18" textOffsetY="-20"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I83" source="I60" target="I64" type="I12">
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I60" source="I37" target="I41" type="I15">
-                <EdgeLayout bendX="133" bendY="192" textOffsetX="18" textOffsetY="-20"/>
+            <Edge ID="I84" source="I65" target="I64" type="I15">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-26" textOffsetY="-20"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I61" source="I34" target="I42" type="I14">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="10" textOffsetY="-12"/>
+            <Edge ID="I85" source="I65" target="I59" type="I14">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-5" textOffsetY="-20"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I62" source="I34" target="I46" type="I14">
+            <Edge ID="I86" source="I64" target="I68" type="I13">
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I63" source="I42" target="I50" type="I15">
+            <Edge ID="I87" source="I69" target="I72" type="I15">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-17" textOffsetY="-23"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I88" source="I59" target="I72" type="I13">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="10" textOffsetY="-19"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I89" source="I69" target="I68" type="I14">
+                <EdgeLayout bendX="431" bendY="248" textOffsetX="0" textOffsetY="-22"/>
+                <additionalLayout aktlength="200" force="10" preflength="200"/>
+            </Edge>
+            <Edge ID="I90" source="I73" target="I77" type="I12">
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I64" source="I46" target="I51" type="I15">
+            <Edge ID="I91" source="I77" target="I81" type="I13">
                 <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I65" source="I52" target="I50" type="I18">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="-33" textOffsetY="-17"/>
+            <Edge ID="I92" source="I78" target="I77" type="I14">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-29" textOffsetY="-17"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
-            <Edge ID="I66" source="I52" target="I41" type="I17">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="10" textOffsetY="-15"/>
-                <additionalLayout aktlength="200" force="10" preflength="200"/>
-            </Edge>
-            <Edge ID="I67" source="I55" target="I51" type="I18">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="-39" textOffsetY="-11"/>
-                <additionalLayout aktlength="200" force="10" preflength="200"/>
-            </Edge>
-            <Edge ID="I68" source="I50" target="I58" type="I16">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="6" textOffsetY="-13"/>
-                <additionalLayout aktlength="200" force="10" preflength="200"/>
-            </Edge>
-            <Edge ID="I69" source="I55" target="I58" type="I17">
-                <EdgeLayout bendX="0" bendY="0" textOffsetX="0" textOffsetY="-22"/>
+            <Edge ID="I93" source="I78" target="I81" type="I15">
+                <EdgeLayout bendX="0" bendY="0" textOffsetX="-28" textOffsetY="12"/>
                 <additionalLayout aktlength="200" force="10" preflength="200"/>
             </Edge>
         </Graph>

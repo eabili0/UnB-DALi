@@ -51,7 +51,7 @@ public class PRISMModule {
 	 * @return this
 	 */
 	public PRISMModule addVariable(String variable) {
-		this._variables.add(variable);
+		this._variables.add("\t"+variable+"\n");
 		return this;
 	}
 	
@@ -68,7 +68,8 @@ public class PRISMModule {
 	 * @return this
 	 */
 	public PRISMModule addCommand(String command) {
-		this._commands.add(command);
+		if (command != null && !command.isEmpty())
+			this._commands.add("\t" + command + "\n");
 		return this;
 	}
 	
@@ -78,13 +79,13 @@ public class PRISMModule {
 		
 		// prints the variables first
 		for (String var : this._variables) {
-			buffer.append(var + "\n");
+			buffer.append(var);
 		}
 		buffer.append("\n"); // separates the two regions
 		
 		// prints the commands second
 		for (String command : this._commands) {
-			buffer.append(command + "\n");
+			buffer.append(command);
 		}
 		
 		buffer.append("endmodule\n");

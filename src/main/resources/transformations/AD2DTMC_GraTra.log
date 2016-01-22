@@ -1,53 +1,129 @@
-Sun Jan 17 12:55:02 BRST 2016
+Tue Jan 19 17:14:44 BRST 2016
 Version:  AGG 2.1
 
 Layered graph transformation of : AD2DTMC
 on graph : Graph
-[  ControlNodeDecisionChain  ControlNodeMergeChain  ClearUselessMerge  ClearUselessDecision  Error  Final  Initial  Intial2Final  AN2Merge2AN  AN2Merge2AppAN  AN2AppAN  AN2Decision2AN  AN2Exec  AN2Decision2AppAN  ClearFinal  UntieMergeNodes  UntieDecisionNodes  ClearActivityNodes  ClearNilTransitions  ]
+[  ControlNodeMergeChain  ControlNodeDecisionChain  ClearUselessDecision  ClearUselessMerge  ErrorAndCount  Initial  Final  Intial2Final  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ClearNilTransitions  ClearActivityNodes  Merge2Decision  ]
 
 Layer: 0
-[  ControlNodeMergeChain  ControlNodeDecisionChain  ClearUselessDecision  ClearUselessMerge  ]
+[  ControlNodeMergeChain  ControlNodeDecisionChain  ClearUselessDecision  Merge2Decision  ClearUselessMerge  ]
 ClearUselessDecision 	 applied:  false
 
-[  ControlNodeMergeChain  ControlNodeDecisionChain  ClearUselessMerge  ]
-ClearUselessMerge 	 applied:  false
-
-[  ControlNodeMergeChain  ControlNodeDecisionChain  ]
-ControlNodeDecisionChain 	 applied:  false
-
-[  ControlNodeMergeChain  ]
+[  ControlNodeMergeChain  ControlNodeDecisionChain  Merge2Decision  ClearUselessMerge  ]
 ControlNodeMergeChain 	 applied:  false
 
+[  ControlNodeDecisionChain  Merge2Decision  ClearUselessMerge  ]
+ClearUselessMerge 	 applied:  false
+
+[  ControlNodeDecisionChain  Merge2Decision  ]
+Merge2Decision 	 applied:  false
+
+[  ControlNodeDecisionChain  ]
+ControlNodeDecisionChain 	 applied:  false
+
 [  ]
-used time: 1ms
+used time: 18ms
 
 Layer: 1
-[  Final  Error  Initial  ]
-Final 	 applied:  true
-[  Final  Error  Initial  ]
-Error 	 applied:  true
-[  Final  Error  Initial  ]
-Initial 	 applied:  true
-[  Final  Error  Initial  ]
-Final 	 applied:  false
-NAC  "AlreadyApplied"  is violated!
-[  Error  Initial  ]
-Error 	 applied:  false
+[  ErrorAndCount  ]
+ErrorAndCount 	 applied:  true
+[  ErrorAndCount  ]
+ErrorAndCount 	 applied:  false
 NAC  "AlreadyExists"  is violated!
+[  ]
+used time: 13ms
+
+Layer: 2
+[  Initial  ]
+Initial 	 applied:  true
 [  Initial  ]
 Initial 	 applied:  false
 NAC  "AlreadyApplied"  is violated!
 [  ]
-used time: 12ms
+used time: 25ms
 
-Layer: 2
+Layer: 3
+[  Final  ]
+Final 	 applied:  true
+[  Final  ]
+Final 	 applied:  true
+[  Final  ]
+Final 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  ]
+used time: 66ms
+
+Layer: 4
 [  Intial2Final  ]
 Intial2Final 	 applied:  false
 
 [  ]
 used time: 1ms
 
-Layer: 3
+Layer: 5
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Exec 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
+AN2Exec 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  ]
+AN2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  ]
+AN2Decision2AN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AppAN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AppAN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Exec  AN2Merge2AN  ]
+AN2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AppAN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Exec  AN2Merge2AN  ]
+AN2Exec 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  AN2AppAN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
+AN2AppAN 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
+AN2Decision2AppAN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Merge2AppAN  AN2Exec  ]
+AN2Decision2AN 	 applied:  false
+
+[  AN2AppAN  AN2Merge2AppAN  AN2Exec  ]
+AN2AppAN 	 applied:  false
+
+[  AN2Merge2AppAN  AN2Exec  ]
+AN2Merge2AppAN 	 applied:  true
 [  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
 AN2AppAN 	 applied:  false
 
@@ -55,57 +131,88 @@ AN2AppAN 	 applied:  false
 AN2Merge2AppAN 	 applied:  false
 
 [  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AN 	 applied:  false
+
+[  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AppAN 	 applied:  false
+
+[  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  false
+
+[  AN2Exec  ]
+AN2Exec 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Merge2AppAN 	 applied:  false
+
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Exec 	 applied:  true
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
 AN2Exec 	 applied:  true
 [  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
 AN2AppAN 	 applied:  true
 [  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  AN2Merge2AN  ]
-AN2Merge2AN 	 applied:  false
-
-[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
-AN2AppAN 	 applied:  false
-
-[  AN2Decision2AN  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
-AN2Decision2AN 	 applied:  false
-
-[  AN2Decision2AppAN  AN2Merge2AppAN  AN2Exec  ]
-AN2Exec 	 applied:  false
-
-[  AN2Decision2AppAN  AN2Merge2AppAN  ]
-AN2Decision2AppAN 	 applied:  false
-
-[  AN2Merge2AppAN  ]
 AN2Merge2AppAN 	 applied:  false
 
+[  AN2AppAN  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Decision2AppAN  AN2Exec  AN2Merge2AN  ]
+AN2Decision2AppAN 	 applied:  false
+
+[  AN2Decision2AN  AN2Exec  AN2Merge2AN  ]
+AN2Exec 	 applied:  false
+
+[  AN2Decision2AN  AN2Merge2AN  ]
+AN2Merge2AN 	 applied:  false
+
+[  AN2Decision2AN  ]
+AN2Decision2AN 	 applied:  false
+
 [  ]
-used time: 52ms
+used time: 1259ms
 
-Layer: 4
-[  ClearFinal  UntieDecisionNodes  UntieMergeNodes  ]
-UntieDecisionNodes 	 applied:  false
-
-[  ClearFinal  UntieMergeNodes  ]
-ClearFinal 	 applied:  true
-[  ClearFinal  UntieDecisionNodes  UntieMergeNodes  ]
-UntieDecisionNodes 	 applied:  false
-
-[  ClearFinal  UntieMergeNodes  ]
-ClearFinal 	 applied:  false
-
-[  UntieMergeNodes  ]
+Layer: 6
+[  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ]
+UntieDecisionNodes 	 applied:  true
+[  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ]
+UntieDecisionNodes 	 applied:  true
+[  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ]
+UntieMergeNodes 	 applied:  true
+[  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ]
 UntieMergeNodes 	 applied:  false
 
+[  ClearFinalAndCount  UntieDecisionNodes  ]
+ClearFinalAndCount 	 applied:  true
+[  ClearFinalAndCount  UntieDecisionNodes  UntieMergeNodes  ]
+UntieMergeNodes 	 applied:  false
+
+[  ClearFinalAndCount  UntieDecisionNodes  ]
+UntieDecisionNodes 	 applied:  false
+
+[  ClearFinalAndCount  ]
+ClearFinalAndCount 	 applied:  false
+
 [  ]
-used time: 3ms
+used time: 97ms
 
-Layer: 5
+Layer: 7
 [  ClearNilTransitions  ClearActivityNodes  ]
-ClearActivityNodes 	 applied:  false
-
-[  ClearNilTransitions  ]
+ClearActivityNodes 	 applied:  true
+[  ClearNilTransitions  ClearActivityNodes  ]
 ClearNilTransitions 	 applied:  false
 Attributes don't match.
+[  ClearActivityNodes  ]
+ClearActivityNodes 	 applied:  true
+[  ClearNilTransitions  ClearActivityNodes  ]
+ClearActivityNodes 	 applied:  true
+[  ClearNilTransitions  ClearActivityNodes  ]
+ClearNilTransitions 	 applied:  false
+Attributes don't match.
+[  ClearActivityNodes  ]
+ClearActivityNodes 	 applied:  false
+Attributes don't match.
 [  ]
-used time: 2ms
+used time: 71ms
 
 No more layers.
 Graph transformation finished

@@ -18,71 +18,119 @@
         <Types>
             <NodeType ID="I2" abstract="false" name="AbstractState%:ROUNDRECT:java.awt.Color[r=0,g=0,b=0]:FILLED:[NODE]:">
                 <AttrType ID="I4" attrname="label" typename="String" visible="true"/>
+                <AttrType ID="I5" attrname="index" typename="int" visible="true"/>
+                <AttrType ID="I6" attrname="dtmc" typename="String" visible="true"/>
             </NodeType>
-            <NodeType ID="I5" abstract="false" name="State%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:">
+            <NodeType ID="I7" abstract="false" name="State%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:">
                 <Parent pID="I2"/>
             </NodeType>
-            <NodeType ID="I7" abstract="false" name="InitialState%:CIRCLE:java.awt.Color[r=0,g=0,b=255]:FILLED:[NODE]:">
+            <NodeType ID="I9" abstract="false" name="InitialState%:CIRCLE:java.awt.Color[r=0,g=0,b=255]:FILLED:[NODE]:">
                 <Parent pID="I2"/>
             </NodeType>
-            <EdgeType ID="I9" abstract="false" name="Transition%:SOLID_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:">
-                <AttrType ID="I11" attrname="probability"
+            <NodeType ID="I11" abstract="false" name="ErrorState%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:">
+                <Parent pID="I2"/>
+            </NodeType>
+            <EdgeType ID="I13" abstract="false" name="Transition%:SOLID_LINE:java.awt.Color[r=0,g=0,b=0]:[EDGE]:">
+                <AttrType ID="I15" attrname="probability"
                     typename="double" visible="true"/>
+                <AttrType ID="I16" attrname="guard" typename="String" visible="true"/>
             </EdgeType>
-            <NodeType ID="I12" abstract="false" name="ErrorState%:OVAL:java.awt.Color[r=0,g=0,b=255]:[NODE]:">
-                <Parent pID="I2"/>
-            </NodeType>
-            <Graph ID="I14" kind="TG" name="TypeGraph">
-                <Node ID="I15" type="I5">
-                    <NodeLayout X="227" Y="171"/>
+            <Graph ID="I17" kind="TG" name="TypeGraph">
+                <Node ID="I18" type="I7">
+                    <Attribute constant="true" type="I4">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <Attribute constant="true" type="I6">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <NodeLayout X="230" Y="184"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I17" sourcemax="1" sourcemin="1" type="I7">
-                    <NodeLayout X="327" Y="203"/>
+                <Node ID="I22" sourcemin="1" type="I9">
+                    <Attribute constant="true" type="I4">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <Attribute constant="true" type="I6">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <NodeLayout X="330" Y="216"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I19" type="I2">
-                    <NodeLayout X="325" Y="90"/>
+                <Node ID="I26" type="I2">
+                    <Attribute constant="true" type="I4">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <Attribute constant="true" type="I6">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <NodeLayout X="328" Y="103"/>
                     <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Node ID="I21" type="I12">
-                    <NodeLayout X="415" Y="174"/>
-                    <additionalLayout age="0" force="10" frozen="false" zone="50"/>
+                <Node ID="I30" type="I11">
+                    <Attribute constant="true" type="I4">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <Attribute constant="true" type="I6">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <NodeLayout X="418" Y="187"/>
+                    <additionalLayout age="0" force="10" frozen="true" zone="50"/>
                 </Node>
-                <Edge ID="I23" source="I19" target="I19" type="I9">
-                    <EdgeLayout bendX="264" bendY="58" loopH="20"
+                <Edge ID="I34" source="I26" target="I26" type="I13">
+                    <Attribute constant="true" type="I16">
+                        <Value>
+                            <string/>
+                        </Value>
+                    </Attribute>
+                    <EdgeLayout bendX="267" bendY="56" loopH="20"
                         loopW="20" sourceMultiplicityOffsetX="8"
                         sourceMultiplicityOffsetY="18"
                         targetMultiplicityOffsetX="-13"
-                        targetMultiplicityOffsetY="9" textOffsetX="21" textOffsetY="-48"/>
+                        targetMultiplicityOffsetY="9" textOffsetX="-63" textOffsetY="-46"/>
                     <additionalLayout aktlength="200" force="10" preflength="200"/>
                 </Edge>
             </Graph>
         </Types>
-        <Graph ID="I25" kind="HOST" name="Graph"/>
+        <Graph ID="I37" kind="HOST" name="Graph"/>
         <Constraints>
-            <Graphconstraint_Atomic ID="I26" name="WeirdTransition">
+            <Graphconstraint_Atomic ID="I38" name="WeirdTransition">
                 <Premise>
-                    <Graph ID="I27" kind="PREMISE" name="Premise of Atomic"/>
+                    <Graph ID="I39" kind="PREMISE" name="Premise of WeirdTransition"/>
                 </Premise>
                 <Conclusion>
-                    <Graph ID="I28" kind="CONCLUSION" name="Graph">
-                        <Node ID="I29" type="I2">
+                    <Graph ID="I40" kind="CONCLUSION" name="Conclusion of WeirdTransition">
+                        <Node ID="I41" type="I2">
                             <NodeLayout X="114" Y="106"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Node ID="I31" type="I2">
+                        <Node ID="I43" type="I2">
                             <NodeLayout X="295" Y="103"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I33" source="I29" target="I31" type="I9">
+                        <Edge ID="I45" source="I41" target="I43" type="I13">
                             <EdgeLayout bendX="201" bendY="75"
                                 textOffsetX="-26" textOffsetY="-18"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I35" source="I29" target="I31" type="I9">
+                        <Edge ID="I47" source="I41" target="I43" type="I13">
                             <EdgeLayout bendX="201" bendY="132"
                                 textOffsetX="-26" textOffsetY="15"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -91,18 +139,18 @@
                     <Morphism name="MultiTransBetweenSameStates"/>
                 </Conclusion>
                 <Conclusion>
-                    <Graph ID="I37" kind="CONCLUSION" name="Graph">
-                        <Node ID="I38" type="I2">
+                    <Graph ID="I49" kind="CONCLUSION" name="Conclusion of WeirdTransition">
+                        <Node ID="I50" type="I2">
                             <NodeLayout X="195" Y="116"/>
                             <additionalLayout age="0" force="10"
-                                frozen="false" zone="50"/>
+                                frozen="true" zone="50"/>
                         </Node>
-                        <Edge ID="I40" source="I38" target="I38" type="I9">
+                        <Edge ID="I52" source="I50" target="I50" type="I13">
                             <EdgeLayout bendX="144" bendY="93"
                                 loopH="18" loopW="14" textOffsetX="-33" textOffsetY="-18"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
                         </Edge>
-                        <Edge ID="I42" source="I38" target="I38" type="I9">
+                        <Edge ID="I54" source="I50" target="I50" type="I13">
                             <EdgeLayout bendX="109" bendY="69"
                                 loopH="50" loopW="61" textOffsetX="2" textOffsetY="-17"/>
                             <additionalLayout aktlength="200" force="10" preflength="200"/>
@@ -111,7 +159,7 @@
                     <Morphism name="MultiTransSameState"/>
                 </Conclusion>
             </Graphconstraint_Atomic>
-            <Formula ID="I44" comment="" enabled="true" f="(!1)" name="NoWeirdTransitionAllowed">
+            <Formula ID="I56" comment="" enabled="true" f="(!1)" name="NoWeirdTransitionAllowed">
                 <Layer Layer="" Size="0"/>
                 <Priority Priority="" Size="0"/>
             </Formula>

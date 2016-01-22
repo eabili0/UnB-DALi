@@ -36,10 +36,4 @@ public class InitialState extends DTMCState {
 	public InitialState(String id, Node aggNode, DTMC context) throws NullAggContextException, AggNodeConstructionException {
 		super(id, aggNode, context);
 	}
-
-	@Override
-	protected void setUp() {
-		// TODO Auto-generated method stub
-	}
-
 }

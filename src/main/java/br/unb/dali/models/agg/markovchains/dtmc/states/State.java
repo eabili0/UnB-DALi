@@ -35,11 +35,4 @@ public class State extends DTMCState {
 	public State(String id, Node aggNode, DTMC context) throws NullAggContextException, AggNodeConstructionException {
 		super(id, aggNode, context);
 	}
-
-	@Override
-	protected void setUp() {
-		// TODO Auto-generated method stub
-
-	}
-
 }
