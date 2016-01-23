@@ -1,4 +1,4 @@
-Fri Jan 22 15:56:19 BRST 2016
+Fri Jan 22 21:38:07 BRST 2016
 Version:  AGG 2.1
 
 Layered graph transformation of : SD2DTMC
@@ -14,19 +14,15 @@ InitFirstLifeline 	 applied:  true
 [  InitFirstLifeline  InitOtherLifelines  ]
 InitOtherLifelines 	 applied:  true
 [  InitFirstLifeline  InitOtherLifelines  ]
-InitOtherLifelines 	 applied:  true
-[  InitFirstLifeline  InitOtherLifelines  ]
-InitOtherLifelines 	 applied:  false
-NAC  "AlreadyApplied"  is violated!
-[  InitFirstLifeline  ]
 InitFirstLifeline 	 applied:  false
 NAC  "lcountCreated"  is violated!
+[  InitOtherLifelines  ]
+InitOtherLifelines 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
 [  ]
-used time: 149ms
+used time: 75ms
 
 Layer: 1
-[  SetFirstOccurrenceRel  ]
-SetFirstOccurrenceRel 	 applied:  true
 [  SetFirstOccurrenceRel  ]
 SetFirstOccurrenceRel 	 applied:  true
 [  SetFirstOccurrenceRel  ]
@@ -35,53 +31,58 @@ SetFirstOccurrenceRel 	 applied:  true
 SetFirstOccurrenceRel 	 applied:  false
 NAC  "AlreadyApplied"  is violated!
 [  ]
-used time: 20ms
+used time: 33ms
 
 Layer: 2
-[  FirstSelfMessage  FirstSend  FirstReceive  ]
-FirstSelfMessage 	 applied:  true
-[  FirstSelfMessage  FirstSend  FirstReceive  ]
-FirstSend 	 applied:  true
 [  FirstSelfMessage  FirstSend  FirstReceive  ]
 FirstSelfMessage 	 applied:  false
 Attributes don't match.
 [  FirstSend  FirstReceive  ]
+FirstSend 	 applied:  true
+[  FirstSelfMessage  FirstSend  FirstReceive  ]
+FirstSend 	 applied:  false
+
+[  FirstSelfMessage  FirstReceive  ]
+FirstSelfMessage 	 applied:  false
+Attributes don't match.
+[  FirstReceive  ]
 FirstReceive 	 applied:  true
 [  FirstSelfMessage  FirstSend  FirstReceive  ]
 FirstSelfMessage 	 applied:  false
 
 [  FirstSend  FirstReceive  ]
-FirstSend 	 applied:  false
-
-[  FirstReceive  ]
 FirstReceive 	 applied:  false
 
+[  FirstSend  ]
+FirstSend 	 applied:  false
+
 [  ]
-used time: 143ms
+used time: 42ms
 
 Layer: 3
-[  Next  SelfMessage  ]
-Next 	 applied:  true
 [  Next  SelfMessage  ]
 SelfMessage 	 applied:  false
 
 [  Next  ]
+Next 	 applied:  true
+[  Next  SelfMessage  ]
 Next 	 applied:  false
+
+[  SelfMessage  ]
+SelfMessage 	 applied:  false
 
 [  ]
 used time: 64ms
 
 Layer: 5
 [  CleanupSendOccurrence  lcountCleanup  ]
-CleanupSendOccurrence 	 applied:  true
-[  CleanupSendOccurrence  lcountCleanup  ]
 lcountCleanup 	 applied:  true
-[  CleanupSendOccurrence  lcountCleanup  ]
-CleanupSendOccurrence 	 applied:  true
 [  CleanupSendOccurrence  lcountCleanup  ]
 lcountCleanup 	 applied:  false
 
 [  CleanupSendOccurrence  ]
+CleanupSendOccurrence 	 applied:  true
+[  CleanupSendOccurrence  lcountCleanup  ]
 CleanupSendOccurrence 	 applied:  true
 [  CleanupSendOccurrence  lcountCleanup  ]
 lcountCleanup 	 applied:  false
@@ -90,7 +91,7 @@ lcountCleanup 	 applied:  false
 CleanupSendOccurrence 	 applied:  false
 
 [  ]
-used time: 25ms
+used time: 42ms
 
 No more layers.
 Graph transformation finished

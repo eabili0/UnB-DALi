@@ -56,6 +56,16 @@ public class PRISMModule {
 	}
 	
 	/**
+	 * Appends variables to this PRISMModule from a source PRISMModule
+	 * @param variables
+	 * @return
+	 */
+	public PRISMModule appendVariables(PRISMModule source) {
+		this._variables.addAll(source.getVariables());
+		return this;
+	}
+	
+	/**
 	 * @return the commands of this PRISM Module
 	 */
 	public List<String> getCommands() {
@@ -70,6 +80,16 @@ public class PRISMModule {
 	public PRISMModule addCommand(String command) {
 		if (command != null && !command.isEmpty())
 			this._commands.add("\t" + command + "\n");
+		return this;
+	}
+	
+	/**
+	 * Appends the command list of a PRISMModule to this module
+	 * @param commands
+	 * @return
+	 */
+	public PRISMModule appendCommands(PRISMModule source) {
+		this._commands.addAll(source.getCommands());
 		return this;
 	}
 	

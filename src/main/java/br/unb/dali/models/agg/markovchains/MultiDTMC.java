@@ -2,9 +2,10 @@ package br.unb.dali.models.agg.markovchains;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 import agg.xt_basis.Graph;
+import agg.xt_basis.TypeException;
 import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
@@ -16,6 +17,9 @@ import br.unb.dali.util.prism.PRISMModule;
 public class MultiDTMC extends AbstractAggModel {
 	private static final String _grammar = "/models/DTMC.ggx";
 	private ArrayList<DTMC> _dtmcs;
+	private String _name;
+	
+	/************************** CONSTRUCTORS ****************************/
 	
 	/**
 	 * Constructs a new empty MultiDTMC model
@@ -35,51 +39,51 @@ public class MultiDTMC extends AbstractAggModel {
 	 *  2 - syntactical inconsistencies are found;
 	 *  3 - mandatory attributes are not set;
 	 */
-	public MultiDTMC(Graph graph)
-			throws AggModelConstructionException {
+	public MultiDTMC(Graph graph) throws AggModelConstructionException {
 		super(Misc.getRandomString(), graph, _grammar);
 	}
 
+	/************************** INHERITANCE ****************************/
 	@Override
 	public void checkModel() throws ModelSemanticsVerificationException {
-		
+		if (!_gragra.checkGraphConsistency(_graph)) {
+			throw new ModelSemanticsVerificationException("");
+		}
 	}
 	
 	@Override
 	protected void setUp() throws AggModelConstructionException {
 		_dtmcs = new ArrayList<DTMC>();
-		ArrayList<Graph> graphs = DepthFirstSearchGraphs();
-		for (Graph g : graphs) {
-			_dtmcs.add(new DTMC(Misc.getRandomString(), g));
-		}
+		try {
+			List<Graph> graphs = br.unb.dali.util.agg.Misc.getStronglyConnectedComponents(_graph);
+
+			for (Graph g : graphs) {
+				_dtmcs.add(new DTMC(g));
+			}
+		} catch (TypeException e) { }
 	}
 
+	/************************** PUBLIC BEHAVIOR ****************************/
+	
 	/**
 	 * Converts this MultiDTMC model to its correspondent PRISM Model
 	 * 
 	 * @return the correspondent PRISM Model
 	 */
 	public PRISMModel toPRISM() {
-		PRISMModel toReturn = new PRISMModel("", PRISMModelTypes.DTMC);
+		PRISMModel toReturn = new PRISMModel(this._name, PRISMModelTypes.DTMC);
+		PRISMModule toReturnModule = new PRISMModule(this._name);
 		
 		for (DTMC dtmc : _dtmcs) {
-			Map<String, PRISMModule> modules = dtmc.toPRISM().getModules();
-			Iterator<Map.Entry<String, PRISMModule>> itr = modules.entrySet().iterator();
+			Iterator<PRISMModule> itr = dtmc.toPRISM().getModules().values().iterator();
 			while (itr.hasNext()) {
-				PRISMModule module = itr.next().getValue();
-				toReturn.addModule(module);
+				PRISMModule module = itr.next();
+				toReturnModule.appendCommands(module);
+				toReturnModule.appendVariables(module);
 			}
 		}
+		
+		toReturn.addModule(toReturnModule);
 		return toReturn;
 	}
-
-	/**
-	 * Searches for all the disconnected sub graphs
-	 * @return
-	 */
-	private ArrayList<Graph> DepthFirstSearchGraphs() {
-		// TODO
-		return null;
-	}
-
 }

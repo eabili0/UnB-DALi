@@ -40,7 +40,7 @@ public final class Misc {
 	 * @return all disconnected sub graphs
 	 * @throws TypeException 
 	 */
-	public static List<Graph> getDisconnectedSubGraphs(Graph g) throws TypeException {
+	public static List<Graph> getStronglyConnectedComponents(Graph g) throws TypeException {
 		List<Graph> toReturn = new ArrayList<Graph>();
 		
 		while (!g.isEmpty()) {
@@ -52,9 +52,7 @@ public final class Misc {
 	}
 
 	/**
-	 * Recover a connected subgraph of the Graph g, via depth first searching from:
-	 * 	1 - the Node n
-	 * 	2 - a set of arcs
+	 * Recover a connected subgraph of the Graph g, via depth first searching from a Node n
 	 * 
 	 * @param n the starting point node
 	 * @param g the whole graph

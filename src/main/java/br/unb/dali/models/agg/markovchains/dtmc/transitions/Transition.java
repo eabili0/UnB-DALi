@@ -7,9 +7,11 @@ import br.unb.dali.models.agg.AbstractAggNode;
 import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.markovchains.DTMC;
+import br.unb.dali.util.io.Misc;
 
 public class Transition extends AbstractAggEdge {
 	private double _probability;
+	private String _guard;
 	
 	/**
 	 * Constructs a DTMC Transtion from an agg graph arc
@@ -37,9 +39,9 @@ public class Transition extends AbstractAggEdge {
 	 * @throws NullAggContextException if the context is null
 	 * @throws AggEdgeConstructionException if something wrong happens while constructing this transition
 	 */
-	public Transition(String id, AbstractAggNode source, AbstractAggNode target, DTMC context) 
+	public Transition(AbstractAggNode source, AbstractAggNode target, DTMC context) 
 			throws NullAggContextException, AggEdgeConstructionException {
-		super(id, source, target, context);
+		super(Misc.getRandomString(), source, target, context);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,6 +52,10 @@ public class Transition extends AbstractAggEdge {
 		Object value = attrs.getValueAt("probability");
 		if (value != null)
 			setProbability((Number)value);
+		
+		value = attrs.getValueAt("guard");
+		if (value != null)
+			_guard = (String)value;
 	}
 
 	/**
@@ -78,4 +84,10 @@ public class Transition extends AbstractAggEdge {
 		return setProbability(probability.doubleValue());
 	}
 
+	/**
+	 * @return the guard of this transition
+	 */
+	public String getGuard() {
+		return _guard;
+	}
 }

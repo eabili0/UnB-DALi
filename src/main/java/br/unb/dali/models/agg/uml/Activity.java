@@ -127,7 +127,7 @@ public class Activity extends AbstractAggModel{
 	 * @throws Exception 
 	 */
 	public DTMC toDTMC(String name) throws Exception {
-		return new DTMC(Misc.getRandomString(), new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this)).setName(name);
+		return new DTMC(new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this)).setName(name);
 	}
 	
 	/*********************** PRIVATE ***********************/

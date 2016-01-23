@@ -10,6 +10,7 @@ import br.unb.dali.models.agg.exceptions.NullAggContextException;
 public abstract class DTMCState extends AbstractAggNode {
 	protected int _index;
 	protected String _label;
+	protected String _dtmc;
 	
 	public DTMCState(String id, Node aggNode, AbstractAggModel context) throws NullAggContextException, AggNodeConstructionException {
 		super(id, aggNode, context);
@@ -35,6 +36,10 @@ public abstract class DTMCState extends AbstractAggNode {
 		value = attrs.getValueAt("index");
 		if (value != null )
 			_index = (int)value;
+		
+		value = attrs.getValueAt("dtmc");
+		if (value != null)
+			_dtmc = (String)value;
 	}
 
 }

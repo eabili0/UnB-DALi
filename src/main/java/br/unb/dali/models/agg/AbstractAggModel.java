@@ -86,24 +86,13 @@ public abstract class AbstractAggModel implements IModel {
 	public int getNumberOfNodes() {
 		return _nodes.size();
 	}
-
-	/********************** INHERITANCE **************************/
-	
-	/**
-	 * Customly verifies if the model is sematically correct;
-	 * This method is implementation specific
-	 * 
-	 * @throws ModelSemanticsVerificationException if the model was not correctly setup
-	 */
-	public abstract void checkModel() throws ModelSemanticsVerificationException;
-	
 	
 	/**
 	 * adds a new AbstractAggNode node to the model;
 	 * privately configures the underlying AGG graph to hold the information of such a node
 	 * @param node
 	 */
-	protected void addAnAggNode(AbstractAggNode node) {
+	public void addAnAggNode(AbstractAggNode node) {
 		_graph.addNode(node.getAggNode()); // adds it to the graph
 		_nodes.put(node.getAggNode(), node); // puts a new entry on our HashMap of nodes
 		_nodesByString.put(node.getId(), node); // puts a new entry on our String based HashMap of nodes
@@ -114,13 +103,23 @@ public abstract class AbstractAggModel implements IModel {
 	 * privately configures the underlying AGG graph to hold the information of such an edge
 	 * @param edge
 	 */
-	protected void addAnAggEdge(AbstractAggEdge edge) {
+	public void addAnAggEdge(AbstractAggEdge edge) {
 		_graph.addArc(edge.getAggArc());
 		_edges.put(edge.getAggArc(), edge);
 		_edgesByString.put(edge.getId(), edge);
 		edge.getSourceNode().addOutgoingEdge(edge);
 		edge.getTargetNode().addIncomingEdge(edge);
 	}
+
+	/********************** INHERITANCE **************************/
+	
+	/**
+	 * Customly verifies if the model is sematically correct;
+	 * This method is implementation specific
+	 * 
+	 * @throws ModelSemanticsVerificationException if the model was not correctly setup
+	 */
+	public abstract void checkModel() throws ModelSemanticsVerificationException;
 	
 	/**
 	 * This method sets up the model structures, based on the underlying AGG graph _graph;

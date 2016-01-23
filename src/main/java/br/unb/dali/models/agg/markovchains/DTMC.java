@@ -52,8 +52,8 @@ public class DTMC extends AbstractAggModel {
 	 * @throws AggModelConstructionException 
 	 * 	whenever inconsistencies are found when constructing this DTMC from the agg graph
 	 */
-	public DTMC(String id, Graph graph) throws AggModelConstructionException {
-		super(id, graph, _grammar);
+	public DTMC(Graph graph) throws AggModelConstructionException {
+		super(Misc.getRandomString(), graph, _grammar);
 	}
 	
 	/************************* PUBLIC ****************************/
@@ -84,22 +84,13 @@ public class DTMC extends AbstractAggModel {
 	}
 	
 	/**
-	 * Converts this DTMC to a proper PRISM module.
-	 * The PRISM variable sufix in this case will be 's'.
-	 * @return
-	 */
-	public PRISMModel toPRISM() {
-		return toPRISM("");
-	}
-	
-	/**
-	 * Converts this DTMC to a proper PRISM module
+	 * Converts this DTMC to a proper PRISM model
 	 * 
 	 * @param dtmcStateSufix denotes the string sufix attached to the variable representing this DTMC
 	 * @return the PRISM representation of this DTMC
 	 */
-	public PRISMModel toPRISM(String sufix) {
-		String var = "s"+sufix;
+	public PRISMModel toPRISM() {
+		String var = "s" + this._name.replace(' ', '_');
 		PRISMModule module = new PRISMModule(_name);
 		PRISMModel model = new PRISMModel(_name, PRISMModelTypes.DTMC);
 		
@@ -206,13 +197,15 @@ public class DTMC extends AbstractAggModel {
 		int size = current.getOutgoingEdges().size();
 		
 		// only create commands if the current node has at least one outgoing edge
-		if (size > 0) { 
-			toReturn = getGuard(current, var); // guard
-			
+		if (size > 0) {
+			String conditions = "";
 			for (int i = 0; i < size - 1; i++) {
-				toReturn += getTransition((Transition)current.getOutgoingEdges().get(i), var,  " + ");
+				Transition t = (Transition)current.getOutgoingEdges().get(i);
+				toReturn += getTransition(t, var,  " + ");
+				conditions += t.getGuard();
 			}
 			toReturn += getTransition((Transition)current.getOutgoingEdges().get(size-1), var, ";");
+			toReturn = getGuard(current, var, conditions) + toReturn;
 		}
 		return toReturn;
 	}
@@ -234,7 +227,8 @@ public class DTMC extends AbstractAggModel {
 	 * @param var
 	 * @return
 	 */
-	private String getGuard(DTMCState current, String var) {
-		return "[" + current.getLabel()  + "]" + " " + var + "=" + current.getIndex() + " -> ";
+	private String getGuard(DTMCState current, String var, String conditions) {
+		if (conditions != null && !conditions.isEmpty()) conditions = "&" + conditions;
+		return "[" + current.getLabel()  + "]" + " " + var + "=" + current.getIndex() + conditions + " -> ";
 	}
 }
