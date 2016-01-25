@@ -29,7 +29,7 @@ public class Lifeline extends AbstractAggNode {
 	 */
 	public Lifeline(String id, String name, SequenceDiagram context) {
 		super(id, null, context);
-		this._name = name;
+		setName(name);
 	}
 	
 	/**
@@ -73,10 +73,10 @@ public class Lifeline extends AbstractAggNode {
 	 * @return the added occurrence
 	 */
 	private Occurrence addOccurrence(Occurrence occ) {
-		_occurrences.add(occ);
 		if (_occurrences.isEmpty()) {
 			_firstOccurrence = occ;
 		}
+		_occurrences.add(occ);
 		return occ;
 	}
 	
@@ -116,6 +116,7 @@ public class Lifeline extends AbstractAggNode {
 	 */
 	public Lifeline setName(String name) {
 		this._name = name;
+		this._aggNode.getAttribute().setValueAt(name, "name");
 		return this;
 	}
 
@@ -136,6 +137,7 @@ public class Lifeline extends AbstractAggNode {
 		if (BCompRel > 1 || BCompRel < 0) 
 			throw new RuntimeException("The reliability value MUST be between 0 and 1!");
 		this._BCompRel = BCompRel;
+		this._aggNode.getAttribute().setValueAt(BCompRel, "BCompRel");;
 		return this;
 	}
 }

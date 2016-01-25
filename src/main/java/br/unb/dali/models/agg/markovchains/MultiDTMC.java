@@ -44,18 +44,22 @@ public class MultiDTMC extends AbstractAggModel {
 	}
 
 	/************************** INHERITANCE ****************************/
-	@Override
+	
+	/**
+	 * Checks if this DTMC Model is syntactically and semantically correct
+	 * 
+	 * @throws ModelSemanticsVerificationException if this object is not well formed
+	 */
 	public void checkModel() throws ModelSemanticsVerificationException {
-		if (!_gragra.checkGraphConsistency(_graph)) {
-			throw new ModelSemanticsVerificationException("");
-		}
+		super.checkModel();
+		// TODO: check the rest
 	}
 	
 	@Override
 	protected void setUp() throws AggModelConstructionException {
 		_dtmcs = new ArrayList<DTMC>();
 		try {
-			List<Graph> graphs = br.unb.dali.util.agg.AggHelper.getStronglyConnectedComponents(_graph);
+			List<Graph> graphs = br.unb.dali.util.agg.AggHelper.getForests(_graph);
 
 			for (Graph g : graphs) {
 				_dtmcs.add(new DTMC(g));

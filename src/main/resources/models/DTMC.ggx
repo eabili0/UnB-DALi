@@ -12,6 +12,7 @@
         <TaggedValue Tag="NACs" TagValue="true"/>
         <TaggedValue Tag="PACs" TagValue="true"/>
         <TaggedValue Tag="GACs" TagValue="true"/>
+        <TaggedValue Tag="layeredLoop" TagValue="true"/>
         <TaggedValue Tag="breakAllLayer" TagValue="true"/>
         <TaggedValue Tag="showGraphAfterStep" TagValue="true"/>
         <TaggedValue Tag="TypeGraphLevel" TagValue="ENABLED_MAX_MIN"/>

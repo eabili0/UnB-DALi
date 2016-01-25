@@ -8,12 +8,12 @@ import br.unb.dali.models.agg.uml.ActivityDiagram;
  *   
  * @author abiliooliveira
  */
-public class AD2DTMC extends AbstractAggTransformation {
+public class AD2DTMC extends AggLayeredTransformation {
 	private static final String _grammar = "/transformations/AD2DTMC.ggx"; 
 	private ActivityDiagram _ad = null;
 	
 	/**
-	 * Constructs a new AD2DTMC agg transformation.
+	 * Constructs a new AD2DTMC agg layered transformation.
 	 * @param ad the source model, an UML 2.5 Activity Diagram
 	 */
 	public AD2DTMC(ActivityDiagram ad) {
@@ -22,7 +22,7 @@ public class AD2DTMC extends AbstractAggTransformation {
 	}
 	
 	/**
-	 * Transforms this' UML 2.5 Activity Diagram to its respective DTMC Model
+	 * Transforms this UML 2.5 Activity Diagram to its respective DTMC Model
 	 * @return the corresponding DTMC Model
 	 */
 	public DTMC transform() {

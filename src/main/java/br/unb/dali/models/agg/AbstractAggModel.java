@@ -119,7 +119,11 @@ public abstract class AbstractAggModel implements IModel {
 	 * 
 	 * @throws ModelSemanticsVerificationException if the model was not correctly setup
 	 */
-	public abstract void checkModel() throws ModelSemanticsVerificationException;
+	public void checkModel() throws ModelSemanticsVerificationException {
+		if (!_gragra.checkGraphConsistency(_graph) || !_graph.isReadyForTransform()) {
+			throw new ModelSemanticsVerificationException("The underlying AGG Graph is not consistent with the syntactical constraints of its Type Graph!");
+		}
+	}
 	
 	/**
 	 * This method sets up the model structures, based on the underlying AGG graph _graph;

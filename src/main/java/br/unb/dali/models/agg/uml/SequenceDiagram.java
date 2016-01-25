@@ -60,13 +60,13 @@ public class SequenceDiagram extends AbstractAggModel {
 	/**************************** INHERITANCE BEHAVIOR *******************************/
 	
 	/**
-	 * Checks the integrity of this Model
+	 * Checks the syntactic and semantic integrity of this Model.
+	 * 
+	 * @throws ModelSemanticsVerificationException if this model is NOT well formed
 	 */
-	@Override
 	public void checkModel() throws ModelSemanticsVerificationException {
-		if (!_gragra.checkGraphConsistency(_graph)) {
-			throw new ModelSemanticsVerificationException("The underlying AGG Graph is not consistent with the syntactical constraints of its Type Graph!");
-		}
+		super.checkModel();
+		// TODO: semantic verification
 	}
 
 	@Override
@@ -114,10 +114,10 @@ public class SequenceDiagram extends AbstractAggModel {
 	 * @param signal the message's signal
 	 * @return this
 	 */
-	public AsyncMessage addAsyncMessage(String sourceLifelineId, String targetLifelineId, String signal) {
+	public AsyncMessage addAsyncMessage(String messageId,String sourceLifelineId, String targetLifelineId, String signal) {
 		Lifeline source = (Lifeline) searchNode(sourceLifelineId);
 		Lifeline target = (Lifeline) searchNode(targetLifelineId);
-		return addAsyncMessage(source, target, signal);
+		return addAsyncMessage(messageId, source, target, signal);
 	}
 	
 	/**
@@ -128,11 +128,12 @@ public class SequenceDiagram extends AbstractAggModel {
 	 * @param signal the message's signal
 	 * @return this
 	 */
-	public AsyncMessage addAsyncMessage(Lifeline source, Lifeline target, String signal) {
+	public AsyncMessage addAsyncMessage(String messageId, Lifeline source, Lifeline target, String signal) {
 		Event send = source.addEvent(new Event(this));
 		Event receive = target.addEvent(new Event(this));
-		AsyncMessage toReturn = addMessage(new AsyncMessage(signal, this).setSendAndReceive(send, receive));
+		AsyncMessage toReturn = addMessage(new AsyncMessage(messageId, signal, this).setSendAndReceive(send, receive));
 		
+		addAnAggNode(send); addAnAggNode(receive); addAnAggNode(toReturn);
 		addOccurrenceToLifeline(source, send);
 		addOccurrenceToLifeline(target, receive);
 		addSendRelation(toReturn, send);
@@ -156,7 +157,7 @@ public class SequenceDiagram extends AbstractAggModel {
 			Occurrence previous = lifeline.getLastOccurrence();
 			previous.setNextOccurrence(occ);
 			occ.setPreviousOccurrence(previous);
-			addAnAggEdge(new Next(lifeline.getLastOccurrence(), occ, this));
+			addAnAggEdge(new Next(previous, occ, this));
 		}
 		occ.setLifeline(lifeline);
 	}

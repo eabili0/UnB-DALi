@@ -110,11 +110,13 @@ public class DTMC extends AbstractAggModel {
 	
 	/************************* INHERITANCE ****************************/
 	
-	@Override
+	/**
+	 * Checks if this DTMC Model is syntactically and semantically correct
+	 * 
+	 * @throws ModelSemanticsVerificationException if this object is not well formed
+	 */
 	public void checkModel() throws ModelSemanticsVerificationException {
-		if (!_gragra.checkGraphConsistency(_graph)) {
-			throw new ModelSemanticsVerificationException("");
-		}
+		super.checkModel();
 	}
 	
 	@Override

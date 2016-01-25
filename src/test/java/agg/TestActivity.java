@@ -8,8 +8,6 @@ import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
 import br.unb.dali.util.io.IOHelper;
 
-
-
 public class TestActivity {
 	
 	public static void main(String[] args) {

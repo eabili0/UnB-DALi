@@ -23,8 +23,9 @@ public class AsyncMessage extends AbstractAggNode {
 	 * @param id a string identifier fo this object
 	 * @param context the context model
 	 */
-	public AsyncMessage(String id, SequenceDiagram context) {
+	public AsyncMessage(String id, String signal, SequenceDiagram context) {
 		super(id, null, context);
+		setSignal(signal);
 	}
 	
 	/**
@@ -50,7 +51,7 @@ public class AsyncMessage extends AbstractAggNode {
 		if (value != null)
 			_signal = (String)value;
 		
-	}
+ 	}
 	
 	/********************************* PUBLIC BEHAVIOR **************************************/
 	
@@ -88,6 +89,17 @@ public class AsyncMessage extends AbstractAggNode {
 	 */
 	public String getSignal() {
 		return _signal;
+	}
+	
+	/**
+	 * Sets the signal emitted by this Message object
+	 * @param signal the message signal
+	 * @return an updated async message 
+	 */
+	public AsyncMessage setSignal(String signal) {
+		this._signal = signal;
+		this._aggNode.getAttribute().setValueAt(signal, "signal");
+		return this;
 	}
 
 }
