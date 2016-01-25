@@ -5,16 +5,33 @@ import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.uml.SequenceDiagram;
-import br.unb.dali.models.agg.uml.sd.Message;
 import br.unb.dali.models.agg.uml.sd.Occurrence;
+import br.unb.dali.models.agg.uml.sd.messages.AsyncMessage;
 
+/**
+ * Instancies of this Class represents Message Events in SD Lifelines;
+ * Since every Event is an occurrence in a Lifeline, we have that Event extends Occurrence.
+ * 
+ * @author abiliooliveira
+ */
 public class Event extends Occurrence {
-	private Message _message;
+	private AsyncMessage _message;
 	
+	/**
+	 * Constructs a new empty Event object
+	 * 
+	 * @param context this object model context
+	 */
 	public Event(SequenceDiagram context) throws NullAggContextException, AggNodeConstructionException {
 		super(null, context);
 	}
-	
+
+	/**
+	 * Constructs an Event object based on the information from an AggNode
+	 * 
+	 * @param aggNode the underlying agg node
+	 * @param context this object context model
+	 */
 	public Event(Node aggNode, AbstractAggModel context)
 			throws NullAggContextException, AggNodeConstructionException {
 		super(aggNode, context);
@@ -23,7 +40,7 @@ public class Event extends Occurrence {
 	/**
 	 * @return the message of this event object
 	 */
-	public Message getMessage() {
+	public AsyncMessage getMessage() {
 		return _message;
 	}
 	
@@ -32,7 +49,7 @@ public class Event extends Occurrence {
 	 * @param m the message object to be set
 	 * @return this
 	 */
-	public Event setMessage(Message m) {
+	public Event setMessage(AsyncMessage m) {
 		_message = m;
 		return this;
 	}

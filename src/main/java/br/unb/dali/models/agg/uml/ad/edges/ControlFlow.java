@@ -4,7 +4,7 @@ import agg.attribute.AttrInstance;
 import agg.xt_basis.Arc;
 import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.uml.Activity;
+import br.unb.dali.models.agg.uml.ActivityDiagram;
 import br.unb.dali.models.agg.uml.ad.ActivityEdge;
 import br.unb.dali.models.agg.uml.ad.ActivityNode;
 
@@ -22,7 +22,7 @@ public class ControlFlow extends ActivityEdge {
 	 * @throws AggEdgeConstructionException if an error occurs while constructing this ControlFlow
 	 * 	with the information from arc
 	 */
-	public ControlFlow(String id, Arc arc, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+	public ControlFlow(String id, Arc arc, ActivityDiagram context) throws NullAggContextException, AggEdgeConstructionException {
 		super(id, arc, context);
 	}
 	
@@ -38,7 +38,7 @@ public class ControlFlow extends ActivityEdge {
 	 * @throws AggEdgeConstructionException if an error occurs while constructing the ControlFlow
 	 *  with the information from source and target
 	 */
-	public ControlFlow(String id, ActivityNode source, ActivityNode target, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+	public ControlFlow(String id, ActivityNode source, ActivityNode target, ActivityDiagram context) throws NullAggContextException, AggEdgeConstructionException {
 		super(id, source, target, context);
 	}
 	
@@ -53,7 +53,7 @@ public class ControlFlow extends ActivityEdge {
 	 * @throws NullAggContextException if the context is null
 	 * @throws AggEdgeConstructionException if something unnexpected happens while constructing this object
 	 */
-	public ControlFlow(String id, String sourceId, String targetId, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+	public ControlFlow(String id, String sourceId, String targetId, ActivityDiagram context) throws NullAggContextException, AggEdgeConstructionException {
 		super(id, sourceId, targetId, context);
 	}
 

@@ -3,17 +3,13 @@ package br.unb.dali.models.agg.uml.sd;
 import java.util.ArrayList;
 import java.util.List;
 
-import agg.xt_basis.Node;
+import agg.attribute.AttrInstance;
 import br.unb.dali.models.agg.AbstractAggNode;
-import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
-import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
-import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.uml.SequenceDiagram;
-import br.unb.dali.models.agg.uml.sd.relations.First;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.models.agg.uml.sd.occurrences.Event;
 
 /**
- * A Sequence Diagram Lifeline
+ * An UML Sequence Diagram Lifeline
  * 
  * @author abiliooliveira
  */
@@ -26,14 +22,14 @@ public class Lifeline extends AbstractAggNode {
 	/************************************* CONSTRUCTORS *************************************/
 	
 	/**
-	 * Constructs a new empty Lifeline
-	 * @param id
-	 * @param context
-	 * @throws AggNodeConstructionException 
-	 * @throws NullAggContextException 
+	 * Constructs a new empty Lifeline.
+	 * 
+	 * @param id a string identifier for this object
+	 * @param context this object's model context
 	 */
-	public Lifeline(String id, SequenceDiagram context) throws NullAggContextException, AggNodeConstructionException {
+	public Lifeline(String id, String name, SequenceDiagram context) {
 		super(id, null, context);
+		this._name = name;
 	}
 	
 	/**
@@ -41,64 +37,105 @@ public class Lifeline extends AbstractAggNode {
 	 * 
 	 * @param aggNode
 	 * @param context
-	 * @throws NullAggContextException
-	 * @throws AggNodeConstructionException
 	 */
-	public Lifeline(Node aggNode, SequenceDiagram context)
-			throws NullAggContextException, AggNodeConstructionException {
-		super(Misc.getRandomString(), aggNode, context);
-		
-		// TODO Auto-generated constructor stub
-	}
+//	public Lifeline(Node aggNode, SequenceDiagram context) {
+//		super(Misc.getRandomString(), aggNode, context);
+//		
+//		// TODO Auto-generated constructor stub
+//	}
 
 	/************************************* INHERITANCE *************************************/
 	@Override
 	protected void setUp() {
 		_occurrences = new ArrayList<Occurrence>();
-		// TODO Auto-generated method stub
-
+		AttrInstance attrs = _aggNode.getAttribute();
+		Object value = attrs.getValueAt("name");
+		if (value != null) _name = (String)value;
+		value = attrs.getValueAt("BCompRel");
+		if (value != null) _BCompRel = (double)value;
 	}
 	
 	/************************************* PUBLIC BEHAVIOR *************************************/
-	public String getName() {
-		return _name;
-	}
 
-	public void setName(String _name) {
-		this._name = _name;
+	/**
+	 * Adds a new Message Event to this Lifeline
+	 * @param occ
+	 * @return the added message event
+	 */
+	public Event addEvent(Event occ) {
+		addOccurrence(occ);
+		return occ;
 	}
-
-	public double getBCompRel() {
-		return _BCompRel;
+	
+	/**
+	 * Adds a new occurrence to this lifeline.
+	 * @param occ
+	 * @return the added occurrence
+	 */
+	private Occurrence addOccurrence(Occurrence occ) {
+		_occurrences.add(occ);
+		if (_occurrences.isEmpty()) {
+			_firstOccurrence = occ;
+		}
+		return occ;
 	}
-
-	public void setBCompRel(double _BCompRel) {
-		this._BCompRel = _BCompRel;
-	}
-
+	
+	
+	/**
+	 * @return the first occurrence in this lifeline
+	 */
 	public Occurrence getFirstOccurrence() {
 		return _firstOccurrence;
 	}
 
-	public void setFirstOccurrence(Occurrence _firstOccurrence) {
-		this._firstOccurrence = _firstOccurrence;
-	}
-
+	/**
+	 * @return the list of occurrences in this lifeline
+	 */
 	public List<Occurrence> getOccurrences() {
 		return _occurrences;
 	}
-
-	public void setOccurrences(ArrayList<Occurrence> _occurrences) {
-		this._occurrences = _occurrences;
+	
+	/**
+	 * @return the last occurrence of this lifeline
+	 */
+	public Occurrence getLastOccurrence() {
+		return _occurrences.get(_occurrences.size()-1);
+	}
+	
+	/**
+	 * @return the name attributed to this lifeline
+	 */
+	public String getName() {
+		return _name;
 	}
 
-	public Occurrence addOccurrence(Occurrence occ) throws NullAggContextException, AggEdgeConstructionException {
-		_occurrences.add(occ);
-		if (_occurrences.isEmpty()) {
-			_firstOccurrence = occ;
-			this._context.addAnAggNode(occ);
-			this._context.addAnAggEdge(new First(this, occ, (SequenceDiagram)this._context));
-		}
-		return occ;
+	/**
+	 * Sets the name of this Lifeline
+	 * @param _name the name
+	 * @return the lifeline itself
+	 */
+	public Lifeline setName(String name) {
+		this._name = name;
+		return this;
+	}
+
+	/**
+	 * @return the reliability of the component identified by this lifeline
+	 */
+	public double getBCompRel() {
+		return _BCompRel;
+	}
+
+	/**
+	 * Sets the reliability of the component identified by this lifiline.
+	 * 
+	 * @param _BCompRel the reliability associated with this lifeline: 0 <= reliability <= 1
+	 * @return the lifeline itself
+	 */
+	public Lifeline setBCompRel(double BCompRel) {
+		if (BCompRel > 1 || BCompRel < 0) 
+			throw new RuntimeException("The reliability value MUST be between 0 and 1!");
+		this._BCompRel = BCompRel;
+		return this;
 	}
 }

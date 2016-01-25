@@ -21,7 +21,7 @@ import br.unb.dali.models.agg.markovchains.dtmc.states.ErrorState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.InitialState;
 import br.unb.dali.models.agg.markovchains.dtmc.states.State;
 import br.unb.dali.models.agg.markovchains.dtmc.transitions.Transition;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.io.IOHelper;
 import br.unb.dali.util.prism.PRISMModel;
 import br.unb.dali.util.prism.PRISMModelTypes;
 import br.unb.dali.util.prism.PRISMModule;
@@ -53,7 +53,7 @@ public class DTMC extends AbstractAggModel {
 	 * 	whenever inconsistencies are found when constructing this DTMC from the agg graph
 	 */
 	public DTMC(Graph graph) throws AggModelConstructionException {
-		super(Misc.getRandomString(), graph, _grammar);
+		super(IOHelper.getRandomString(), graph, _grammar);
 	}
 	
 	/************************* PUBLIC ****************************/
@@ -144,14 +144,14 @@ public class DTMC extends AbstractAggModel {
 			for (Node node : nodes) {
 				switch (node.getType().getName()) {	
 					case "State":
-						addAnAggNode(new State(Misc.getRandomString(), node, this));
+						addAnAggNode(new State(IOHelper.getRandomString(), node, this));
 						break;
 					case "InitialState":
-						_initialState = new InitialState(Misc.getRandomString(), node, this);
+						_initialState = new InitialState(IOHelper.getRandomString(), node, this);
 						addAnAggNode(_initialState);
 						break;
 					case "ErrorState":
-						addAnAggNode(new ErrorState(Misc.getRandomString(), node, this));
+						addAnAggNode(new ErrorState(IOHelper.getRandomString(), node, this));
 						break;
 					default:
 						throw new InconsistentNodeTypeException();
@@ -176,7 +176,7 @@ public class DTMC extends AbstractAggModel {
 			for (Arc arc : arcs) {
 				switch (arc.getType().getName()) {
 					case "Transition": 
-						addAnAggEdge(new Transition(Misc.getRandomString(), arc, this));
+						addAnAggEdge(new Transition(IOHelper.getRandomString(), arc, this));
 						break;
 					default:
 						throw new InconsistentEdgeTypeException();

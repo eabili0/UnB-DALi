@@ -9,7 +9,7 @@ import agg.xt_basis.TypeException;
 import br.unb.dali.models.agg.AbstractAggModel;
 import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.io.IOHelper;
 import br.unb.dali.util.prism.PRISMModel;
 import br.unb.dali.util.prism.PRISMModelTypes;
 import br.unb.dali.util.prism.PRISMModule;
@@ -40,7 +40,7 @@ public class MultiDTMC extends AbstractAggModel {
 	 *  3 - mandatory attributes are not set;
 	 */
 	public MultiDTMC(Graph graph) throws AggModelConstructionException {
-		super(Misc.getRandomString(), graph, _grammar);
+		super(IOHelper.getRandomString(), graph, _grammar);
 	}
 
 	/************************** INHERITANCE ****************************/
@@ -55,7 +55,7 @@ public class MultiDTMC extends AbstractAggModel {
 	protected void setUp() throws AggModelConstructionException {
 		_dtmcs = new ArrayList<DTMC>();
 		try {
-			List<Graph> graphs = br.unb.dali.util.agg.Misc.getStronglyConnectedComponents(_graph);
+			List<Graph> graphs = br.unb.dali.util.agg.AggHelper.getStronglyConnectedComponents(_graph);
 
 			for (Graph g : graphs) {
 				_dtmcs.add(new DTMC(g));

@@ -10,7 +10,7 @@ import agg.xt_basis.Node;
 import br.unb.dali.models.IModel;
 import br.unb.dali.models.agg.exceptions.AggModelConstructionException;
 import br.unb.dali.models.agg.exceptions.ModelSemanticsVerificationException;
-import br.unb.dali.util.agg.Misc;
+import br.unb.dali.util.agg.AggHelper;
 
 /**
  * Defines the characteristics every Agg model should present;
@@ -43,7 +43,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * Return the underlying infrastructure of this model
 	 * @return
 	 */
-	public GraGra getGraGra() {
+	public final GraGra getGraGra() {
 		return _gragra;
 	}
 	
@@ -51,7 +51,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * Returns the underlying graph of a Model
 	 * @return the underlying AGG Graph
 	 */
-	public Graph getGraph() {
+	public final Graph getGraph() {
 		return _graph;
 	}
 	
@@ -60,7 +60,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * @param n the underlying agg node
 	 * @return an AbstractAggNode object
 	 */
-	public AbstractAggNode searchNode(Node n) {
+	public final AbstractAggNode searchNode(Node n) {
 		return _nodes.getOrDefault(n, null);
 	}
 	
@@ -69,21 +69,21 @@ public abstract class AbstractAggModel implements IModel {
 	 * @param nodeid the node identifier
 	 * @return an AbstractAggNode object
 	 */
-	public AbstractAggNode searchNode(String nodeid) {
+	public final AbstractAggNode searchNode(String nodeid) {
 		return _nodesByString.getOrDefault(nodeid, null);
 	}
 	
 	/**
 	 * @return the underlying model id
 	 */
-	public String getId() {
+	public final String getId() {
 		return _id;
 	}
 	
 	/**
 	 * @return the number of nodes
 	 */
-	public int getNumberOfNodes() {
+	public final int getNumberOfNodes() {
 		return _nodes.size();
 	}
 	
@@ -92,7 +92,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * privately configures the underlying AGG graph to hold the information of such a node
 	 * @param node
 	 */
-	public void addAnAggNode(AbstractAggNode node) {
+	protected final void addAnAggNode(AbstractAggNode node) {
 		_graph.addNode(node.getAggNode()); // adds it to the graph
 		_nodes.put(node.getAggNode(), node); // puts a new entry on our HashMap of nodes
 		_nodesByString.put(node.getId(), node); // puts a new entry on our String based HashMap of nodes
@@ -103,7 +103,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * privately configures the underlying AGG graph to hold the information of such an edge
 	 * @param edge
 	 */
-	public void addAnAggEdge(AbstractAggEdge edge) {
+	protected final void addAnAggEdge(AbstractAggEdge edge) {
 		_graph.addArc(edge.getAggArc());
 		_edges.put(edge.getAggArc(), edge);
 		_edgesByString.put(edge.getId(), edge);
@@ -145,7 +145,7 @@ public abstract class AbstractAggModel implements IModel {
 	 * @throws AggModelConstructionException 
 	 */
 	public AbstractAggModel(String id, Graph graph, String GGXResource) throws AggModelConstructionException {
-		_gragra = Misc.loadGraGra(GGXResource);
+		_gragra = AggHelper.loadGraGra(GGXResource);
 		_gragra.destroyAllGraphs();
 		_graph = (graph!=null)?graph:new Graph(_gragra.getTypeSet());
 		_gragra.resetGraph(_graph.copy(_gragra.getTypeSet()));

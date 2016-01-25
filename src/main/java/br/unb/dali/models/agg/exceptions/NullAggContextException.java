@@ -1,6 +1,6 @@
 package br.unb.dali.models.agg.exceptions;
 
-public class NullAggContextException extends Exception {
+public class NullAggContextException extends RuntimeException {
 	private static final long serialVersionUID = -2866533730493967362L;
 	
 	public NullAggContextException() {

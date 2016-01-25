@@ -11,8 +11,8 @@ import br.unb.dali.models.agg.uml.ad.nodes.control.FinalNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.MergeNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
-import br.unb.dali.transformations.agg.GenericAggTransformation;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.transformations.agg.AD2DTMC;
+import br.unb.dali.util.io.IOHelper;
 
 /**
  * This class defines a subset of an 2.5 standard Activity Diagram
@@ -24,7 +24,7 @@ import br.unb.dali.util.io.Misc;
  * 
  * @author abiliooliveira
  */
-public class Activity extends AbstractAggModel{
+public class ActivityDiagram extends AbstractAggModel{
 	private static final String _grammar = "/models/AD.ggx";
 	
 	/*********************** CONSTRUCTORS ***********************/
@@ -35,7 +35,7 @@ public class Activity extends AbstractAggModel{
 	 * @param id this activity diagram string identifier
 	 * @throws AggModelConstructionException (should not happen with this constructor)
 	 */
-	public Activity(String id) throws AggModelConstructionException {
+	public ActivityDiagram(String id) throws AggModelConstructionException {
 		super(id, null, _grammar);
 	}
 	
@@ -50,8 +50,8 @@ public class Activity extends AbstractAggModel{
 	 * 	2 - if any syntactical inconsistency is found;
 	 * 	3 - when any mandatory attribute of the Graph object is not set; 
 	 */
-	public Activity(Graph graph) throws AggModelConstructionException {
-		super(Misc.getRandomString(), graph, _grammar);
+	public ActivityDiagram(Graph graph) throws AggModelConstructionException {
+		super(IOHelper.getRandomString(), graph, _grammar);
 	}
 	
 	/*********************** INHERITANCE ***********************/
@@ -127,7 +127,7 @@ public class Activity extends AbstractAggModel{
 	 * @throws Exception 
 	 */
 	public DTMC toDTMC(String name) throws Exception {
-		return new DTMC(new GenericAggTransformation("/transformations/AD2DTMC.ggx").transform(this)).setName(name);
+		return new AD2DTMC(this).transform().setName(name);
 	}
 	
 	/*********************** PRIVATE ***********************/

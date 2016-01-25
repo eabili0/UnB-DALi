@@ -7,7 +7,7 @@ import br.unb.dali.models.agg.AbstractAggNode;
 import br.unb.dali.models.agg.exceptions.AggNodeConstructionException;
 import br.unb.dali.models.agg.exceptions.InconsistentNodeTypeException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.uml.Activity;
+import br.unb.dali.models.agg.uml.ActivityDiagram;
 
 /**
  * This class defines what is an ActivityNode in the context of the Activity Diagram defined in this library;
@@ -48,7 +48,7 @@ public abstract class ActivityNode extends AbstractAggNode {
 	 * @throws InconsistentNodeTypeException 
 	 * @throws AggNodeConstructionException 
 	 */
-	public ActivityNode(String id, Node aggNode, Activity context) throws NullAggContextException, AggNodeConstructionException {
+	public ActivityNode(String id, Node aggNode, ActivityDiagram context) throws NullAggContextException, AggNodeConstructionException {
 		super(id, aggNode, context);
 		outgoing = new LinkedHashSet<ActivityEdge>();
 		incoming = new LinkedHashSet<ActivityEdge>();

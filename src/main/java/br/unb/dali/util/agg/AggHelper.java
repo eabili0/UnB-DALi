@@ -12,7 +12,12 @@ import agg.xt_basis.Graph;
 import agg.xt_basis.Node;
 import agg.xt_basis.TypeException;
 
-public final class Misc {
+/**
+ * This class provides a method repository to help deal with agg structures
+ * 
+ * @author abiliooliveira
+ */
+public final class AggHelper {
 	
 	/**
 	 * Loads a new graph grammar from a file

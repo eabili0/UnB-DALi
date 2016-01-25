@@ -39,7 +39,11 @@ import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
 import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
-
+/**
+ * A customized Agg XMLHelper so that UnB-DALi can read the resource files from inside a .jar
+ * 
+ * @author abiliooliveira
+ */
 public class CustomXMLHelper extends XMLHelper {
 	private long lID;
 	boolean isAGG;

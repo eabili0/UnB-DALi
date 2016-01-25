@@ -7,7 +7,7 @@ import br.unb.dali.models.agg.AbstractAggNode;
 import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.markovchains.DTMC;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.io.IOHelper;
 
 public class Transition extends AbstractAggEdge {
 	private double _probability;
@@ -41,7 +41,7 @@ public class Transition extends AbstractAggEdge {
 	 */
 	public Transition(AbstractAggNode source, AbstractAggNode target, DTMC context) 
 			throws NullAggContextException, AggEdgeConstructionException {
-		super(Misc.getRandomString(), source, target, context);
+		super(IOHelper.getRandomString(), source, target, context);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -1,6 +1,6 @@
 package br.unb.dali.models.agg.exceptions;
 
-public class AggModelConstructionException extends Exception {
+public class AggModelConstructionException extends RuntimeException {
 	private static final long serialVersionUID = 3071573625912837449L;
 	
 	public AggModelConstructionException() {

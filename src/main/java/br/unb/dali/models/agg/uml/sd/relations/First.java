@@ -6,13 +6,13 @@ import br.unb.dali.models.agg.exceptions.NullAggContextException;
 import br.unb.dali.models.agg.uml.SequenceDiagram;
 import br.unb.dali.models.agg.uml.sd.Lifeline;
 import br.unb.dali.models.agg.uml.sd.Occurrence;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.io.IOHelper;
 
 public class First extends AbstractAggEdge {
 
 	public First(Lifeline source, Occurrence target, SequenceDiagram context) 
 			throws NullAggContextException,AggEdgeConstructionException {
-		super(Misc.getRandomString(), source, target, context);
+		super(IOHelper.getRandomString(), source, target, context);
 		// TODO Auto-generated constructor stub
 	}
 

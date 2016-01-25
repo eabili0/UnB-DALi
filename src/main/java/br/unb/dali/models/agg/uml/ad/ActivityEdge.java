@@ -4,7 +4,7 @@ import agg.xt_basis.Arc;
 import br.unb.dali.models.agg.AbstractAggEdge;
 import br.unb.dali.models.agg.exceptions.AggEdgeConstructionException;
 import br.unb.dali.models.agg.exceptions.NullAggContextException;
-import br.unb.dali.models.agg.uml.Activity;
+import br.unb.dali.models.agg.uml.ActivityDiagram;
 
 /**
  * This class defines what is an ActivityEdge in the context of the Activity Diagram defined in this library;
@@ -29,7 +29,7 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * @throws AggEdgeConstructionException 
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(String id, Arc arc, Activity context) throws AggEdgeConstructionException, NullAggContextException {
+	public ActivityEdge(String id, Arc arc, ActivityDiagram context) throws AggEdgeConstructionException, NullAggContextException {
 		super(id, arc, context);
 	}
 	
@@ -43,7 +43,7 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * @throws AggEdgeConstructionException
 	 * @throws NullAggContextException 
 	 */
-	public ActivityEdge(String id, ActivityNode source, ActivityNode target, Activity context) throws AggEdgeConstructionException, NullAggContextException  {
+	public ActivityEdge(String id, ActivityNode source, ActivityNode target, ActivityDiagram context) throws AggEdgeConstructionException, NullAggContextException  {
 		super(id, source, target, context);		
 	}
 	
@@ -59,7 +59,7 @@ public abstract class ActivityEdge extends AbstractAggEdge {
 	 * @throws NullAggContextException
 	 * @throws AggEdgeConstructionException 
 	 */
-	public ActivityEdge(String id, String sourceId, String targetId, Activity context) throws NullAggContextException, AggEdgeConstructionException {
+	public ActivityEdge(String id, String sourceId, String targetId, ActivityDiagram context) throws NullAggContextException, AggEdgeConstructionException {
 		super(id, sourceId, targetId, context);
 	}
 }

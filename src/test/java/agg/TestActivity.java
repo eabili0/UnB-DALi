@@ -1,12 +1,12 @@
 package agg;
 
 import br.unb.dali.models.agg.markovchains.DTMC;
-import br.unb.dali.models.agg.uml.Activity;
+import br.unb.dali.models.agg.uml.ActivityDiagram;
 import br.unb.dali.models.agg.uml.ad.edges.ControlFlow;
 import br.unb.dali.models.agg.uml.ad.nodes.control.FinalNode;
 import br.unb.dali.models.agg.uml.ad.nodes.control.InitialNode;
 import br.unb.dali.models.agg.uml.ad.nodes.executable.ExecutableNode;
-import br.unb.dali.util.io.Misc;
+import br.unb.dali.util.io.IOHelper;
 
 
 
@@ -16,13 +16,13 @@ public class TestActivity {
 		
 		try {
 			// ids representing: an initial node, an executable node and a final node
-			String[] nodeIDs = new String[] {Misc.getRandomString(), Misc.getRandomString(),Misc.getRandomString()};
+			String[] nodeIDs = new String[] {IOHelper.getRandomString(), IOHelper.getRandomString(),IOHelper.getRandomString()};
 			String[][] cfs = new String[][] {
-					{Misc.getRandomString(), nodeIDs[0], nodeIDs[1] },
-					{Misc.getRandomString(), nodeIDs[1], nodeIDs[2]}
+					{IOHelper.getRandomString(), nodeIDs[0], nodeIDs[1] },
+					{IOHelper.getRandomString(), nodeIDs[1], nodeIDs[2]}
 			};
 			
-			Activity ad = new Activity(Misc.getRandomString());
+			ActivityDiagram ad = new ActivityDiagram(IOHelper.getRandomString());
 			
 			ad.addInitialNode(new InitialNode(nodeIDs[0], ad));
 			ad.addExecutableNode(new ExecutableNode(nodeIDs[1], ad));
