@@ -1,0 +1,74 @@
+Mon Jan 25 04:17:18 BRST 2016
+Version:  AGG 2.1
+
+Layered graph transformation of : SD2DTMC
+on graph : Graph
+[  InitFirstLifeline  InitOtherLifelines  SetFirstOccurrenceRel  FirstSelfMessage  FirstSend  FirstReceive  Next  SelfMessage  CleanupSendOccurrence  ]
+
+Layer: 0
+[  InitFirstLifeline  InitOtherLifelines  ]
+InitFirstLifeline 	 applied:  true
+[  InitFirstLifeline  InitOtherLifelines  ]
+InitFirstLifeline 	 applied:  true
+[  InitFirstLifeline  InitOtherLifelines  ]
+InitOtherLifelines 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  InitFirstLifeline  ]
+InitFirstLifeline 	 applied:  false
+NAC  "lcountCreated"  is violated!
+[  ]
+used time: 336ms
+
+Layer: 1
+[  SetFirstOccurrenceRel  ]
+SetFirstOccurrenceRel 	 applied:  false
+Attributes don't match.
+[  ]
+used time: 8ms
+
+Layer: 2
+[  FirstReceive  FirstSelfMessage  FirstSend  ]
+FirstSelfMessage 	 applied:  false
+
+[  FirstReceive  FirstSend  ]
+FirstReceive 	 applied:  false
+
+[  FirstSend  ]
+FirstSend 	 applied:  true
+[  FirstReceive  FirstSelfMessage  FirstSend  ]
+FirstReceive 	 applied:  true
+[  FirstReceive  FirstSelfMessage  FirstSend  ]
+FirstSend 	 applied:  false
+
+[  FirstReceive  FirstSelfMessage  ]
+FirstReceive 	 applied:  false
+
+[  FirstSelfMessage  ]
+FirstSelfMessage 	 applied:  false
+
+[  ]
+used time: 547ms
+
+Layer: 3
+[  Next  SelfMessage  ]
+Next 	 applied:  false
+
+[  SelfMessage  ]
+SelfMessage 	 applied:  false
+Attributes don't match.
+[  ]
+used time: 196ms
+
+Layer: 5
+[  CleanupSendOccurrence  ]
+CleanupSendOccurrence 	 applied:  true
+[  CleanupSendOccurrence  ]
+CleanupSendOccurrence 	 applied:  true
+[  CleanupSendOccurrence  ]
+CleanupSendOccurrence 	 applied:  false
+
+[  ]
+used time: 142ms
+
+No more layers.
+Graph transformation finished

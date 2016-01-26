@@ -1,0 +1,104 @@
+Tue Jan 26 01:45:58 BRST 2016
+Version:  AGG 2.1
+
+Layered graph transformation of : SD2DTMC
+on graph : Graph
+[  InitLifelines  FirstSend2FirstReceive  FirstSend2Receive  FirstSelfSend  NextMessage  NextSelfSend  CleanOccurrences  CleanLifelines  ]
+
+Layer: 0
+[  InitLifelines  ]
+InitLifelines 	 applied:  true
+[  InitLifelines  ]
+InitLifelines 	 applied:  true
+[  InitLifelines  ]
+InitLifelines 	 applied:  false
+NAC  "AlreadyApplied"  is violated!
+[  ]
+used time: 74ms
+
+Layer: 1
+[  FirstSend2FirstReceive  FirstSend2Receive  FirstSelfSend  ]
+FirstSend2FirstReceive 	 applied:  true
+[  FirstSend2FirstReceive  FirstSend2Receive  FirstSelfSend  ]
+FirstSend2FirstReceive 	 applied:  false
+
+[  FirstSend2Receive  FirstSelfSend  ]
+FirstSend2Receive 	 applied:  false
+
+[  FirstSelfSend  ]
+FirstSelfSend 	 applied:  false
+
+[  ]
+used time: 26ms
+
+Layer: 2
+[  NextMessage  NextSelfSend  ]
+NextMessage 	 applied:  true
+[  NextMessage  NextSelfSend  ]
+NextSelfSend 	 applied:  false
+
+[  NextMessage  ]
+NextMessage 	 applied:  false
+
+[  ]
+used time: 57ms
+
+Layer: 5
+[  CleanOccurrences  CleanLifelines  ]
+CleanLifelines 	 applied:  false
+
+[  CleanOccurrences  ]
+CleanOccurrences 	 applied:  true
+[  CleanOccurrences  CleanLifelines  ]
+CleanOccurrences 	 applied:  true
+[  CleanOccurrences  CleanLifelines  ]
+CleanOccurrences 	 applied:  false
+
+[  CleanLifelines  ]
+CleanLifelines 	 applied:  false
+
+[  ]
+used time: 49ms
+
+Layer: 0
+[  InitLifelines  ]
+InitLifelines 	 applied:  false
+
+[  ]
+used time: 0ms
+
+Layer: 1
+[  FirstSend2FirstReceive  FirstSend2Receive  FirstSelfSend  ]
+FirstSelfSend 	 applied:  false
+
+[  FirstSend2FirstReceive  FirstSend2Receive  ]
+FirstSend2Receive 	 applied:  false
+
+[  FirstSend2FirstReceive  ]
+FirstSend2FirstReceive 	 applied:  false
+
+[  ]
+used time: 0ms
+
+Layer: 2
+[  NextMessage  NextSelfSend  ]
+NextMessage 	 applied:  false
+
+[  NextSelfSend  ]
+NextSelfSend 	 applied:  false
+
+[  ]
+used time: 0ms
+
+Layer: 5
+[  CleanOccurrences  CleanLifelines  ]
+CleanOccurrences 	 applied:  false
+
+[  CleanLifelines  ]
+CleanLifelines 	 applied:  false
+
+[  ]
+used time: 0ms
+
+No more layers.
+Graph transformation finished
