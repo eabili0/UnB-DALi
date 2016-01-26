@@ -49,7 +49,7 @@ public final class AggHelper {
 	 */
 	public static List<Graph> getForests(Graph g) throws TypeException {
 		List<Graph> toReturn = new ArrayList<Graph>(); // the forest list
-		HashSet<Node> parsedNodes = new HashSet<Node>(); // indicates when a node already belongs to a forest
+		HashSet<Integer> parsedNodes = new HashSet<Integer>(); // indicates when a node already belongs to a forest
 		Set<Arc> visitedArcs = new HashSet<Arc>(); // indicates the incoming arcs that have already been visited
 		
 		Iterator<Node> nodeItr = g.getNodesCollection().iterator(); // to iterate over the nodes
@@ -57,10 +57,10 @@ public final class AggHelper {
 			Node n = nodeItr.next();
 			
 			 // only nodes not belonging to any discovered subgraph can become a DFS starting point 
-			if (!parsedNodes.contains(n)) {
-				Graph subgraph = getForest(n, g, visitedArcs); 
+			if (!parsedNodes.contains(n.hashCode())) {
+				Graph subgraph = getForest(n, g, visitedArcs, parsedNodes); 
 				toReturn.add(subgraph);
-				parsedNodes.addAll(subgraph.getNodesSet());
+//				parsedNodes.addAll(subgraph.getNodesSet());
 			}
 		}
 		
@@ -76,9 +76,10 @@ public final class AggHelper {
 	 * @return the connected subgraph from n
 	 * @throws TypeException 
 	 */
-	public static Graph getForest(Node n, Graph g, Set<Arc> visitedArcs) throws TypeException {
+	public static Graph getForest(Node n, Graph g, Set<Arc> visitedArcs, HashSet<Integer> parsedNodes) throws TypeException {
 		Graph toReturn = new Graph(g.getTypeSet());
 		toReturn.addNode(n);
+		parsedNodes.add(n.hashCode());
 		
 		Iterator<Arc> incoming = n.getIncomingArcs();
 		while (incoming.hasNext()) {
@@ -88,8 +89,14 @@ public final class AggHelper {
 			if (!visitedArcs.contains(arc)) { 
 				visitedArcs.add(arc);
 				Node source = (Node) arc.getSource();
-				if (!source.equals(n)) // to prevent duplicate nodes when looping
-					toReturn.addCopyOfGraph(getForest(source, g, visitedArcs), false);
+
+				// to prevent duplicate nodes when looping is present
+				if (!source.equals(n)) 
+					addGraphNodesAndArcs(toReturn, getForest(source, g, visitedArcs, parsedNodes));
+				else if (!parsedNodes.contains(source.hashCode())){
+					toReturn.addNode(source);
+					parsedNodes.add(source.hashCode());
+				}
 				toReturn.addArc(arc);
 			}
 		}
@@ -99,11 +106,17 @@ public final class AggHelper {
 			Arc arc = outgoing.next();
 			
 			// the arcs gets "passed" if it has already been visited
-			if (visitedArcs.contains(arc)) {
+			if (!visitedArcs.contains(arc)) {
 				visitedArcs.add(arc);
 				Node target = (Node) arc.getTarget();
-				if (!target.equals(n)) // to prevent duplicate nodes when looping
-					toReturn.addCopyOfGraph(getForest(target, g, visitedArcs), false);
+				
+				// to prevent duplicate nodes when looping
+				if (!target.equals(n)) 
+					addGraphNodesAndArcs(toReturn, getForest(target, g, visitedArcs, parsedNodes));
+				else if (!parsedNodes.contains(target.hashCode())) {
+					toReturn.addNode(target);
+					parsedNodes.add(target.hashCode());
+				}
 				toReturn.addArc(arc);
 			}
 		}
@@ -141,6 +154,28 @@ public final class AggHelper {
 		}
 		
 		return toReturn;
+	}
+	
+	/**
+	 * Adds all nodes and arcs of a source graph to a target graph
+	 * 
+	 * @param target the graph that will encapsulate the other graph
+	 * @param source the graph that has the desired information
+	 * 
+	 * @return the target graph containing all nodes and arcs of the source graph
+	 */
+	public static Graph addGraphNodesAndArcs(Graph target, Graph source) {
+		Iterator<Node> nodesItr = source.getNodesSet().iterator();
+		while (nodesItr.hasNext()) {
+			target.addNode(nodesItr.next());
+		}
+		
+		Iterator<Arc> arcsItr = source.getArcsSet().iterator();
+		while (arcsItr.hasNext()) {
+			target.addArc(arcsItr.next());
+		}
+		
+		return target;
 	}
 	
 }

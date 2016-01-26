@@ -32,15 +32,19 @@ public class SequenceDiagram extends AbstractAggModel {
 	private static final String _grammar = "/models/SD.ggx";
 	private List<Lifeline> _lifelines;
 	private List<AsyncMessage> _messages;
+	private String _name;
 	
 	/**
 	 * Constructs a new empty Sequence Diagram.
 	 * 
 	 * @param id the identification string of this Model
+	 * @param name the name of this UML 2.5 Sequence Diagram
+	 * 
 	 * @throws AggModelConstructionException (impossible with this constructor)
 	 */
-	public SequenceDiagram(String id) throws AggModelConstructionException {
+	public SequenceDiagram(String id, String name) throws AggModelConstructionException {
 		super(id, null, _grammar);
+		_name = name;
 	}
 	
 	/**
@@ -87,12 +91,24 @@ public class SequenceDiagram extends AbstractAggModel {
 	/**************************** PUBLIC BEHAVIOR *******************************/
 	
 	/**
-	 * Transforms this UML Sequence Diagram to a DTMC with multiple Initial States,
-	 * each initial state referring to a Lifeline of this Sequence Diagram
+	 * Transforms this UML Sequence Diagram to a DTMC with multiple Initial States.
+	 * Each initial state refers to a Lifeline of this Sequence Diagram.
+	 * 
+	 * The name of the resulting model will be the same as this sequence diagram
 	 * @return The corresponding DTMC of this Sequence Diagram
 	 */
 	public MultiDTMC toDTMC() {
-		return new SD2DTMC(this).transform();
+		return new SD2DTMC(this).transform().setName(this._name);
+	}
+	
+	/**
+	 * Transforms this UML Sequence Diagram to a DTMC with multiple Initial States.
+	 * Each initial state refers to a Lifeline of this Sequence Diagram.
+	 * 
+	 * @return The corresponding DTMC of this Sequence Diagram
+	 */
+	public MultiDTMC toDTMC(String name) {
+		return new SD2DTMC(this).transform().setName(name);
 	}
 	
 	/**
@@ -129,8 +145,8 @@ public class SequenceDiagram extends AbstractAggModel {
 	 * @return this
 	 */
 	public AsyncMessage addAsyncMessage(String messageId, Lifeline source, Lifeline target, String signal) {
-		Event send = source.addEvent(new Event(this));
-		Event receive = target.addEvent(new Event(this));
+		Event send = new Event(this);
+		Event receive = new Event(this);
 		AsyncMessage toReturn = addMessage(new AsyncMessage(messageId, signal, this).setSendAndReceive(send, receive));
 		
 		addAnAggNode(send); addAnAggNode(receive); addAnAggNode(toReturn);
@@ -151,7 +167,7 @@ public class SequenceDiagram extends AbstractAggModel {
 	 * @param occ
 	 */
 	private void addOccurrenceToLifeline(Lifeline lifeline, Occurrence occ) {
-		if (occ == lifeline.getFirstOccurrence()) {
+		if (lifeline.getOccurrences().isEmpty()) {
 			addAnAggEdge(new First(lifeline, occ, this));
 		} else {
 			Occurrence previous = lifeline.getLastOccurrence();
@@ -159,6 +175,7 @@ public class SequenceDiagram extends AbstractAggModel {
 			occ.setPreviousOccurrence(previous);
 			addAnAggEdge(new Next(previous, occ, this));
 		}
+		lifeline.addOccurrence(occ);
 		occ.setLifeline(lifeline);
 	}
 	

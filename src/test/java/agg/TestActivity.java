@@ -20,7 +20,7 @@ public class TestActivity {
 					{IOHelper.getRandomString(), nodeIDs[1], nodeIDs[2]}
 			};
 			
-			ActivityDiagram ad = new ActivityDiagram(IOHelper.getRandomString());
+			ActivityDiagram ad = new ActivityDiagram(IOHelper.getRandomString(), "Teste");
 			
 			ad.addInitialNode(new InitialNode(nodeIDs[0], ad));
 			ad.addExecutableNode(new ExecutableNode(nodeIDs[1], ad));
@@ -31,7 +31,7 @@ public class TestActivity {
 			ad.addControlFlow(new ControlFlow(cfs[1][0], cfs[1][1], cfs[1][2], ad)
 				.setPTS(0.3));
 			
-			DTMC dtmc = ad.toDTMC("Teste");
+			DTMC dtmc = ad.toDTMC();
 			
 			System.out.println(dtmc.toPRISM());
 		} catch (Exception e) {

@@ -27,7 +27,7 @@ import br.unb.dali.util.prism.PRISMModelTypes;
 import br.unb.dali.util.prism.PRISMModule;
 
 public class DTMC extends AbstractAggModel {
-	private String _name = "";
+	private String _name;
 	private static final String _grammar = "/models/DTMC.ggx";
 	private DTMCState _initialState;
 	
@@ -150,6 +150,7 @@ public class DTMC extends AbstractAggModel {
 						break;
 					case "InitialState":
 						_initialState = new InitialState(IOHelper.getRandomString(), node, this);
+						setName(_initialState.getDTMCName());
 						addAnAggNode(_initialState);
 						break;
 					case "ErrorState":
@@ -200,14 +201,15 @@ public class DTMC extends AbstractAggModel {
 		
 		// only create commands if the current node has at least one outgoing edge
 		if (size > 0) {
-			String conditions = "";
-			for (int i = 0; i < size - 1; i++) {
+			String conditions = ((Transition)current.getOutgoingEdges().get(0)).getGuard();
+			toReturn += getTransition((Transition)current.getOutgoingEdges().get(0), var, "");
+			for (int i = 1; i < size; i++) {
 				Transition t = (Transition)current.getOutgoingEdges().get(i);
-				toReturn += getTransition(t, var,  " + ");
+				toReturn += getTransition(t, var,  (toReturn.isEmpty())?"":" + ");
 				conditions += t.getGuard();
 			}
-			toReturn += getTransition((Transition)current.getOutgoingEdges().get(size-1), var, ";");
-			toReturn = getGuard(current, var, conditions) + toReturn;
+			toReturn += ";";
+			toReturn = getGuard(current, var, formatGuardConditions(conditions)) + toReturn;
 		}
 		return toReturn;
 	}
@@ -218,9 +220,12 @@ public class DTMC extends AbstractAggModel {
 	 * @return
 	 */
 	private String getTransition(Transition transition, String var,  String append) {
-		DTMCState target = (DTMCState)transition.getTargetNode();
-		
-		return  ((float)transition.getProbability()) + ":" + "(" + var + "'=" +  target.getIndex() + ")" + append;
+		if (transition.getProbability() != 0.0) {
+			DTMCState target = (DTMCState)transition.getTargetNode();
+			
+			return append + IOHelper.round((float)transition.getProbability(), 2) + ":" + "(" + var + "'=" +  target.getIndex() + ")";
+		}
+		return "";
 	}
 	
 	/**
@@ -230,7 +235,26 @@ public class DTMC extends AbstractAggModel {
 	 * @return
 	 */
 	private String getGuard(DTMCState current, String var, String conditions) {
-		if (conditions != null && !conditions.isEmpty()) conditions = "&" + conditions;
+		if (conditions != null && !conditions.isEmpty()) conditions = " & " + conditions;
 		return "[" + current.getLabel()  + "]" + " " + var + "=" + current.getIndex() + conditions + " -> ";
+	}
+		
+	/**
+	 * Properly formats the conditions of a guards
+	 * Temporary method!
+	 * 
+	 * @param condition
+	 * @return a formated guard condition
+	 */
+	private String formatGuardConditions(String condition) {
+		String[] conditions = condition.split("&");
+		String toReturn = "";
+		if (conditions.length > 0) {
+			for (int i = 0; i < conditions.length - 1; i++) {
+				toReturn = "s" + conditions[i] + " & ";
+			}
+			toReturn = (conditions[conditions.length-1].isEmpty())?"":"s" + conditions[conditions.length-1];
+		}
+		return toReturn;
 	}
 }

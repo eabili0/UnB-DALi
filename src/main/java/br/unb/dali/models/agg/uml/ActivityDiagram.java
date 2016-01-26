@@ -26,6 +26,7 @@ import br.unb.dali.util.io.IOHelper;
  */
 public class ActivityDiagram extends AbstractAggModel{
 	private static final String _grammar = "/models/AD.ggx";
+	private String _name;
 	
 	/*********************** CONSTRUCTORS ***********************/
 	
@@ -33,10 +34,13 @@ public class ActivityDiagram extends AbstractAggModel{
 	 * Initializes a new empty UML Activity Diagram
 	 * 
 	 * @param id this activity diagram string identifier
+	 * @param name the name of this UML 2.5 activity diagram
+	 * 
 	 * @throws AggModelConstructionException (should not happen with this constructor)
 	 */
-	public ActivityDiagram(String id) throws AggModelConstructionException {
+	public ActivityDiagram(String id, String name) throws AggModelConstructionException {
 		super(id, null, _grammar);
+		this._name = name;
 	}
 	
 	/**
@@ -125,11 +129,20 @@ public class ActivityDiagram extends AbstractAggModel{
 	 * Transforms this UML Activity Diagram to a DTMC model
 	 * 
 	 * @param name the DTMC name to be generated
-	 * @return a DTMC model
-	 * @throws Exception 
+	 * @return the related DTMC Model of this Activity Diagram
 	 */
-	public DTMC toDTMC(String name) throws Exception {
+	public DTMC toDTMC(String name) {
 		return new AD2DTMC(this).transform().setName(name);
+	}
+	
+	/**
+	 * Transforms this UML Activity Diagram into a DTMC Model
+	 * The name of the resulting DTMC will be the same as of this object.
+	 *  
+	 * @return the related DTMC Model of this Activity Diagram
+	 */
+	public DTMC toDTMC() {
+		return new AD2DTMC(this).transform().setName(this._name);
 	}
 	
 	/*********************** PRIVATE ***********************/

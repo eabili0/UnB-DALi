@@ -72,7 +72,7 @@ public class Lifeline extends AbstractAggNode {
 	 * @param occ
 	 * @return the added occurrence
 	 */
-	private Occurrence addOccurrence(Occurrence occ) {
+	public Occurrence addOccurrence(Occurrence occ) {
 		if (_occurrences.isEmpty()) {
 			_firstOccurrence = occ;
 		}
@@ -96,10 +96,12 @@ public class Lifeline extends AbstractAggNode {
 	}
 	
 	/**
-	 * @return the last occurrence of this lifeline
+	 * @return the last occurrence of this lifeline, null if list is empty
 	 */
 	public Occurrence getLastOccurrence() {
-		return _occurrences.get(_occurrences.size()-1);
+		if (_occurrences.size() > 0)
+			return _occurrences.get(_occurrences.size()-1);
+		return null;
 	}
 	
 	/**

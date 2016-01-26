@@ -90,4 +90,14 @@ public class MultiDTMC extends AbstractAggModel {
 		toReturn.addModule(toReturnModule);
 		return toReturn;
 	}
+	
+	/**
+	 * Sets the name of this MultiDTMC object
+	 * @param name
+	 * @return the MultiDTMC object itself 
+	 */
+	public MultiDTMC setName(String name) {
+		this._name = name;
+		return this;
+	}
 }

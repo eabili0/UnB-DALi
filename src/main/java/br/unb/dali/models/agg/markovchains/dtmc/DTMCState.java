@@ -26,6 +26,10 @@ public abstract class DTMCState extends AbstractAggNode {
 		return _label;
 	}
 	
+	public String getDTMCName() {
+		return _dtmc;
+	}
+	
 	@Override
 	protected void setUp() {
 		AttrInstance attrs = _aggNode.getAttribute();

@@ -10,14 +10,14 @@ public class TestSequence {
 		String l1Id = IOHelper.getRandomString();
 		String l2Id = IOHelper.getRandomString();
 		
-		SequenceDiagram sd = new SequenceDiagram(IOHelper.getRandomString());
+		SequenceDiagram sd = new SequenceDiagram(IOHelper.getRandomString(), "Teste");
 	
 		sd.addLifeline(new Lifeline(l1Id, "User", sd).setBCompRel(0.8));
 		sd.addLifeline(new Lifeline(l2Id, "GasPump", sd).setBCompRel(0.99));
 		
-//		sd.addAsyncMessage(IOHelper.getRandomString(), l1Id, l2Id, "insertCard");
-//		sd.addAsyncMessage(IOHelper.getRandomString(), l2Id, l1Id, "response");
+		sd.addAsyncMessage(IOHelper.getRandomString(), l1Id, l2Id, "insertCard");
+		sd.addAsyncMessage(IOHelper.getRandomString(), l2Id, l1Id, "response");
 		
-		sd.toDTMC();
+		System.out.println(sd.toDTMC().toPRISM());
 	}
 }
