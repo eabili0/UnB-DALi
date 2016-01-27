@@ -42,6 +42,16 @@ public class MultiDTMC extends AbstractAggModel {
 	public MultiDTMC(Graph graph) throws AggModelConstructionException {
 		super(IOHelper.getRandomString(), graph, _grammar);
 	}
+	
+	/**
+	 * Constructs a MultiDTMC from a DTMC model object
+	 * @param dtmc
+	 */
+	public MultiDTMC(DTMC dtmc) {
+		super(dtmc.getId(), null, _grammar);
+		_name = dtmc.getName();
+		_dtmcs.add(dtmc);
+	}
 
 	/************************** INHERITANCE ****************************/
 	
@@ -59,7 +69,7 @@ public class MultiDTMC extends AbstractAggModel {
 	protected void setUp() throws AggModelConstructionException {
 		_dtmcs = new ArrayList<DTMC>();
 		try {
-			List<Graph> graphs = br.unb.dali.util.agg.AggHelper.getForests(_graph);
+			List<Graph> graphs = br.unb.dali.util.agg.AggHelper.getWeaklyConnectedSubGraphs(_graph);
 
 			for (Graph g : graphs) {
 				_dtmcs.add(new DTMC(g));

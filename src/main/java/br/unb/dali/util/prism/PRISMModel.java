@@ -1,5 +1,6 @@
 package br.unb.dali.util.prism;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -61,7 +62,21 @@ public class PRISMModel {
 	 * @return this
 	 */
 	public PRISMModel addModule(PRISMModule module) {
-		this._modules.put("", module);
+		this._modules.put(module.getName(), module);
+		return this;
+	}
+	
+	/**
+	 * Adds a list of modules to this PRISMModel
+	 * @param modules
+	 * @return the updated prismmodel
+	 */
+	public PRISMModel addModules(Collection<PRISMModule> modules) {
+		Iterator<PRISMModule> modulesItr = modules.iterator();
+		while (modulesItr.hasNext()) {
+			PRISMModule module = modulesItr.next();
+			_modules.put(module.getName(), module);
+		}
 		return this;
 	}
 	
