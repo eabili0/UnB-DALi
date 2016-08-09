@@ -21,6 +21,7 @@ import br.unb.dali.models.agg.uml.ActivityDiagram;
 public abstract class ActivityNode extends AbstractAggNode {  
 	protected LinkedHashSet<ActivityEdge> outgoing;
 	protected LinkedHashSet<ActivityEdge> incoming;
+	protected String _label;
 	
 	/**
 	 * adds an outgoing edge from this node
@@ -36,6 +37,14 @@ public abstract class ActivityNode extends AbstractAggNode {
 	 */
 	public void addIngoingEdge(ActivityEdge edge) {
 		incoming.add(edge);
+	}
+	
+	/**
+	 * Sets the label of this ActivityNode
+	 * @param label
+	 */
+	public void setLabel(String label) {
+		_label = label;
 	}
 	
 	/**
