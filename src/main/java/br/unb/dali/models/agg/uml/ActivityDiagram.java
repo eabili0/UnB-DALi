@@ -145,5 +145,11 @@ public class ActivityDiagram extends AbstractAggModel{
 		return new AD2DTMC(this).transform().setName(this._name);
 	}
 	
+	/**
+	 * @return gets the name of this Activity Diagram
+	 */
+	public String getName() {
+		return _name;
+	}
 	/*********************** PRIVATE ***********************/
 }

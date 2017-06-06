@@ -47,7 +47,7 @@ public final class AggHelper {
 	 * @return all disconnected sub graphs
 	 * @throws TypeException when the types of the Graph g are inconsistent with its underlying type graph
 	 */
-	public static List<Graph> getForests(Graph g) throws TypeException {
+	public static List<Graph> getWeaklyConnectedSubGraphs(Graph g) throws TypeException {
 		List<Graph> toReturn = new ArrayList<Graph>(); // the forest list
 		HashSet<Integer> parsedNodes = new HashSet<Integer>(); // indicates when a node already belongs to a forest
 		Set<Arc> visitedArcs = new HashSet<Arc>(); // indicates the incoming arcs that have already been visited
@@ -58,7 +58,7 @@ public final class AggHelper {
 			
 			 // only nodes not belonging to any discovered subgraph can become a DFS starting point 
 			if (!parsedNodes.contains(n.hashCode())) {
-				Graph subgraph = getForest(n, g, visitedArcs, parsedNodes); 
+				Graph subgraph = getWeaklyConnectedGraph(n, g, visitedArcs, parsedNodes); 
 				toReturn.add(subgraph);
 //				parsedNodes.addAll(subgraph.getNodesSet());
 			}
@@ -76,7 +76,7 @@ public final class AggHelper {
 	 * @return the connected subgraph from n
 	 * @throws TypeException 
 	 */
-	public static Graph getForest(Node n, Graph g, Set<Arc> visitedArcs, HashSet<Integer> parsedNodes) throws TypeException {
+	public static Graph getWeaklyConnectedGraph(Node n, Graph g, Set<Arc> visitedArcs, HashSet<Integer> parsedNodes) throws TypeException {
 		Graph toReturn = new Graph(g.getTypeSet());
 		toReturn.addNode(n);
 		parsedNodes.add(n.hashCode());
@@ -92,7 +92,7 @@ public final class AggHelper {
 
 				// to prevent duplicate nodes when looping is present
 				if (!source.equals(n)) 
-					addGraphNodesAndArcs(toReturn, getForest(source, g, visitedArcs, parsedNodes));
+					addGraphNodesAndArcs(toReturn, getWeaklyConnectedGraph(source, g, visitedArcs, parsedNodes));
 				else if (!parsedNodes.contains(source.hashCode())){
 					toReturn.addNode(source);
 					parsedNodes.add(source.hashCode());
@@ -112,7 +112,7 @@ public final class AggHelper {
 				
 				// to prevent duplicate nodes when looping
 				if (!target.equals(n)) 
-					addGraphNodesAndArcs(toReturn, getForest(target, g, visitedArcs, parsedNodes));
+					addGraphNodesAndArcs(toReturn, getWeaklyConnectedGraph(target, g, visitedArcs, parsedNodes));
 				else if (!parsedNodes.contains(target.hashCode())) {
 					toReturn.addNode(target);
 					parsedNodes.add(target.hashCode());

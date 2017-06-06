@@ -1,5 +1,9 @@
 package br.unb.dali.transformations.agg;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import agg.xt_basis.GraGra;
 import agg.xt_basis.GraTra;
 import agg.xt_basis.Graph;
@@ -17,6 +21,7 @@ import br.unb.dali.util.agg.AggHelper;
 public abstract class AggLayeredTransformation implements ITransformation<AbstractAggModel, Graph> {
 	protected GraTra _gratra;
 	protected GraGra _gragra;
+	private PrintStream originalOutputStream = System.out;
 	
 	/**
 	 * Sets up the transformation with the Graph Grammar given by the resource file identified by $fileName;
@@ -43,7 +48,9 @@ public abstract class AggLayeredTransformation implements ITransformation<Abstra
 		Graph graph = source.getGraph().copy(_gragra.getTypeSet());
 		if (_gragra.resetGraph(graph)) {
 			_gratra.setHostGraph(graph);
+			shutOutputStreamUp();
 			_gratra.transform();
+			openOutputStreamUp();
 		} else {
 			System.out.println("Source graph could not be imported to the Trasformation grammar.");
 			return null;
@@ -63,5 +70,26 @@ public abstract class AggLayeredTransformation implements ITransformation<Abstra
 	 */
 	public GraGra getGrammar() {
 		return _gragra;
+	}
+	
+	/**
+	 * Shuts up the output stream
+	 */
+	private void shutOutputStreamUp() {
+		PrintStream dummyStream = new PrintStream(new OutputStream() {
+			@Override
+			public void write(int b) throws IOException {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		System.setOut(dummyStream);
+	}
+	
+	/**
+	 * Opens up the output stream
+	 */
+	private void openOutputStreamUp() {
+		System.setOut(originalOutputStream);
 	}
 }
