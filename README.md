@@ -45,6 +45,13 @@ Basic Organization
 
 Obs: note that `src/test/` files will **NOT** be added to the final .jar.
 
+Integration With UML Tools
+============================
+
+UnB-DALi has been extended to provide support to multiple UML modelling tools like MagicDraw, Papyrus, Modelio, etc. UML diagrams as XMI files are transformed into Discrete-Time Markov Chains (DTMCs) in PRISM language via the UnB-Dependability Analysis Library (UnB-DALi). Check the XMItoPRISM project here (https://github.com/lesunb/XMIToPRISM) via UnB-DALi.
+
+The project's goal is to extract the information of an UML diagram, in the form of an XMI file, and use it as input to UnB-DALi, that conducts the graph transformation of an UML diagram to a DTMC in the language of the PRISM model checker tool. Tests were performed to the following UML tools: Argouml, Magic Draw, Astah, BOUML, Modelio and Papyrus.
+
 This is it for now.
 --
 Dependability@cic.
